@@ -68,7 +68,7 @@ class worona
 	*  This function is called during the 'admin_menu' action and will do things such as:
 	*  add a worona link to the wordpress settings menu
 	*
-	*  @type	action (init)
+	*  @type	action (admin_menu)
 	*  @date	18/07/14
 	*  @since	0.6.0
 	*
