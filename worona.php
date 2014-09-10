@@ -122,7 +122,7 @@ class worona
 	    }
   
 	    // add the html content of the post to worona_content	    
-	    $html = str_replace( PHP_EOL, '', wpautop( strip_tags( do_shortcode( $post['post_content'] ), '<h1><h2><h3><img><p><ul><li><a>'), false ) );
+	    $html = str_replace( PHP_EOL, '', wpautop( strip_tags( do_shortcode( $post['post_content'] ), '<h1><h2><h3><h4><h5><h6><img><p><ul><li><a>'), false ) );
 	    $_post['worona_content']['html'] = apply_filters( "worona_prepare_html", $html );
 	    
 
