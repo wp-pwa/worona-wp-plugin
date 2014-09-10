@@ -6,7 +6,7 @@ Requires at least: 3.0.1
 Tested up to: 4.0
 Stable tag: 0.6
 stable.
-License: GPLv2 or later
+License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Build a native mobile app with the contents of your WordPress blog. Fast, easy and free.
