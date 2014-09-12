@@ -52,6 +52,9 @@ If you want us to <a href="http://www.worona.org/services">upload your app</a> t
 
 == Changelog ==
 
+= 0.6.1 =
+* Added <strong> to the valid html tags
+
 = 0.6 =
 * First release of the plugin
 
