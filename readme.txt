@@ -4,7 +4,7 @@ Donate link: -
 Tags: worona, app, mobile, iOS, android, store, google, play, mobile, native, free, mobile theme, iphone, ipad, smartphones, web app, webapp, theme, ipod, generator, push, notifications, tablet, windows, 
 Requires at least: 3.0.1
 Tested up to: 4.0
-Stable tag: 0.6.1
+Stable tag: 0.6.2
 stable.
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
