@@ -1,19 +1,19 @@
 === Worona - Transform your WordPress blog into a native mobile app (iOS, Android) ===
-Contributors: benuit
+Contributors: Benuit
 Donate link: -
-Tags: app, mobile, iOS, android, appstore, google play, mobile app, native
+Tags: worona, app, mobile, iOS, android, store, google, play, mobile, native, free, mobile theme, iphone, ipad, smartphones, web app, webapp, theme, ipod, generator, push, notifications, tablet, windows, 
 Requires at least: 3.0.1
 Tested up to: 4.0
-Stable tag: 0.6
+Stable tag: 0.6.2
 stable.
 License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl.html
 
 Build a native mobile app with the contents of your WordPress blog. Fast, easy and free.
 
 == Description ==
 
-Worona is an open source WordPress plugin that enables the users to create native mobile apps using their WordPress as a CMS. Worona is divided into 2 different parts: the WordPress plugin itself, which prepares the content of your WordPress site to be sent to the app, and the app code, written under Corona SDK.
+Worona is an open source WordPress plugin that enables users to create native mobile apps using their WordPress as a CMS. Worona is divided into 2 different parts: the WordPress plugin itself, which prepares the content of your WordPress site to be sent to the app, and the native app coded using Corona SDK.
 
 From the user point of view, the functioning of Worona is pretty easy (we’ll cover the developer point of view in our <a href="http://docs.worona.org">documentation section</a>). In this first release, Worona plugin takes all the posts from a site, and presents them into an app. To do so, you just have to follow 3 simple steps:
 
