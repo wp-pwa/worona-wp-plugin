@@ -1,7 +1,7 @@
-=== Worona - Transform your WordPress blog into a native mobile app (iOS, Android) ===
-Contributors: Benuit
+=== Worona - Native Mobile Apps for free (iOS & Android) ===
+Contributors: benuit
 Donate link: -
-Tags: worona, app, mobile, iOS, android, store, google, play, mobile, native, free, mobile theme, iphone, ipad, smartphones, web app, webapp, theme, ipod, generator, push, notifications, tablet, windows, 
+Tags: free, generator, ipod, mobapper, native, play, store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, mobile web, mobile website, mobiloud, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, webapp, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, Post, posts, tidio, twitter, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
 Requires at least: 3.0.1
 Tested up to: 4.0
 Stable tag: 0.6.2
@@ -33,18 +33,18 @@ We believe that Worona will be used as a standard to easily create native apps s
 Once the plugin is installed, visit our <a href="http://docs.worona.org/worona-installation-guide/">installation guide</a> to help you build your app. 
 
 **Any questions?**
-Contact us at <a href="mailto:hola@worona.org">hola@worona.org</a>.
+Contact us at <a href="mailto:hello@worona.org">hello@worona.org</a>.
 
 == Frequently Asked Questions ==
 
 = Is it free? Where is the trick? =
 
-There is no trick. Worona is free and open source. It will always be. We sell additional services like <a href="http://www.worona.org/services">quality hosting</a>, <a href="http://www.worona.org/services">uploading your app</a> to the App Store and Google Play or <a href="http://www.worona.org/extensions">premium extensions</a>, but you can always host it in other servers, upload it to the stores yourself and create your own plugins or use the free ones we or other people provide.
+There is no trick. Worona is free and open source. It will always be. We sell additional services like <a href="http://www.worona.org/hosting">quality hosting</a>, <a href="http://www.worona.org/publish">uploading your app</a> to the App Store and Google Play or <a href="http://www.worona.org/extensions">premium extensions</a>, but you can always host it in other servers, upload it to the stores yourself and create your own plugins or use the free ones we or other people provide.
 
 = Do I have to compile the app myself? =
 
 If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so. 
-If you want us to <a href="http://www.worona.org/services">upload your app</a> to the App Store and Google Play for you, we will take care of all the process, so you don't have to worry about compiling :).
+If you want us to <a href="http://www.worona.org/publish">upload your app</a> to the App Store and Google Play for you, we will take care of all the process, so you don't have to worry about compiling :).
 
 == Screenshots ==
 
