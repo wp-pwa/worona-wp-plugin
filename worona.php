@@ -65,7 +65,7 @@ class worona
 	*  worona_admin_actions
 	*
 	*  This function is called during the 'admin_menu' action and will do things such as:
-	*  add a worona link to the wordpress menu
+	*  add a worona menu page to the Main Menu
 	*
 	*  @type	action (admin_menu)
 	*  @date	18/07/14
@@ -76,7 +76,15 @@ class worona
 	*/
 
 	function worona_admin_actions() {
-		add_menu_page( "Worona", "Worona", 1, "Worona", $array($this, "worona_admin"), plugins_url( 'assets/worona20x20.svg' , __FILE__ ), '79.999' );
+		$page_title = "Worona";
+		$menu_title = "Worona";
+		$capability = 1;
+		$menu_slug  = "worona";
+		$function  	= array($this, "worona_admin");
+		$icon_url	= trailingslashit(plugin_dir_url( __FILE__ )) . "assets/worona20x20.png";
+		$position	= 64.999989; //Right before the "Plugins"
+
+		add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
 	}
 
 	/*
