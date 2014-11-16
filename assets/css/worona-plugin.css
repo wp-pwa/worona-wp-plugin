@@ -1,0 +1,32 @@
+.updated {
+	border-left: 4px solid #7ad03a;
+	padding: 1px 12px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+
+.worona-message {
+	position: relative;
+	border-left-color: #4a90e2!important;
+	overflow: hidden;
+}
+
+.wr-button {
+  display: inline-block;
+  margin-top: 22px;
+  margin-right: 22px;
+  margin-left: 22px;
+  padding: 7px 22px;
+  border: 2px solid #4a90e2;
+  border-radius: 2px;
+  background-color: #4a90e2;
+  font-family: Lato, sans-serif;
+  color: white;
+  font-size: 20px;
+  line-height: 50px;
+}
+.wr-button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: #4a90e2;
+}

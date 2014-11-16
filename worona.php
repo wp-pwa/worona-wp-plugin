@@ -102,6 +102,8 @@ class worona
 	*/
 
 	function worona_admin() {
+		wp_register_style('worona_plugin_css', plugins_url('/assets/css/worona-plugin.css',__FILE__ ));
+		wp_enqueue_style('worona_plugin_css');		
 	    include('admin/worona_admin_page.php');
 	}
 
