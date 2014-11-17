@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <div class="wrap">
 	<h1><img src="<?php echo trailingslashit(plugin_dir_url( "worona-logo.png" )) . "worona/assets/worona-logo.png"?>"></h1>
 	<br>
