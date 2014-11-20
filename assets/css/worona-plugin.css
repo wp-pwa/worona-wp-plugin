@@ -5,19 +5,23 @@
 	-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
+.updated a {
+  text-decoration: none;
+  padding-bottom: 7px !important;
+}
 
 .worona-message {
 	position: relative;
-	border-left-color: #4a90e2!important;
+	border-left-color: #4a90e2 !important;
 	overflow: hidden;
 }
 
 .wr-button {
   display: inline-block;
-  margin-top: 22px;
+  margin-top: 15px;
   margin-right: 22px;
   margin-left: 22px;
-  padding: 7px 22px;
+  padding: 7px 22px; 
   border: 2px solid #4a90e2;
   border-radius: 2px;
   background-color: #4a90e2;
@@ -30,3 +34,12 @@
   background-color: rgba(255, 255, 255, 0);
   color: #4a90e2;
 }
+
+.wr-text {
+  padding-left: 30px !important;
+  font-size: 16px;
+}
+
+.small {
+  font-size: 13px;
+}   
