@@ -10,6 +10,10 @@
   padding-bottom: 7px !important;
 }
 
+.underlined a {
+  text-decoration: underline;
+} 
+
 .worona-message {
 	position: relative;
 	border-left-color: #4a90e2 !important;

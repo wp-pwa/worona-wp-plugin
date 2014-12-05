@@ -10,12 +10,12 @@
 		</p>
 	</div>
 	<br>
-	<div class="updated worona-message"> 
+	<div class="updated worona-message underlined"> 
 		<h1>Extensions</h1>
 		<p class="wr-text">To give <strong>extra powers</strong> to your Mobile App visit our <a href="https://www.worona.org/extensions" target="_blank"> Extensions marketplace</a>.</p>
 	</div>
 	<br>
-	<div class="updated worona-message"> 
+	<div class="updated worona-message underlined"> 
 		<h1>Publish</h1>
 		<p class="wr-text">If you want, we can upload your App to the stores: <a href="https://www.worona.org/publish" target="_blank">Worona Publish Service</a>.</p>
 	</div>
