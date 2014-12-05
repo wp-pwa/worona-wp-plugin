@@ -3,7 +3,7 @@
 Plugin Name: Worona
 Plugin URI: http://www.worona.org/
 Description: Turn your WordPress site into a native iOS, Android and Windows Phone App.
-Version: 0.6.2
+Version: 0.7
 Author: Benuit
 Author URI: http://www.benuit.com/
 License: GPL v3
@@ -65,7 +65,7 @@ class worona
 	*  worona_admin_actions
 	*
 	*  This function is called during the 'admin_menu' action and will do things such as:
-	*  add a worona link to the wordpress settings menu
+	*  add a worona menu page to the Main Menu
 	*
 	*  @type	action (admin_menu)
 	*  @date	18/07/14
@@ -76,7 +76,15 @@ class worona
 	*/
 
 	function worona_admin_actions() {
-	    add_options_page("Worona", "Worona", 1, "Worona", array($this, "worona_admin") );
+		$page_title = "Worona";
+		$menu_title = "Worona";
+		$capability = 1;
+		$menu_slug  = "worona";
+		$function  	= array($this, "worona_admin");
+		$icon_url	= trailingslashit(plugin_dir_url( __FILE__ )) . "assets/worona20x20.png";
+		$position	= 64.999989; //Right before the "Plugins"
+
+		add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
 	}
 
 	/*
@@ -94,6 +102,8 @@ class worona
 	*/
 
 	function worona_admin() {
+		wp_register_style('worona_plugin_css', plugins_url('/assets/css/worona-plugin.css',__FILE__ ));
+		wp_enqueue_style('worona_plugin_css');		
 	    include('admin/worona_admin_page.php');
 	}
 
