@@ -20,7 +20,4 @@
 		<p class="wr-text">If you want, we can upload your App to the stores: <a href="https://www.worona.org/publish" target="_blank">Worona Publish Service</a>.</p>
 	</div>
 	<br>
-	<p class="wr-text small">
-		<input type="checkbox" checked id="wr-plugin-stats"> Help us improve Worona with some <strong>anonymous</strong> usage stats! Thanks!
-	</p>
 </div>
