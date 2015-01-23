@@ -39,6 +39,7 @@ class worona
 
 		// filters
 		add_filter( 'json_prepare_post',  array($this, 'add_worona_content_to_api'), 10, 3 );
+		add_filter( 'worona_before_prepare_html', array($this, 'prepare_youtube_videos'), 10, 1);
 	}
 
 	/*
@@ -58,6 +59,8 @@ class worona
 	function init()
 	{
 		// requires
+		require_once("lib/simple_html_dom.php");
+
 		
 	}
 	
@@ -130,13 +133,50 @@ class worona
 	    	$_post['worona_content']['acf'] = $fields;
 	    }
   
+  		//var_dump($post['post_content']);
+  		//die();
 	    // add the html content of the post to worona_content	    
-	    $html = str_replace( PHP_EOL, '', wpautop( strip_tags( do_shortcode( $post['post_content'] ), '<h1><h2><h3><h4><h5><h6><img><p><ul><li><a><strong>'), false ) );
+	    $html  = apply_filters( "worona_before_prepare_html", $post['post_content'] );
+	    $html = str_replace( PHP_EOL, '', wpautop( strip_tags( do_shortcode( $html ), '<h1><h2><h3><h4><h5><h6><img><p><ul><iframe><li><a><strong>'), false ) );
 	    $_post['worona_content']['html'] = apply_filters( "worona_prepare_html", $html );
 	    
 
 	    return $_post;
 	}
+
+	function prepare_youtube_videos ( $html ) {
+
+		global $wp_embed;
+		$html = $wp_embed->run_shortcode($html);
+
+		// Create a DOM object
+		$dom = new simple_html_dom();
+		$dom->load( $html );
+
+		// Find all youtube iframes
+		foreach($dom->find('iframe') as $iframe) {
+			$src = $iframe->src;
+
+			//We recover youtube vide id
+			preg_match("/embed\/([a-zA-Z0-9]*)(&|#|$|\?)/", $src, $youtube_id);
+			$youtube_id = $youtube_id[1];
+
+			//Call Youtube API to obtain video thumbnail
+			$youtube_thumbnail_url = "http://img.youtube.com/vi/" . $youtube_id . "/hqdefault.jpg"; 
+
+			//prepare link to Youtube embeded web
+			$youtube_link = "http://www.youtube.com/embed/" . $youtube_id;
+
+			$youtube_play = trailingslashit(plugin_dir_url( "yotube_play.png" )) . "worona/assets/youtube_play.png";
+
+			//<a href=$youtube_link><img src=$youtube_thumbnail_url></img></a>
+			$iframe->outertext = "<p style='position:relative;'><a style='position: absolute;display: block;background: url(" . $youtube_play . ");height: 40px;width: 40px;top: 20px;left: 20px;' href=" . $youtube_link . "><img src=".$youtube_thumbnail_url."></img></a></p>";
+
+		}
+
+		return $dom->save();
+	}
+	
 }
 
 /*
