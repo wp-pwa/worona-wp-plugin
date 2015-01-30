@@ -157,20 +157,30 @@ class worona
 		foreach($dom->find('iframe') as $iframe) {
 			$src = $iframe->src;
 
-			//We recover youtube vide id
+			//We recover youtube video id
 			preg_match("/embed\/([a-zA-Z0-9]*)(&|#|$|\?)/", $src, $youtube_id);
 			$youtube_id = $youtube_id[1];
 
 			//Call Youtube API to obtain video thumbnail
 			$youtube_thumbnail_url = "http://img.youtube.com/vi/" . $youtube_id . "/hqdefault.jpg"; 
 
-			//prepare link to Youtube embeded web
+			//prepare link to Youtube fullscreen web
 			$youtube_link = "http://www.youtube.com/embed/" . $youtube_id;
 
 			$youtube_play = trailingslashit(plugin_dir_url( "yotube_play.png" )) . "worona/assets/youtube_play.png";
 
-			//<a href=$youtube_link><img src=$youtube_thumbnail_url></img></a>
-			$iframe->outertext = "<p style='position:relative;'><a style='position: absolute;display: block;background: url(" . $youtube_play . ");height: 40px;width: 40px;top: 20px;left: 20px;' href=" . $youtube_link . "><img src=".$youtube_thumbnail_url."></img></a></p>";
+			//<a href=$youtube_link></a><img src=$youtube_thumbnail_url />
+			$iframe->outertext = 
+				"<p style='position:relative;'>
+	  				<a style=' 	position: absolute;
+	   							display: block;
+	   							background: url(\"".$youtube_play."\");
+	   							height: 85px;
+	   							width: 118px;
+	   							top: 137px;
+	   							left: 181px;' href=\"".$youtube_link."\"></a>
+	    			<img src=\"".$youtube_thumbnail_url."\"/>
+				</p>";
 
 		}
 
