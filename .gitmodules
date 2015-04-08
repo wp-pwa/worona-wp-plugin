@@ -1,0 +1,3 @@
+[submodule "json-rest-api"]
+	path = json-rest-api
+	url = https://github.com/WP-API/WP-API.git
