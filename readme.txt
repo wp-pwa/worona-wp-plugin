@@ -4,7 +4,7 @@ Donate link: -
 Tags: free, generator, ipod, mobapper, native, play, store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, webapp, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, Post, posts, tidio, twitter, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
 Requires at least: 3.9 or higher
 Tested up to: 4.0
-Stable tag: 0.7
+Stable tag: 0.7.1
 stable.
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -32,7 +32,7 @@ There you have our <a href="https://www.worona.org/blog" target="_blank">blog</a
 
 **Device Support (Smartphones &Tablets)**
 
-Our App works in iOS and Android, it also looks great in phones and tablets. We have tested it in: iOS 7 (iPhone and iPad), iOS 8 (iPhone and iPad), Android 4.0, Android 4.1 and Android 4.4. 
+Our App works in iOS and Android, it also looks great in phones and tablets. We have tested it in: iOS 7 (iPhone and iPad), iOS 8 (iPhone and iPad), Android 4.0, Android 4.1 and Android 4.4.
 
 If you detect any problem with other devices o platforms, please drop us a line at <a href="mailto:hello@worona.org">hello@worona.org</a>
 
@@ -63,7 +63,7 @@ We believe that Worona will be used as a standard to easily create native apps s
 1. **Install** the plugin from the plugins directory, or **upload** the `worona-plugin` folder to the `/wp-content/plugins/` directory.
 1. **Activate** the plugin through the 'Plugins' menu in WordPress
 
-Once the plugin is installed, visit our <a href="http://docs.worona.org/worona-installation-guide/">installation guide</a> to help you build your app. 
+Once the plugin is installed, visit our <a href="http://docs.worona.org/worona-installation-guide/">installation guide</a> to help you build your app.
 
 **Any questions?**
 Contact us at <a href="mailto:hello@worona.org">hello@worona.org</a>.
@@ -76,7 +76,7 @@ There is no trick. Worona is free and open source. It will always be. We sell ad
 
 = Do I have to compile the app myself? =
 
-If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so. 
+If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so.
 If you want us to <a href="http://www.worona.org/publish">upload your app</a> to the App Store and Google Play for you, we will take care of all the process, so you don't have to worry about compiling :).
 
 == Screenshots ==
@@ -85,8 +85,11 @@ If you want us to <a href="http://www.worona.org/publish">upload your app</a> to
 
 == Changelog ==
 
+= 0.7.1 =
+* Include WP-API inside the plugin so you don't have to install it
+
 = 0.7 =
-* The plugin now looks awesome in your admin panel. 
+* The plugin now looks awesome in your admin panel.
 * Fixing some tags issues ;)
 
 = 0.6.1 =

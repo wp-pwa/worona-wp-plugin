@@ -3,7 +3,7 @@
 Plugin Name: Worona
 Plugin URI: http://www.worona.org/
 Description: Turn your WordPress site into a native iOS, Android and Windows Phone App.
-Version: 0.7
+Version: 0.7.1
 Author: Benuit
 Author URI: http://www.benuit.com/
 License: GPL v3
@@ -65,7 +65,7 @@ class worona
 	function init()
 	{
 		// requires
-		
+
 	}
 
 	/*
