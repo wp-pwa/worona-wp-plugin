@@ -3,7 +3,7 @@
 Plugin Name: Worona
 Plugin URI: http://www.worona.org/
 Description: Turn your WordPress site into a native iOS, Android and Windows Phone App.
-Version: 0.7.1
+Version: 0.7.2
 Author: Benuit
 Author URI: http://www.benuit.com/
 License: GPL v3
@@ -40,12 +40,8 @@ class worona
 		// filters
 		add_filter( 'json_prepare_post',  array($this, 'add_worona_content_to_api'), 10, 3 );
 
-		// if WP-API is not active, include it
-		if ( !in_array( 'json-rest-api/plugin.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			include_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'json-rest-api/plugin.php' );
-		} else {
-			deactivate_plugins('json-rest-api/plugin.php');
-		}
+		//
+		$this->include_wp_api();
 	}
 
 	/*
@@ -144,6 +140,33 @@ class worona
 
 	    return $_post;
 	}
+
+	/*
+	*  include_wp_api
+	*
+	*  This function is called during the __construct() and will do things such as:
+	*  check if we can include the WP-API plugin and include it.
+	*
+	*  @type	method
+	*  @date	13/04/15
+	*  @since	0.7.2
+	*
+	*  @param	N/A
+	*  @return	N/A
+	*/
+
+	function include_wp_api() {
+
+		// check if current_action function exist, because it was introduced in WP 3.9
+		if (function_exists('current_action')) {
+			// if WP-API is not active, include it
+			if ( !in_array( 'json-rest-api/plugin.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+				error_log("json-rest-api/plugin.php");
+				include_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'json-rest-api/plugin.php' );
+			}
+		}
+	}
+
 }
 
 /*
