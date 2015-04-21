@@ -2,9 +2,9 @@
 Contributors: benuit
 Donate link: -
 Tags: free, generator, ipod, mobapper, native, play, store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, webapp, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, Post, posts, tidio, twitter, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
-Requires at least: 3.9 or higher
-Tested up to: 4.0
-Stable tag: 0.7.2
+Requires at least: 3.9
+Tested up to: 4.1.2
+Stable tag: 0.7.3
 stable.
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
