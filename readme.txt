@@ -37,7 +37,7 @@ We are developing a set of <a href="https://www.worona.org/extensions" target="_
 
 * <a href="https://www.worona.org/extension-push-notifications/" target="_blank">Push Notifications</a>
 * <a href="https://www.worona.org/extension-rate-my-app/" target="_blank">Rate my App</a>
-* <a href="https://www.worona.org/extension-enhanced-list/“ target="_blank">Enhanced List</a>
+* <a href="https://www.worona.org/extension-enhanced-list/" target="_blank">Enhanced List</a>
 
 
 **Device Support (Smartphones &Tablets)**
