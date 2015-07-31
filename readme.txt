@@ -29,6 +29,16 @@ If you want to see how this looks like just check our demo App:
 
 There you have our <a href="https://www.worona.org/blog" target="_blank">blog</a> converted into a native App.
 
+through the process of adapting the App to your needs.
+
+**Push notifications and other extensions**
+
+We are developing a set of <a href="https://www.worona.org/extensions" target="_blank">Extensions</a> to give extra powers to your App.
+
+* <a href="https://www.worona.org/extension-push-notifications/" target="_blank">Push Notifications</a>
+* <a href="https://www.worona.org/extension-rate-my-app/" target="_blank">Rate my App</a>
+* <a href="https://www.worona.org/extension-enhanced-list/" target="_blank">Enhanced List</a>
+
 
 **Device Support (Smartphones &Tablets)**
 
@@ -42,21 +52,15 @@ For the moment we only support "posts", but we know that "custom content" and "p
 
 Our plans:
 
-* Navigation menu.
+* Categories in the menu.
 * Support pages.
 * Support custom content.
-* Easy customization (adding more styles).
+* Easy customisation (adding more styles).
 
-If you need any of these features before we finish them, write us. We will guide you through the process of adapting the App to your needs.
-
-**Push notifications and other extensions**
-
-We are developping a set of <a href="https://www.worona.org/extensions" target="_blank">Extensions</a> to give extra powers to your App.
-
-* <a href="https://www.worona.org/extension-push-notifications/" target="_blank">Push Notifications</a>
-* <a href="https://www.worona.org/extension-rate-my-app/" target="_blank">Rate my App</a>
+If you need any of these features before we finish them, write us. We will guide you 
 
 We believe that Worona will be used as a standard to easily create native apps straight from WordPress. And you are very welcome to join us in this adventure :)
+
 
 == Installation ==
 
@@ -72,18 +76,49 @@ Contact us at <a href="mailto:hello@worona.org">hello@worona.org</a>.
 
 = Is it free? Where is the trick? =
 
-There is no trick. Worona is free and open source. It will always be. We sell additional services like <a href="http://www.worona.org/hosting">quality hosting</a>, <a href="http://www.worona.org/publish">uploading your app</a> to the App Store and Google Play or <a href="http://www.worona.org/extensions">premium extensions</a>, but you can always host it in other servers, upload it to the stores yourself and create your own plugins or use the free ones we or other people provide.
+There is no trick. Worona is free and open source. It will always be. We sell additional services like <a href="http://www.worona.org/publish">uploading your app</a> to the App Store and Google Play or <a href="http://www.worona.org/extensions">premium extensions</a>, but you can always upload it to the stores yourself and create your own plugins or use the free ones we or other people provide.
 
 = Do I have to compile the app myself? =
 
-If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so.
-If you want us to <a href="http://www.worona.org/publish">upload your app</a> to the App Store and Google Play for you, we will take care of all the process, so you don't have to worry about compiling :).
+If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so. 
+If you want us to <a href="http://www.worona.org/publish">upload your app</a> to the App Store and Google Play for you, we will take care of all the process, so you don't have to worry about compiling :)
+
+= Can I extend Worona App features? =
+
+Of course you can, we encourage users to modify Worona's code to change the appearance or even to add new features. We also sell different extensions in our marketplace (<a href="https://www.worona.org/extensions">Worona Extensions</a>), with them you can add extra features without coding.
+
+If you're looking for a new feature, please let us know, maybe it's in our roadmap or we can program it for you.
+
+= Do I have to pay a monthly fee? =
+
+No, there are no monthly fees. Worona is free, unlike other plugins Worona runs directly in your WordPress site, with no platforms in the middle. That's why you don't have to pay for using the plugin.
+
+= Do I have to create the iOS and the Android App? =
+
+You don't have to. You can choose the platforms you want to cover with your App. There is no difference using our technology.
+
+= Can I publish an App without paying the Developer Accounts to Apple and Google? =
+
+For the moment, the only way to publish an App to the Apple App Store or the Google Play is having a Developer Account. This is why even when Worona is free, you will have to spend some money in order to have you App published.
+
+= Why do I need a Mobile App instead of a Responsive theme? =
+
+We think you don't have to choose between both solutions. With a Mobile App your users can read the content even when they don't have internet connection, they can receive <a href="https://www.worona.org/extension-push-notifications/">push notifications</a> every time new posts are available and you can drive more engagement on your blog content.
+
+For example, sites like Amazon, Youtube, Soundcloud have both: a Mobile App and a Responsive web. 
 
 == Screenshots ==
 
-1. Worona's blog app sample.
+1. Worona’s WP Plugin.
+2. Worona Mobile App with <a href=“https://www.worona.org/extension-enhanced-list/” target="_blank">Enhanced List</a>
+3. A sample post with the <a href=“https://www.worona.org/extension-share/” target="_blank">Share Extension</a>
+4. Worona Mobile App (basic post list)
+5. Worona Mobile App (lateral menu)
 
 == Changelog ==
+
+= 0.7.3 =
+* The WP JSON REST API is now included with our Plugin, you don’t have to install two plugins :)
 
 = 0.7.2 =
 * Fix a problem of WP-API with old WP versions.
