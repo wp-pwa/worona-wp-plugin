@@ -36,6 +36,7 @@ class worona
 		// actions
 		add_action('init', array($this, 'init'), 1);
 		add_action('admin_menu', array($this, 'worona_admin_actions'));
+		add_action('wp_head', array($this, 'worona_add_js_detector'), 1);
 
 		// filters
 		add_filter( 'json_prepare_post',  array($this, 'add_worona_content_to_api'), 10, 3 );
@@ -166,6 +167,26 @@ class worona
 			}
 		}
 	}
+
+	/*
+	*  worona_add_js_detector
+	*
+	*  This function is called during the wp_head() and will do things such as:
+	*  include a js script to detect if it's mobile
+	*
+	*  @type	method
+	*  @date	30/07/15
+	*  @since	1.0.0
+	*
+	*  @param	N/A
+	*  @return	N/A
+	*/
+
+	function worona_add_js_detector() {
+		echo "\n\n<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.2.1/mobile-detect.min.js'></script>";
+		echo "\n<script type='text/javascript' src='" . plugins_url( 'worona/js/worona-detector.js', dirname(__FILE__) ) . "'></script>\n\n";
+	}
+
 
 }
 
