@@ -1,10 +1,10 @@
 === Worona - Native Mobile App for free (iOS & Android) ===
-Contributors: benuit, poliuk, luisherranz
+Contributors: benuit, poliuk, luisherranz, fmorenoper
 Donate link: -
 Tags: free, generator, ipod, mobapper, native, play store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, webapp, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
 Requires at least: 3.9
-Tested up to: 4.3.1
-Stable tag: 0.7.3
+Tested up to: 4.4
+Stable tag: 0.7.4
 stable.
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -19,7 +19,7 @@ Worona is an open source WordPress plugin that enables users to convert their Wo
 The functioning of Worona is pretty easy. In this first release, Worona plugin takes all the posts from your site, and presents them into an app. All this process is fully covered in our <a href="https://www.worona.org/start/" target="_blank">installation guide</a>. We have tried to make it as visual and simple as possible, but we’d love to hear your ideas to improve it!
 
 
-= See an example = 
+= See an example =
 
 If you want to see how this looks like just check our demo App:
 
@@ -38,7 +38,7 @@ We are developing a set of <a href="https://www.worona.org/extensions" target="_
 * <a href="https://www.worona.org/extension-enhanced-list/" target="_blank">Enhanced List</a>
 
 
-= Device Support (Smartphones & Tablets) = 
+= Device Support (Smartphones & Tablets) =
 
 Our App works in iOS and Android, it also looks great in phones and tablets. We have tested it in: iOS 8 (iPhone and iPad), iOS 9 (iPhone and iPad), Android 4.0, Android 4.1 and Android 4.4.
 
@@ -78,7 +78,7 @@ There is no trick. Worona is free and open source. It will always be. We sell ad
 
 = Do I have to compile the app myself? =
 
-If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so. 
+If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so.
 If you want us to <a href="http://www.worona.org/publish">upload your app</a> to the App Store and Google Play for you, we will take care of all the process, so you don't have to worry about compiling :)
 
 = Can I extend Worona App features? =
@@ -103,7 +103,7 @@ For the moment, the only way to publish an App to the Apple App Store or the Goo
 
 We think you don't have to choose between both solutions. With a Mobile App your users can read the content even when they don't have internet connection, they can receive <a href="https://www.worona.org/extension-push-notifications/">push notifications</a> every time new posts are available and you can drive more engagement on your blog content.
 
-For example, sites like Amazon, Youtube, Soundcloud have both: a Mobile App and a Responsive web. 
+For example, sites like Amazon, Youtube, Soundcloud have both: a Mobile App and a Responsive web.
 
 == Screenshots ==
 
@@ -114,6 +114,10 @@ For example, sites like Amazon, Youtube, Soundcloud have both: a Mobile App and 
 5. Worona Mobile App (lateral menu)
 
 == Changelog ==
+
+= 0.7.4 =
+* The WP JSON REST API has been upgraded to its 1.2.4 version.
+* Fixed compatibility problems with WordPress 4.4
 
 = 0.7.3 =
 * The WP JSON REST API is now included with our Plugin, you don’t have to install two plugins :)
