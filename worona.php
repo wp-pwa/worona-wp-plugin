@@ -10,6 +10,8 @@ License: GPL v3
 Copyright: Worona Labs SL
 */
 
+
+
 if( !class_exists('worona') ):
 
 class worona
@@ -79,19 +81,39 @@ class worona
 	*/
 
 	function worona_admin_actions() {
-		$page_title = "Worona";
-		$menu_title = "Worona";
-		$capability = 1;
-		$menu_slug  = "worona";
-		$function  	= array($this, "worona_admin");
+
 		$icon_url	= trailingslashit(plugin_dir_url( __FILE__ )) . "assets/worona20x20.png";
 		$position	= 64.999989; //Right before the "Plugins"
 
-		add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+		add_menu_page( 
+			'Admin - WORONA', 
+			'Worona',
+			1,
+			'Worona-admin', 
+			array($this, 'render_worona_admin'), 
+			$icon_url,
+			$position 
+		);
+		add_submenu_page(
+			'Worona-admin',// the slug name for the parent menu
+			'Admin | Worona',// the title of the page when the browser visits it
+			'Admin',// the name of the option in the menu
+			'manage_options',// gives the plugin the ability to save settings
+			'Worona-admin',// this submenu's slug
+			array($this, 'render_worona_admin')// the function that will render the admin page
+		);
+		add_submenu_page(
+			'Worona-admin', // the slug name for the parent menu
+			'Help | Worona', // the title of the page when the browser visits it
+			'Contact & Help', // the name of the option in the menu
+			'manage_options', // gives the plugin the ability to save settings
+			'Worona-help', // this submenu's slug
+			array( $this, 'render_worona_help' ) // the function that will render the admin page
+		);
 	}
 
 	/*
-	*  worona_admin
+	*  render_worona_admin
 	*
 	*  This function is called by the 'worona_admin_actions' function and will do things such as:
 	*  add a worona page to render the admin content
@@ -104,10 +126,30 @@ class worona
 	*  @return	N/A
 	*/
 
-	function worona_admin() {
+	function render_worona_admin() {
 		wp_register_style('worona_plugin_css', plugins_url('/assets/css/worona-plugin.css',__FILE__ ));
 		wp_enqueue_style('worona_plugin_css');
-	    include('admin/worona_admin_page.php');
+	    include( 'admin/worona_admin_page.php');
+	}
+
+	/*
+	*  render_worona_help
+	*
+	*  This function is called by the 'worona_admin_actions' function and will do things such as:
+	*  add a worona page to render the help content
+	*
+	*  @type	fucntion called by 'worona_admin_actions'
+	*  @date	18/07/14
+	*  @since	0.6.0
+	*
+	*  @param	N/A
+	*  @return	N/A
+	*/
+
+	function render_worona_help() {
+		wp_register_style('worona_plugin_css', plugins_url('/assets/css/worona-plugin.css',__FILE__ ));
+		wp_enqueue_style('worona_plugin_css');
+	    include('admin/worona_help_page.php');
 	}
 
 	/*

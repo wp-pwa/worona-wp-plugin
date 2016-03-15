@@ -1,23 +1,29 @@
+<?php include_once("worona_check_plugin_functions.php");?>
+
 <div class="wrap">
-	<h1><img src="<?php echo trailingslashit(plugin_dir_url( "worona-logo.png" )) . "worona/assets/worona-logo.png"?>"></h1>
-	<br>
-	<div class="updated worona-message"> 
-		<h1>Mobile App</h1>
-		<p class="wr-text">Congratulations you have installed <strong>Worona WP Plugin!</strong></p>
-		<p class="wr-text">There are some steps left to have your Mobile App ready:</p>
-		<p class="wr-text">
-		 	<a class="wr-button" href="https://www.worona.org/start" target="_blank">Start Now!</a>
-		</p>
-	</div>
-	<br>
-	<div class="updated worona-message underlined"> 
-		<h1>Extensions</h1>
-		<p class="wr-text">To give <strong>extra powers</strong> to your Mobile App visit our <a href="https://www.worona.org/extensions" target="_blank"> Extensions marketplace</a>.</p>
-	</div>
-	<br>
-	<div class="updated worona-message underlined"> 
-		<h1>Publish</h1>
-		<p class="wr-text">If you want, we can upload your App to the stores: <a href="https://www.worona.org/publish" target="_blank">Worona Publish Service</a>.</p>
-	</div>
-	<br>
+<h1>SETUP PAGE</h1>
+
+<h2>WP-API</h2>
+<p>Worona will use the WP REST API plugin to take the content from your site.</p>
+
+<?php 
+	if(! wp_rest_api_plugin_is_installed()) {
+?>
+		<a href="<?php echo get_site_url() . '/wp-admin/plugin-install.php?tab=plugin-information&plugin=rest-api'; ?>" class="button green button-lg" target="_blank" role="button">Download Plugin</a>
+<?php 		
+	} else if (! wp_rest_api_plugin_is_active()){
+?>
+		<a href="<?php echo get_activate_wp_rest_api_plugin_url() ?>" class="button green button-lg" id="activate-rest-api-button">Activate WP-API Plugin</a>
+<?php		
+	} else {
+?>
+		print("WORKING");
+<?php		
+	}
+?>
+<br><br>
+3) Generate an SiteID<br>
+<br>
+4) Change siteID<br>
+<br>
 </div>
