@@ -1,9 +1,9 @@
 === Worona - Native Mobile App for free (iOS & Android) ===
-Contributors: benuit, poliuk, luisherranz, fmorenoper
+Contributors: benuit, poliuk, luisherranz
 Donate link: -
 Tags: free, generator, ipod, mobapper, native, play store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, webapp, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
 Requires at least: 3.9
-Tested up to: 4.4
+Tested up to: 4.5.1
 Stable tag: 0.7.4
 stable.
 License: GPLv3
@@ -65,7 +65,7 @@ We believe that Worona will be used as a standard to easily create native apps s
 1. **Install** the plugin from the plugins directory, or **upload** the `worona-plugin` folder to the `/wp-content/plugins/` directory.
 1. **Activate** the plugin through the 'Plugins' menu in WordPress
 
-Once the plugin is installed, visit our <a href="http://docs.worona.org/worona-installation-guide/">installation guide</a> to help you build your app.
+Once the plugin is installed, visit our <a href="https://www.worona.org/start/">installation guide</a> to help you build your app.
 
 **Any questions?**
 Contact us at <a href="mailto:hello@worona.org">hello@worona.org</a>.
