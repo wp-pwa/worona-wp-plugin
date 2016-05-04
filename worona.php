@@ -18,6 +18,9 @@ class worona
 {
 	// vars
 	var $settings;
+	public $rest_api_installed 	= false;
+	public $rest_api_active 	= false;
+	public $rest_api_working	= false;
 
 
 	/*
@@ -39,11 +42,16 @@ class worona
 		add_action('init', array($this, 'init'), 1);
 		add_action('admin_menu', array($this, 'worona_admin_actions'));
 
+		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
+		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
+		add_action( 'init', array($this,'allow_origin'));
+
+
 		// filters
-		add_filter( 'json_prepare_post',  array($this, 'add_worona_content_to_api'), 10, 3 );
+		//add_filter( 'json_prepare_post',  array($this, 'add_worona_content_to_api'), 10, 3 );
 
 		//
-		$this->include_wp_api();
+		//$this->include_wp_api();
 	}
 
 	/*
@@ -183,29 +191,62 @@ class worona
 	    return $_post;
 	}
 
-	/*
-	*  include_wp_api
-	*
-	*  This function is called during the __construct() and will do things such as:
-	*  check if we can include the WP-API plugin and include it.
-	*
-	*  @type	method
-	*  @date	13/04/15
-	*  @since	0.7.2
-	*
-	*  @param	N/A
-	*  @return	N/A
-	*/
 
-	function include_wp_api() {
+	//Checks if the rest-api plugin is installed	
+	public function wp_rest_api_plugin_is_installed() {
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$plugins = get_plugins();
+		
+		$this->rest_api_installed = isset($plugins['rest-api/plugin.php']);
+	}
 
-		// check if current_action function exist, because it was introduced in WP 3.9
-		if (function_exists('current_action')) {
-			// if WP-API is not active, include it
-			if ( !in_array( 'json-rest-api/plugin.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-				error_log("json-rest-api/plugin.php");
-				include_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'json-rest-api/plugin.php' );
-			}
+	//Checks if the rest-api plugin is active
+	public function wp_rest_api_plugin_is_active() {
+		$this->rest_api_active = class_exists( 'WP_REST_Controller' );
+	}
+
+	//Generates the url to 'auto-activate' the rest-api plugin
+	public function get_activate_wp_rest_api_plugin_url() {
+		$plugin = 'rest-api/plugin.php';
+		$plugin_escaped = str_replace('/', '%2F', $plugin);
+
+		$activateUrl = sprintf(admin_url('plugins.php?action=activate&plugin=%s&plugin_status=all&paged=1&s'), $plugin_escaped);
+
+	  	// change the plugin request to the plugin to pass the nonce check
+	  	$_REQUEST['plugin'] = $plugin;
+	  	$activateUrl = wp_nonce_url($activateUrl, 'activate-plugin_' . $plugin);
+
+	  	return $activateUrl;
+	}
+
+	//Adds Cross origin * to the header
+	function allow_origin() {
+	    header("Access-Control-Allow-Origin: *");
+	}
+
+	//Checks if the json posts endpoint is responding correctly
+	function wp_rest_api_endpoint_works() {
+		$rest_api_url = get_site_url() . '/wp-json/wp/v2/posts';
+		$args = array('timeout' => 10, 'httpversion' => '1.1' );
+
+		$response = wp_remote_get( $rest_api_url, $args );
+
+		if( is_array($response) ) {
+			$body = $response['body'];
+			$code = $reponse['reponse']['code'];
+			$message = $reponse['reponse']['message'];
+			$json_reponse = json_decode($body);
+
+			//CHECKS 
+			// $code != 200
+			// json valid
+			// json without error message { code: "rest_no_route" }
+
+
+		} else {
+			return false;
 		}
 	}
 
