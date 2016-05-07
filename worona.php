@@ -47,9 +47,8 @@ class worona
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
 		add_action('init', array($this,'allow_origin'));
 
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_styles' ) );
 		// filters
-		//add_filter( 'json_prepare_post',  array($this, 'add_worona_content_to_api'), 10, 3 );
-
 	}
 
 	/*
@@ -99,6 +98,15 @@ class worona
 		add_option('worona_site_created', true, '','yes');
 	}
 
+	/**
+ 	* Register and enqueue style sheet.
+ 	*/
+	public function register_worona_styles($hook) {
+
+		wp_register_style('bulma-css', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.25/css/bulma.css');
+
+	}
+
 	/*
 	*  worona_admin_actions
 	*
@@ -112,7 +120,6 @@ class worona
 	*  @param	N/A
 	*  @return	N/A
 	*/
-
 	function worona_admin_actions() {
 
 		$icon_url	= trailingslashit(plugin_dir_url( __FILE__ )) . "assets/worona20x20.png";
@@ -160,8 +167,7 @@ class worona
 	*/
 
 	function render_worona_admin() {
-		wp_register_style('worona_plugin_css', plugins_url('/assets/css/worona-plugin.css',__FILE__ ));
-		wp_enqueue_style('worona_plugin_css');
+		wp_enqueue_style('bulma-css');
 	  include( 'admin/worona_admin_page.php');
 	}
 
@@ -180,9 +186,8 @@ class worona
 	*/
 
 	function render_worona_help() {
-		wp_register_style('worona_plugin_css', plugins_url('/assets/css/worona-plugin.css',__FILE__ ));
-		wp_enqueue_style('worona_plugin_css');
-	    include('admin/worona_help_page.php');
+		wp_enqueue_style('bulma-css');
+	  include('admin/worona_help_page.php');
 	}
 
 	/*

@@ -1,4 +1,4 @@
-<?php global $worona;//include_once("worona_check_plugin_functions.php");?>
+<?php global $worona;?>
 
 <div class="wrap">
 <h1>SETUP PAGE</h1>
