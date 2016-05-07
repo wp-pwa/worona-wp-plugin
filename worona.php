@@ -17,7 +17,6 @@ if( !class_exists('worona') ):
 class worona
 {
 	// vars
-	var $settings;
 	public $rest_api_installed 	= false;
 	public $rest_api_active 	= false;
 	public $rest_api_working	= false;
@@ -40,18 +39,17 @@ class worona
 	{
 		// actions
 		add_action('init', array($this, 'init'), 1);
-		add_action('admin_menu', array($this, 'worona_admin_actions'));
+		add_action('admin_menu', array($this, 'worona_admin_actions')); //add the admin page
+		add_action('admin_init', array($this,'worona_register_settings')); //register the settings
+		add_action('admin_notices',array($this,'worona_admin_notices'));//Display the validation errors and update messages
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
-		add_action( 'init', array($this,'allow_origin'));
-
+		add_action('init', array($this,'allow_origin'));
 
 		// filters
 		//add_filter( 'json_prepare_post',  array($this, 'add_worona_content_to_api'), 10, 3 );
 
-		//
-		//$this->include_wp_api();
 	}
 
 	/*
@@ -71,7 +69,34 @@ class worona
 	function init()
 	{
 		// requires
+	}
 
+	function worona_settings_validator($args){
+
+		if(!isset($args['worona_appId']) || strlen($args['worona_appId'])<17){
+				$settings = get_option("worona_settings");
+				$args['worona_appId'] = $settings['worona_appId'];
+				add_settings_error('worona_settings', 'worona_invalid_appId', 'Please enter a valid APP ID!', $type = 'error');
+		}
+
+    //make sure you return the args
+    return $args;
+	}
+
+	function worona_admin_notices(){
+		settings_errors();
+	}
+
+	function worona_register_settings() {
+		register_setting(
+							'worona_settings',
+							'worona_settings',
+							array($this,'worona_settings_validator')
+		);
+	}
+
+	function worona_create_site() {
+		add_option('worona_site_created', true, '','yes');
 	}
 
 	/*
@@ -93,29 +118,29 @@ class worona
 		$icon_url	= trailingslashit(plugin_dir_url( __FILE__ )) . "assets/worona20x20.png";
 		$position	= 64.999989; //Right before the "Plugins"
 
-		add_menu_page( 
-			'Admin - WORONA', 
+		add_menu_page(
+			'Admin - WORONA',
 			'Worona',
 			1,
-			'Worona-admin', 
-			array($this, 'render_worona_admin'), 
+			'worona-admin',
+			array($this, 'render_worona_admin'),
 			$icon_url,
-			$position 
+			$position
 		);
 		add_submenu_page(
-			'Worona-admin',// the slug name for the parent menu
+			'worona-admin',// the slug name for the parent menu
 			'Admin | Worona',// the title of the page when the browser visits it
 			'Admin',// the name of the option in the menu
 			'manage_options',// gives the plugin the ability to save settings
-			'Worona-admin',// this submenu's slug
+			'worona-admin',// this submenu's slug
 			array($this, 'render_worona_admin')// the function that will render the admin page
 		);
 		add_submenu_page(
-			'Worona-admin', // the slug name for the parent menu
+			'worona-admin', // the slug name for the parent menu
 			'Help | Worona', // the title of the page when the browser visits it
 			'Contact & Help', // the name of the option in the menu
 			'manage_options', // gives the plugin the ability to save settings
-			'Worona-help', // this submenu's slug
+			'worona-help', // this submenu's slug
 			array( $this, 'render_worona_help' ) // the function that will render the admin page
 		);
 	}
@@ -137,7 +162,7 @@ class worona
 	function render_worona_admin() {
 		wp_register_style('worona_plugin_css', plugins_url('/assets/css/worona-plugin.css',__FILE__ ));
 		wp_enqueue_style('worona_plugin_css');
-	    include( 'admin/worona_admin_page.php');
+	  include( 'admin/worona_admin_page.php');
 	}
 
 	/*
@@ -192,13 +217,13 @@ class worona
 	}
 
 
-	//Checks if the rest-api plugin is installed	
+	//Checks if the rest-api plugin is installed
 	public function wp_rest_api_plugin_is_installed() {
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		$plugins = get_plugins();
-		
+
 		$this->rest_api_installed = isset($plugins['rest-api/plugin.php']);
 	}
 
@@ -239,7 +264,7 @@ class worona
 			$message = $reponse['reponse']['message'];
 			$json_reponse = json_decode($body);
 
-			//CHECKS 
+			//CHECKS
 			// $code != 200
 			// json valid
 			// json without error message { code: "rest_no_route" }
@@ -249,7 +274,6 @@ class worona
 			return false;
 		}
 	}
-
 }
 
 /*
@@ -280,9 +304,26 @@ function worona()
 	return $worona;
 }
 
-
 // initialize
 worona();
 
+function generate_appId() {
+	$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+	$chars_length = (strlen($chars) - 1);// Length of character list
+	$string = $chars{rand(0, $chars_length)};// Start our string
+
+	for ($i = 1; $i < 17; $i++) {// Generate random string
+			$r = $chars{rand(0, $chars_length)};// Grab a random character from our list
+			$string .= $r;// Make sure the same two characters don't appear next to each other
+	}
+	return $string;
+}
+function register_appId(){
+	$id = generate_appId();
+	add_option('worona_settings', array("worona_appId" => $id), '','yes');
+
+	flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'register_appId');
 
 endif; // class_exists check
