@@ -103,7 +103,7 @@ class worona
  	*/
 	public function register_worona_styles($hook) {
 
-		wp_register_style('bulma-css', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.25/css/bulma.css');
+		wp_register_style('bulma-css', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.26/css/bulma.min.css');
 
 	}
 

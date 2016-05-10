@@ -8,7 +8,11 @@ support forum
 <br>
 Social Profiles
 
-<div class="columns">
-  <div class="column is-two-thirds"><p class="notification is-info">First column</p></div>
-  <div class="column"><p class="notification is-info">second column</p></div>
-</div>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-two-thirds"><p class="notification is-info">First column</p></div>
+      <div class="column"><p class="notification is-info">second column</p></div>
+    </div>
+  </div>
+</section>
