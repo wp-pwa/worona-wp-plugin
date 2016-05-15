@@ -43,11 +43,14 @@ class worona
 		add_action('admin_init', array($this,'worona_register_settings')); //register the settings
 		add_action('admin_notices',array($this,'worona_admin_notices'));//Display the validation errors and update messages
 
+		add_action('wp_ajax_worona_create_app',array($this,'create_app_ajax'));
+
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
 		add_action('init', array($this,'allow_origin'));
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_scripts' ) );
 		// filters
 	}
 
@@ -77,6 +80,9 @@ class worona
 				$args['worona_appId'] = $settings['worona_appId'];
 				add_settings_error('worona_settings', 'worona_invalid_appId', 'Please enter a valid APP ID!', $type = 'error');
 		}
+		if(isset($args['worona_app_created']) && $args['worona_app_created']=='true'){
+			$args['worona_app_created'] = true;
+		}
 
     //make sure you return the args
     return $args;
@@ -104,6 +110,15 @@ class worona
 	public function register_worona_styles($hook) {
 
 		wp_register_style('bulma-css', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.26/css/bulma.min.css');
+
+	}
+
+	/**
+	* Register and enqueue scripts.
+	*/
+	public function register_worona_scripts($hook) {
+
+		wp_register_script('worona_admin_js', plugin_dir_url(__FILE__) . 'admin/js/worona-admin.js', array( 'jquery' ), true, true);
 
 	}
 
@@ -221,6 +236,29 @@ class worona
 	    return $_post;
 	}
 
+	//generates a random App Id
+	function generate_appId() {
+		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+		$chars_length = (strlen($chars) - 1);// Length of character list
+		$string = $chars{rand(0, $chars_length)};// Start our string
+
+		for ($i = 1; $i < 17; $i++) {// Generate random string
+				$r = $chars{rand(0, $chars_length)};// Grab a random character from our list
+				$string .= $r;// Make sure the same two characters don't appear next to each other
+		}
+		return $string;
+	}
+
+	function create_app_ajax() {
+		$appId = $this->generate_appId();
+
+		update_option( 'worona_settings', array('worona_app_created' => true,'worona_appId'=>$appId ));
+
+		wp_send_json( array(
+			'status' => 'ok',
+			'appID' => $appId
+		));
+	}
 
 	//Checks if the rest-api plugin is installed
 	public function wp_rest_api_plugin_is_installed() {
@@ -312,23 +350,12 @@ function worona()
 // initialize
 worona();
 
-function generate_appId() {
-	$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-	$chars_length = (strlen($chars) - 1);// Length of character list
-	$string = $chars{rand(0, $chars_length)};// Start our string
-
-	for ($i = 1; $i < 17; $i++) {// Generate random string
-			$r = $chars{rand(0, $chars_length)};// Grab a random character from our list
-			$string .= $r;// Make sure the same two characters don't appear next to each other
-	}
-	return $string;
-}
-function register_appId(){
-	$id = generate_appId();
-	add_option('worona_settings', array("worona_appId" => $id), '','yes');
+function worona_activation(){
+	add_option('worona_settings', array("worona_app_created" => false), '','yes');
 
 	flush_rewrite_rules();
 }
-register_activation_hook( __FILE__, 'register_appId');
+
+register_activation_hook( __FILE__, 'worona_activation');
 
 endif; // class_exists check
