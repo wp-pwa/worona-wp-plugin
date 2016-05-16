@@ -44,6 +44,7 @@ class worona
 		add_action('admin_notices',array($this,'worona_admin_notices'));//Display the validation errors and update messages
 
 		add_action('wp_ajax_worona_create_app',array($this,'create_app_ajax'));
+		add_action('wp_ajax_worona_modify_appid',array($this,'modify_appid_ajax'));
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
@@ -73,6 +74,7 @@ class worona
 		// requires
 	}
 
+	//settings are being updated via AJAX, this validator is not used now
 	function worona_settings_validator($args){
 
 		if(!isset($args['worona_appId']) || strlen($args['worona_appId'])<17){
@@ -256,8 +258,12 @@ class worona
 
 		wp_send_json( array(
 			'status' => 'ok',
-			'appID' => $appId
+			'id' => $appId
 		));
+	}
+
+	function modify_appid_ajax() {
+
 	}
 
 	//Checks if the rest-api plugin is installed
