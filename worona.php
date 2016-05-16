@@ -44,7 +44,7 @@ class worona
 		add_action('admin_notices',array($this,'worona_admin_notices'));//Display the validation errors and update messages
 
 		add_action('wp_ajax_worona_create_app',array($this,'create_app_ajax'));
-		add_action('wp_ajax_worona_modify_appid',array($this,'modify_appid_ajax'));
+		add_action('wp_ajax_worona_change_appid',array($this,'change_appid_ajax'));
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
@@ -100,10 +100,6 @@ class worona
 							'worona_settings',
 							array($this,'worona_settings_validator')
 		);
-	}
-
-	function worona_create_site() {
-		add_option('worona_site_created', true, '','yes');
 	}
 
 	/**
@@ -258,12 +254,24 @@ class worona
 
 		wp_send_json( array(
 			'status' => 'ok',
-			'id' => $appId
+			'appId' => $appId
 		));
 	}
 
-	function modify_appid_ajax() {
+	function change_appid_ajax() {
+		$appId = $_POST['appId'];
 
+		if(strlen($appId)<17) {
+			wp_send_json(array(
+				'status' => 'error',
+				'reason' => 'App ID is not valid.'
+			));
+		} else {
+			update_option( 'worona_settings', array('worona_app_created' => true,'worona_appId'=>$appId ));
+			wp_send_json( array(
+				'status' => 'ok',
+			));
+		}
 	}
 
 	//Checks if the rest-api plugin is installed

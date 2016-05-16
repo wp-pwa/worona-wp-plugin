@@ -167,13 +167,15 @@
 					<?php print(rest_url()); ?>
 				</p>
 				<? if ($worona_app_created): ?>
-				<hr>
-				<h2>Worona App ID:</h2>
-				<?php echo $settings['worona_appId'];?> <a id="open-modify-appid" href="#">(change)</a>
+				<p>
+					<hr>
+					<h2>Worona App ID:</h2>
+					<span id="worona-appid-info"><?php echo $settings['worona_appId'];?></span> <a id="open-change-appid" href="#">(change)</a>
+				</p>
 				<? endif; ?>
 			</div>
 		 </article>
-		 <article id="lateral-modify-appid" class="message is-warning" style="">
+		 <article id="lateral-change-appid" class="message is-warning" style="">
 			 <div class="message-header">
 			    <strong>Change Worona APP ID</strong>
 			  </div>
@@ -187,7 +189,7 @@
 							<td>
 									<fieldset>
 											<label>
-													<input name="worona_settings[worona_appId]" type="text" id="worona_appId" value="<?php echo (isset($options['worona_appId']) && $options['worona_appId'] != '') ? $options['worona_appId'] : ''; ?>"/>
+													<input type="text" id="worona-appid" value="<?php echo (isset($settings['worona_appId'])) ? $settings['worona_appId'] : ''; ?>"/>
 													<br />
 													<span class="description">Enter a valid App ID</span>
 											</label>
@@ -196,7 +198,7 @@
 						</tr>
 					</table>
 					<p>
-						<a href="#" class="button button-lg">Change</a>
+						<a href="#" id="change-app-id"class="button button-lg">Change</a>
 					</p>
 			  </div>
 		 </article>
