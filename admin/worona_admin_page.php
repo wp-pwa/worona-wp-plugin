@@ -2,6 +2,7 @@
 
 	//ONLY IN DEV
 	//delete_option('worona_settings');
+	//wp_register_script('worona_admin_js','wp-content/plugins/worona/admin/js/worona-admin.js', array( 'jquery' ), true, true);
 	//
 	global $worona;
 
@@ -69,6 +70,8 @@
 								$install_api_target="_blank";
 							}
 						?>
+					</p>
+					<p>
 						<a href="<?php echo $install_api_href; ?>" class="button button-lg" <?php echo ($step<=1 ? '' : 'style="display:none;"'); ?> target="<?php echo $install_api_target;?>">Download Plugin</a>
 					</p>
 				</div>
@@ -88,7 +91,6 @@
 						This is why we installed the WP-API plugin.
 					</p>
 					<p <?php echo ($step<=2 ? '' : 'style="display:none;"');?>>
-						<br>
 						<?php
 							if($rest_api_active ) {
 									$activate_api_href ="#";
@@ -109,7 +111,7 @@
 						<p class="title is-5">3. Create App</p>
 					</div>
 					<div id='label-created' class="level-right" <?php echo ( $worona_app_created ? '':'style="display:none;"');?>>
-						<span class="tag is-success">created</span>
+						<span class="tag is-success">Created</span>
 					</div>
 				</nav>
 				<div class="content">
@@ -117,9 +119,8 @@
 						This will create a Worona App ID, it will link your WordPress with the Worona App.
 					</p>
 					<p id="label-create-buttons"<?php echo ($step<=3 ? '' : 'style="display:none;"');?>>
-						<br>
 						<a href="#" id="create-worona-app" class="button button-lg <?php echo ($step==3 ? '' : 'disabled'); ?>">Create App</a>
-						or <a href="#" id="insert-app-id">insert an existing App ID</a>
+						or <a href="#" class="open-change-appid">insert an existing App ID</a>
 					</p>
 				</div>
 			</div>
@@ -136,6 +137,19 @@
 					</p>
 					<p>
 						<?php
+							$current_user = wp_get_current_user();
+							 /**
+								* @example Safe usage: $current_user = wp_get_current_user();
+								* if ( !($current_user instanceof WP_User) )
+								*     return;
+								*/
+							 echo 'Username: ' . $current_user->user_login . '<br />';
+							 echo 'User email: ' . $current_user->user_email . '<br />';
+							 echo 'User first name: ' . $current_user->user_firstname . '<br />';
+							 echo 'User last name: ' . $current_user->user_lastname . '<br />';
+							 echo 'User display name: ' . $current_user->display_name . '<br />';
+							 echo 'User ID: ' . $current_user->ID . '<br />';
+
 							if ($worona_app_created) {
 								$worona_dashboard_url = "https://dashboard.worona.org";
 								$worona_dashboard_target = "_blank";
@@ -152,6 +166,13 @@
 	 <div class="column">
 	 </div>
 	 <div class="column is-one-third">
+		 <? if($step < 3):?>
+		 <article class="message is-warning">
+		   <div class="message-body">
+		     <strong>Attention!</strong> Some steps require to refresh this page.
+		   </div>
+		 </article>
+		 <? endif;?>
 		 <article class="message is-info">
 			<div class="message-header">
 			  Follow the steps to create the App
@@ -161,27 +182,51 @@
 				<p id="step-message">
 					You are on step <?php echo $step;?>/4.
 				</p>
+				<? if ($rest_api_active):?>
 				<hr>
 				<p>
 					<h2>WP-API URL:</h2>
 					<?php print(rest_url()); ?>
 				</p>
-				<? if ($worona_app_created): ?>
+			  <? endif;?>
+				<div id="worona-appid-lateral" <?php echo ($worona_app_created?'':'style="display:none;"');?>>
 				<p>
 					<hr>
 					<h2>Worona App ID:</h2>
-					<span id="worona-appid-info"><?php echo $settings['worona_appId'];?></span> <a id="open-change-appid" href="#">(change)</a>
+					<span id="worona-appid-span"><?php echo $settings['worona_appId'];?></span> <a class="open-change-appid" href="#">(change)</a>
 				</p>
-				<? endif; ?>
+				</div>
 			</div>
 		 </article>
-		 <article id="lateral-change-appid" class="message is-warning" style="">
+		 <article id="lateral-change-appid" class="message is-warning" style="display:none;">
 			 <div class="message-header">
-			    <strong>Change Worona APP ID</strong>
+					<nav class="level">
+						<div class="level-left">
+							<strong>Change Worona APP ID</strong>
+						</div>
+						<div class="level-right">
+							<a href="#" class="close-change-appid" style="color:inherit"><strong>x</strong></a>
+						</div>
+					</nav>
 			  </div>
 			  <div class="message-body">
 					<p>
 						<strong>Warning!</strong> Changing your App ID can create conflicts with the Dashboard and the App.
+					</p>
+					<br>
+					<p>
+						<article id="lateral-error-appid" class="message is-danger" style="display:none;">
+							<div class="message-body">
+								<nav class="level">
+									<div id="appid-error-message" class="level-left">
+										The AppID is not valid
+									</div>
+									<div class="level-right">
+										<a href="#" class="close-error-appid" style="color:inherit"><strong>x</strong></a>
+									</div>
+								</nav>
+							</div>
+						</article>
 					</p>
 					<table class="form-table">
 						<tr>

@@ -116,7 +116,7 @@ class worona
 	*/
 	public function register_worona_scripts($hook) {
 
-		wp_register_script('worona_admin_js', plugin_dir_url(__FILE__) . 'admin/js/worona-admin.js', array( 'jquery' ), true, true);
+		wp_register_script('worona_admin_js','wp-content/plugins/worona/admin/js/worona-admin.js', array( 'jquery' ), true, true);
 
 	}
 
