@@ -50,8 +50,8 @@ class worona
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
 		add_action('init', array($this,'allow_origin'));
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_styles' ) );
 		// filters
 	}
 
@@ -116,7 +116,8 @@ class worona
 	*/
 	public function register_worona_scripts($hook) {
 
-		wp_register_script('worona_admin_js','wp-content/plugins/worona/admin/js/worona-admin.js', array( 'jquery' ), true, true);
+		wp_register_script('worona_admin_js',plugin_dir_url(__FILE__) . 'admin/js/worona-admin.js', array( 'jquery' ), true, true);
+		wp_enqueue_script('worona_admin_js');
 
 	}
 
@@ -248,6 +249,7 @@ class worona
 	}
 
 	function create_app_ajax() {
+		flush_rewrite_rules();
 		$appId = $this->generate_appId();
 
 		update_option( 'worona_settings', array('worona_app_created' => true,'worona_appId'=>$appId ));
@@ -259,6 +261,8 @@ class worona
 	}
 
 	function change_appid_ajax() {
+		flush_rewrite_rules();
+
 		$appId = $_POST['appId'];
 
 		if(strlen($appId)<17) {

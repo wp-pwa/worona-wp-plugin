@@ -2,12 +2,13 @@
 
 	//ONLY IN DEV
 	//delete_option('worona_settings');
-	//wp_register_script('worona_admin_js','wp-content/plugins/worona/admin/js/worona-admin.js', array( 'jquery' ), true, true);
 	//
 	global $worona;
 
 	$progress = 0;
 	$step = 0;
+
+	$current_user = wp_get_current_user();
 
 	$rest_api_installed = $worona->rest_api_installed;
 	$rest_api_active = $worona->rest_api_active;
@@ -42,9 +43,6 @@
 		$step = 4;
 	}
 ?>
-
-
-
 <div class="wrap">
 	<p class="title is-2">Worona</p>
 	<div class="columns">
@@ -137,19 +135,20 @@
 					</p>
 					<p>
 						<?php
-							$current_user = wp_get_current_user();
+
 							 /**
 								* @example Safe usage: $current_user = wp_get_current_user();
 								* if ( !($current_user instanceof WP_User) )
 								*     return;
 								*/
+							/*
 							 echo 'Username: ' . $current_user->user_login . '<br />';
 							 echo 'User email: ' . $current_user->user_email . '<br />';
 							 echo 'User first name: ' . $current_user->user_firstname . '<br />';
 							 echo 'User last name: ' . $current_user->user_lastname . '<br />';
 							 echo 'User display name: ' . $current_user->display_name . '<br />';
 							 echo 'User ID: ' . $current_user->ID . '<br />';
-
+							 */
 							if ($worona_app_created) {
 								$worona_dashboard_url = "https://dashboard.worona.org";
 								$worona_dashboard_target = "_blank";
@@ -247,6 +246,33 @@
 					</p>
 			  </div>
 		 </article>
+		 <div class="box">
+			 <nav class="level">
+				 <div class="level-left">
+					 <p class="title is-5">Support emails</p>
+				 </div>
+			 </nav>
+			 <div class="content">
+				 <p>
+					 We will send support emails to the following address:
+				 </p>
+				 <nav class="level">
+					 <div class="level-left">
+						 <input type="text" id="support-email" value="<?php echo $current_user->user_email; ?>" />
+						 <input type="hidden" id="current-support-email" value="<?php echo $current_user->user_email; ?>" />
+					 </div>
+					 <div class="level-right">
+						 <a id="change-support-email" class="button disabled">Change</a>
+					 </div>
+				 </nav>
+				 <p class="control">
+  			 	<label class="checkbox">
+    				<input id="receive-support-emails" type="checkbox" checked>
+    					Receive support emails
+  				</label>
+				</p>
+			 </div>
+		 </div>
 	 </div><!-- column one-third-->
 	</div><!-- columns -->
 </div><!-- wrap -->

@@ -1,3 +1,8 @@
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
 jQuery(document).on('ready', function () {
     //disabling # links
     jQuery('a[href^="#"]').click(function(e) {
@@ -95,6 +100,40 @@ jQuery(document).on('ready', function () {
           }
         });
       }
+    });
 
+    /*support emails*/
+    //enable & disable change email button
+    jQuery('#support-email').on('input', function(){
+      var newEmail = jQuery('#support-email').val();
+      var currentEmail = jQuery('#current-support-email').val();
+
+      if ((newEmail != currentEmail) && validateEmail(newEmail)){
+        jQuery('#change-support-email').removeClass('disabled');
+      } else {
+        jQuery('#change-support-email').addClass('disabled');
+      }
+    });
+
+    //change email
+    jQuery('#change-support-email').on('click',function(){
+
+    });
+
+    //unsubscribe / subscribe email support
+    jQuery('#receive-support-emails').on('change',function(){
+      if(jQuery('#receive-support-emails').attr('checked')){
+        var newEmail = jQuery('#support-email').val();
+        var currentEmail = jQuery('#current-support-email').val();
+
+        if ( (newEmail != currentEmail) && validateEmail(newEmail)){
+          jQuery('#change-support-email').removeClass('disabled');
+        }
+        
+        jQuery('#support-email').attr('disabled',false);
+      } else {
+        jQuery('#support-email').attr('disabled',true);
+        jQuery('#change-support-email').addClass('disabled');
+      }
     });
 });
