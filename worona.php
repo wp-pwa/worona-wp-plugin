@@ -45,6 +45,8 @@ class worona
 
 		add_action('wp_ajax_worona_create_app',array($this,'create_app_ajax'));
 		add_action('wp_ajax_worona_change_appid',array($this,'change_appid_ajax'));
+		add_action('wp_ajax_worona_change_support_email',array($this,'change_support_email_ajax'));
+		add_action('wp_ajax_worona_toggle_support',array($this,'toggle_support_ajax'));
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
@@ -278,6 +280,71 @@ class worona
 		}
 	}
 
+	function change_support_email_ajax() {
+		$email = $_POST['email'];
+
+		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+			///////////////////////
+			//CONNECT WITH MIXPANEL
+			///////////////////////
+
+			$settings = get_option('worona_settings');
+			$settings['worona_support_email'] = $email;
+			update_option('worona_settings', $settings);
+
+			wp_send_json( array(
+				'status' => 'ok',
+			));
+		} else {
+			wp_send_json(array(
+				'status' => 'error',
+				'reason' => 'Email is not valid'
+			));
+		}
+	}
+
+	function toggle_support_ajax() {
+		$settings = get_option('worona_settings');
+
+		if ($_POST['toggle'] == "true"){
+			$toggle = true;
+		} else if ($_POST['toggle'] == "false") {
+			$toggle = false;
+		}
+
+		if ( $toggle ) {
+
+			///////////////////////
+			//CONNECT WITH MIXPANEL
+			///////////////////////
+
+			$settings['worona_support'] = true;
+			update_option('worona_settings', $settings);
+
+			wp_send_json( array(
+				'status' => 'ok',
+				'worona_support' => true,
+				'message' => 'Email support is active'
+			));
+
+		} else {
+
+			///////////////////////
+			//CONNECT WITH MIXPANEL
+			///////////////////////
+
+			$settings['worona_support'] = false;
+			update_option('worona_settings', $settings);
+
+			wp_send_json( array(
+				'status' => 'ok',
+				'worona_support' => false,
+				'message' => 'Email support is not active'
+			));
+		}
+	}
+
 	//Checks if the rest-api plugin is installed
 	public function wp_rest_api_plugin_is_installed() {
 		if ( ! function_exists( 'get_plugins' ) ) {
@@ -369,7 +436,10 @@ function worona()
 worona();
 
 function worona_activation(){
-	add_option('worona_settings', array("worona_app_created" => false), '','yes');
+	$current_user = wp_get_current_user();
+	$email = $current_user->user_email;
+
+	add_option('worona_settings', array("worona_app_created" => false, "worona_support" => true, "worona_support_email" => $email), '','yes');
 
 	flush_rewrite_rules();
 }

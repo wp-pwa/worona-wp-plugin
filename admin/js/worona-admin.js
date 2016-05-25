@@ -108,32 +108,97 @@ jQuery(document).on('ready', function () {
       var newEmail = jQuery('#support-email').val();
       var currentEmail = jQuery('#current-support-email').val();
 
-      if ((newEmail != currentEmail) && validateEmail(newEmail)){
-        jQuery('#change-support-email').removeClass('disabled');
+      if ( validateEmail(newEmail) ) {
+        jQuery('#support-email').removeClass('is-danger');
+        if(newEmail !== currentEmail) {
+          jQuery('#change-support-email').removeClass('disabled');
+        } else {
+          jQuery('#change-support-email').addClass('disabled');
+        }
       } else {
         jQuery('#change-support-email').addClass('disabled');
+        jQuery('#support-email').addClass('is-danger');
       }
     });
 
     //change email
     jQuery('#change-support-email').on('click',function(){
+      var newEmail = jQuery('#support-email').val();
+
+      jQuery('#change-support-email').addClass('is-loading');
+
+      if( validateEmail(newEmail) ) {
+        jQuery.ajax({
+          url: ajaxurl,
+          method: "POST",
+          data: {
+              action: 'worona_change_support_email',
+              email: newEmail,
+          },
+          success: function (response) {
+            jQuery('#change-support-email').removeClass('is-loading');
+
+            if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+              jQuery('#support-email').addClass('is-success');
+            } else if( response.hasOwnProperty('status') && response.status == 'error') {
+              jQuery('#support-email').addClass('is-danger');
+            }
+          },
+          error: function (response) {
+            jQuery('#support-email').addClass('is-danger');
+          }
+        });
+      } else {
+        jQuery('#support-email').addClass('is-danger');
+      }
 
     });
 
     //unsubscribe / subscribe email support
-    jQuery('#receive-support-emails').on('change',function(){
+    jQuery('#receive-support-emails').on('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var toggle;
       if(jQuery('#receive-support-emails').attr('checked')){
-        var newEmail = jQuery('#support-email').val();
-        var currentEmail = jQuery('#current-support-email').val();
-
-        if ( (newEmail != currentEmail) && validateEmail(newEmail)){
-          jQuery('#change-support-email').removeClass('disabled');
-        }
-        
-        jQuery('#support-email').attr('disabled',false);
+        toggle = "true";
       } else {
-        jQuery('#support-email').attr('disabled',true);
-        jQuery('#change-support-email').addClass('disabled');
+        toggle = "false";
       }
+
+      jQuery("#support-saving").show();
+
+      jQuery.ajax({
+        url: ajaxurl,
+        method: "POST",
+        data: {
+            action: 'worona_toggle_support',
+            toggle: toggle,
+        },
+        success: function (response) {
+          jQuery("#support-saving").hide();
+          if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+            if(jQuery('#current-toggle-support').val() == "true"){
+              jQuery('#support-email').attr('disabled',true);
+              jQuery('#receive-support-emails').attr('checked',false);
+              jQuery('#change-support-email').addClass('disabled');
+              jQuery('#current-toggle-support').val("false");
+            } else {
+              var newEmail = jQuery('#support-email').val();
+              var currentEmail = jQuery('#current-support-email').val();
+
+              if ( (newEmail != currentEmail) && validateEmail(newEmail)){
+                jQuery('#change-support-email').removeClass('disabled');
+              }
+              jQuery('#support-email').attr('disabled',false);
+              jQuery('#receive-support-emails').attr('checked',true);
+              jQuery('#current-toggle-support').val("true");
+            }
+          }
+        },
+        error: function (response) {
+
+        }
+      });
+
     });
 });
