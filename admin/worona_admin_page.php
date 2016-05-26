@@ -55,9 +55,10 @@
 						<p class="title is-5">1. Install WP-API</p>
 					</div>
 					<div class="level-right">
-						<?php echo ( $rest_api_installed ? '<span class="tag is-success">Installed</span>':'');?>
+						<?php echo ( $rest_api_installed ? '<span class="tag is-success">Installed&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
 					</div>
 				</nav>
+				<? if ($step==1): ?>
 				<div class="content">
 					<p>
 						Worona uses the <a href="http://v2.wp-api.org/" target="_blank">WP-API</a> plugin to send the content from your site to the App.
@@ -75,6 +76,7 @@
 						<a href="<?php echo $install_api_href; ?>" class="button button-lg" <?php echo ($step<=1 ? '' : 'style="display:none;"'); ?> target="<?php echo $install_api_target;?>">Download Plugin</a>
 					</p>
 				</div>
+				<?endif;?>
 			</div>
 
 			<div class="box">
@@ -83,14 +85,15 @@
 						<p class="title is-5">2. Activate WP-API</p>
 					</div>
 					<div class="level-right">
-						<?php echo ( $rest_api_active ? '<span class="tag is-success">Active</span>':'');?>
+						<?php echo ( $rest_api_active ? '<span class="tag is-success">Active&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
 					</div>
 				</nav>
+				<? if ($step<=2): ?>
 				<div class="content">
 					<p>
 						This is why we installed the WP-API plugin.
 					</p>
-					<p <?php echo ($step<=2 ? '' : 'style="display:none;"');?>>
+					<p>
 						<?php
 							if($rest_api_active ) {
 									$activate_api_href ="#";
@@ -100,9 +103,10 @@
 								$activate_api_target="_blank";
 							}
 						?>
-						<a href="<?php echo $activate_api_href; ?>" target="<?php echo $activate_api_target;?>" class="button button-lg <?php echo ($step==2 ? '' : 'disabled'); ?>">Activate WP-API Plugin</a>
+						<a href="<?php echo $activate_api_href; ?>" target="<?php echo $activate_api_target;?>" class="button button-lg">Activate WP-API Plugin</a>
 					</p>
 				</div>
+				<? endif;?>
 			</div>
 
 			<div class="box">
@@ -111,18 +115,20 @@
 						<p class="title is-5">3. Create App</p>
 					</div>
 					<div id='label-created' class="level-right" <?php echo ( $worona_app_created ? '':'style="display:none;"');?>>
-						<span class="tag is-success">Created</span>
+						<span class="tag is-success">Created&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
 					</div>
 				</nav>
+				<? if ($step<=3): ?>
 				<div class="content">
 					<p>
 						This will create a Worona App ID, it will link your WordPress with the Worona App.
 					</p>
-					<p id="label-create-buttons"<?php echo ($step<=3 ? '' : 'style="display:none;"');?>>
-						<a href="#" id="create-worona-app" class="button button-lg <?php echo ($step==3 ? '' : 'disabled'); ?>">Create App</a>
+					<p id="label-create-buttons">
+						<a href="#" id="create-worona-app" class="button button-lg">Create App</a>
 						or <a href="#" class="open-change-appid">insert an existing App ID</a>
 					</p>
 				</div>
+				<?endif;?>
 			</div>
 
 			<div class="box">
@@ -154,12 +160,14 @@
 							if ($worona_app_created) {
 								$worona_dashboard_url = "https://dashboard.worona.org";
 								$worona_dashboard_target = "_blank";
+								$button_disabled = false;
 							} else {
 								$worona_dashboard_url = "#";
 								$worona_dashboard_target = "";
+								$button_disabled = true;
 							}
 						?>
-						<a href="<?php echo $worona_dashboard_url; ?>" target="<?php echo $worona_dashboard_target;?>" class="button button-lg <?php echo ($step==4 ? '' : 'disabled'); ?>">Dashboard</a>
+						<a href="<?php echo $worona_dashboard_url; ?>" target="<?php echo $worona_dashboard_target;?>" class="button button-lg <?php echo ($button_disabled ? 'disabled' : ''); ?>">Dashboard</a>
 					</p>
 				</div>
 			</div>
@@ -181,7 +189,7 @@
 			<div id="#lateral-info-box"class="message-body">
 				<progress class="progress is-info is-medium" value="<?php echo $progress;?>" max="100"></progress>
 				<p id="step-message">
-					You are on step <?php echo $step;?>/4.
+					You are on <strong>step <?php echo $step;?>/4.</strong>
 				</p>
 				<? if ($rest_api_active):?>
 				<hr>
@@ -203,10 +211,10 @@
 			 <div class="message-header">
 					<nav class="level">
 						<div class="level-left">
-							<strong>Change Worona APP ID</strong>
+							<strong> Change Worona APP ID</strong>
 						</div>
 						<div class="level-right">
-							<a href="#" class="close-change-appid" style="color:inherit"><strong>x</strong></a>
+							<a href="#" class="close-change-appid" style="color:inherit"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 						</div>
 					</nav>
 			  </div>

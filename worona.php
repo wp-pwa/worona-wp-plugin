@@ -109,7 +109,8 @@ class worona
  	*/
 	public function register_worona_styles($hook) {
 
-		wp_register_style('bulma-css', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.26/css/bulma.min.css');
+		wp_register_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', array(), '4.5.0');
+		wp_register_style('bulma-css', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.26/css/bulma.min.css',array('font-awesome'));
 
 	}
 
@@ -254,7 +255,10 @@ class worona
 		flush_rewrite_rules();
 		$appId = $this->generate_appId();
 
-		update_option( 'worona_settings', array('worona_app_created' => true,'worona_appId'=>$appId ));
+		$settings = get_option('worona_settings');
+		$settings['worona_app_created'] = true;
+		$settings['worona_appId'] = $appId;
+		update_option('worona_settings', $settings);
 
 		wp_send_json( array(
 			'status' => 'ok',
@@ -273,7 +277,10 @@ class worona
 				'reason' => 'App ID is not valid.'
 			));
 		} else {
-			update_option( 'worona_settings', array('worona_app_created' => true,'worona_appId'=>$appId ));
+			$settings = get_option('worona_settings');
+			$settings['worona_appId'] = $appId;
+			update_option('worona_settings', $settings);
+			
 			wp_send_json( array(
 				'status' => 'ok',
 			));
