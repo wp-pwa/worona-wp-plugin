@@ -47,6 +47,7 @@ class worona
 		add_action('wp_ajax_worona_change_appid',array($this,'change_appid_ajax'));
 		add_action('wp_ajax_worona_change_support_email',array($this,'change_support_email_ajax'));
 		add_action('wp_ajax_worona_toggle_support',array($this,'toggle_support_ajax'));
+		add_action('wp_ajax_worona_send_contact_form',array($this,'send_contact_form_ajax'));
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
@@ -120,7 +121,11 @@ class worona
 	public function register_worona_scripts($hook) {
 
 		wp_register_script('worona_admin_js',plugin_dir_url(__FILE__) . 'admin/js/worona-admin.js', array( 'jquery' ), true, true);
+		wp_register_script('worona_help_js',plugin_dir_url(__FILE__) . 'admin/js/worona-help.js', array( 'jquery' ), true, true);
+
+
 		wp_enqueue_script('worona_admin_js');
+		wp_enqueue_script('worona_help_js');
 
 	}
 
@@ -280,7 +285,7 @@ class worona
 			$settings = get_option('worona_settings');
 			$settings['worona_appId'] = $appId;
 			update_option('worona_settings', $settings);
-			
+
 			wp_send_json( array(
 				'status' => 'ok',
 			));
@@ -349,6 +354,36 @@ class worona
 				'worona_support' => false,
 				'message' => 'Email support is not active'
 			));
+		}
+	}
+
+	public function send_contact_form_ajax() {
+		$from = $_POST['email'];
+		$name = $_POST['name'];
+		$subject = $_POST['subject'];
+		$message = $_POST['message'];
+
+		if(!filter_var($from, FILTER_VALIDATE_EMAIL) || empty($from)) {
+			wp_send_json( array(
+				'status' => 'error',
+				'message' => 'Invalid email'
+			) );
+		} else if (empty($message)) {
+			wp_send_json( array(
+				'status' => 'error',
+				'message' => 'Empty message'
+			) );
+		} else {
+			if(empty($name)){
+				$name = $email;
+			}
+			$headers = "From: $name <$email>\r\n";
+			$return = wp_mail( "accounts@worona.org", "[".$subject."] from " .get_site_url(), stripslashes( trim( $message ) ), $headers );
+
+			wp_send_json( array(
+				'status' => 'ok',
+				'return' => $return
+			) );
 		}
 	}
 

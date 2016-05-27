@@ -28,8 +28,8 @@
                 <label class="label">From</label>
               </div>
               <div class="control is-grouped">
-                <input class="input" type="text" placeholder="name" value="<?php echo $name;?>">
-                <input class="input" type="email" placeholder="email" value="<?php echo $support_email; ?>">
+                <input id="form-name" class="input" type="text" placeholder="name" value="<?php echo $name;?>">
+                <input id="form-email" class="input" type="email" placeholder="email" value="<?php echo $support_email; ?>">
               </div>
             </div>
             <div class="control is-horizontal">
@@ -38,7 +38,7 @@
               </div>
               <div class="control">
                 <div class="select is-fullwidth">
-                  <select>
+                  <select id="form-subject">
                     <option>General enquiry</option>
                     <option>Technical Support</option>
                     <option>Sales enquiry</option>
@@ -48,15 +48,15 @@
             </div>
             <div class="control is-horizontal">
               <div class="control-label">
-                <label class="label">Question</label>
+                <label class="label">Message</label>
               </div>
               <div class="control">
-                <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
+                <textarea id="form-message" class="textarea" placeholder="Explain how we can help you"></textarea>
               </div>
             </div>
             <div class="control">
               <div class="has-text-centered">
-                <input class="button is-medium" type="submit" value="Send"/>
+                <input id="submit-button" class="button is-medium" type="submit" value="Send"/>
               </div>
             </div>
           </form>
