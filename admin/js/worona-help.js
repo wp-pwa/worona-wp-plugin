@@ -50,10 +50,13 @@ jQuery(document).on('ready', function () {
             jQuery('#form-subject').attr('disabled',true);
             jQuery('#form-name').attr('disabled',true);
 
-            if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+            jQuery('#contact-form').hide();
+            jQuery('#contact-form-sent').show();
 
+            if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+              jQuery('#contact-form-sent').append('<div class="notification is-success"><p class="title is-5">Message sent!</p> We will get back to you shortly.</div>');
             } else if (response.hasOwnProperty('status') && response.status == 'error') {
-              
+              jQuery('#contact-form-sent').append('<div class="notification is-danger"><p class="title is-5">Something went wrong</p> Please refresh the page and try again.</div>');
             }
           },
           error: function () {
@@ -62,6 +65,11 @@ jQuery(document).on('ready', function () {
             jQuery('#form-message').attr('disabled',true);
             jQuery('#form-subject').attr('disabled',true);
             jQuery('#form-name').attr('disabled',true);
+
+            jQuery('#contact-form').hide();
+            jQuery('#contact-form-sent').show();
+
+            jQuery('#contact-form-sent').append('<div class="notification is-danger"><p class="title is-5">Something went wrong</p> Please refresh the page and try again.</div>');
           }
       });
     }

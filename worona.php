@@ -378,7 +378,8 @@ class worona
 				$name = $email;
 			}
 			$headers = "From: $name <$email>\r\n";
-			$return = wp_mail( "accounts@worona.org", "[".$subject."] from " .get_site_url(), stripslashes( trim( $message ) ), $headers );
+			$date = date('d/m/y H:i:s');
+			$return = wp_mail( "pablo@worona.org", "[".$subject."] from ".get_site_url()." (". $date .")", stripslashes( trim( $message ) ), $headers );
 
 			wp_send_json( array(
 				'status' => 'ok',

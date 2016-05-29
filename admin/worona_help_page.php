@@ -22,6 +22,9 @@
             <span class="title is-4 ">Contact us</span>
           </p>
           <hr>
+          <div id="contact-form-sent" style="display:none;">
+          
+          </div>
           <form id="contact-form">
             <div class="control is-horizontal">
               <div class="control-label">
