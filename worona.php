@@ -3,7 +3,7 @@
 Plugin Name: Worona
 Plugin URI: http://www.worona.org/
 Description: Turn your WordPress site into a native iOS, Android and Windows Phone App.
-Version: 0.7.4
+Version: 1.0
 Author: Worona Labs SL
 Author URI: http://www.worona.org/
 License: GPL v3
@@ -43,8 +43,8 @@ class worona
 		add_action('admin_init', array($this,'worona_register_settings')); //register the settings
 		add_action('admin_notices',array($this,'worona_admin_notices'));//Display the validation errors and update messages
 
-		add_action('wp_ajax_worona_create_app',array($this,'create_app_ajax'));
-		add_action('wp_ajax_worona_change_appid',array($this,'change_appid_ajax'));
+		add_action('wp_ajax_sync_with_worona',array($this,'sync_with_worona'));
+		add_action('wp_ajax_worona_change_siteid',array($this,'change_siteid_ajax'));
 		add_action('wp_ajax_worona_change_support_email',array($this,'change_support_email_ajax'));
 		add_action('wp_ajax_worona_toggle_support',array($this,'toggle_support_ajax'));
 		add_action('wp_ajax_worona_send_contact_form',array($this,'send_contact_form_ajax'));
@@ -85,8 +85,8 @@ class worona
 				$args['worona_appId'] = $settings['worona_appId'];
 				add_settings_error('worona_settings', 'worona_invalid_appId', 'Please enter a valid APP ID!', $type = 'error');
 		}
-		if(isset($args['worona_app_created']) && $args['worona_app_created']=='true'){
-			$args['worona_app_created'] = true;
+		if(isset($args['worona_siteid_created']) && $args['worona_siteid_created']=='true'){
+			$args['worona_siteid_created'] = true;
 		}
 
     //make sure you return the args
@@ -212,6 +212,18 @@ class worona
 	  include('admin/worona_help_page.php');
 	}
 
+	function get_worona_site_id() {
+		$settings = get_option('worona_settings');
+
+		if (isset($settings['worona_appId'])) {
+			$worona_site_id = $settings["worona_appId"];
+		} else {
+			$worona_site_id = NULL;
+		}
+
+		return $worona_site_id;
+	}
+
 	/*
 	*  add_worona_content_to_api
 	*
@@ -243,8 +255,8 @@ class worona
 	    return $_post;
 	}
 
-	//generates a random App Id
-	function generate_appId() {
+	//generates a random Site Id
+	function generate_siteId() {
 		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
 		$chars_length = (strlen($chars) - 1);// Length of character list
 		$string = $chars{rand(0, $chars_length)};// Start our string
@@ -256,34 +268,34 @@ class worona
 		return $string;
 	}
 
-	function create_app_ajax() {
+	function sync_with_worona() {
 		flush_rewrite_rules();
-		$appId = $this->generate_appId();
+		$siteId = $this->generate_siteId();
 
 		$settings = get_option('worona_settings');
-		$settings['worona_app_created'] = true;
-		$settings['worona_appId'] = $appId;
+		$settings['worona_siteid_created'] = true;
+		$settings['worona_siteid'] = $siteId;
 		update_option('worona_settings', $settings);
 
 		wp_send_json( array(
 			'status' => 'ok',
-			'appId' => $appId
+			'siteId' => $siteId
 		));
 	}
 
-	function change_appid_ajax() {
+	function change_siteid_ajax() {
 		flush_rewrite_rules();
 
-		$appId = $_POST['appId'];
+		$siteId = $_POST['siteid'];
 
-		if(strlen($appId)<17) {
+		if(strlen($siteId)<17) {
 			wp_send_json(array(
 				'status' => 'error',
-				'reason' => 'App ID is not valid.'
+				'reason' => 'Site ID is not valid.'
 			));
 		} else {
 			$settings = get_option('worona_settings');
-			$settings['worona_appId'] = $appId;
+			$settings['worona_siteid'] = $siteId;
 			update_option('worona_settings', $settings);
 
 			wp_send_json( array(
@@ -410,16 +422,16 @@ class worona
 
 		$activateUrl = sprintf(admin_url('plugins.php?action=activate&plugin=%s&plugin_status=all&paged=1&s'), $plugin_escaped);
 
-	  	// change the plugin request to the plugin to pass the nonce check
-	  	$_REQUEST['plugin'] = $plugin;
-	  	$activateUrl = wp_nonce_url($activateUrl, 'activate-plugin_' . $plugin);
+  	// change the plugin request to the plugin to pass the nonce check
+  	$_REQUEST['plugin'] = $plugin;
+  	$activateUrl = wp_nonce_url($activateUrl, 'activate-plugin_' . $plugin);
 
-	  	return $activateUrl;
+  	return $activateUrl;
 	}
 
 	//Adds Cross origin * to the header
 	function allow_origin() {
-	    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *");
 	}
 
 	//Checks if the json posts endpoint is responding correctly
@@ -482,7 +494,7 @@ function worona_activation(){
 	$current_user = wp_get_current_user();
 	$email = $current_user->user_email;
 
-	add_option('worona_settings', array("worona_app_created" => false, "worona_support" => true, "worona_support_email" => $email), '','yes');
+	add_option('worona_settings', array("worona_siteid_created" => false, "worona_support" => true, "worona_support_email" => $email), '','yes');
 
 	flush_rewrite_rules();
 }

@@ -1,8 +1,4 @@
 <?php
-
-	//ONLY IN DEV
-	//delete_option('worona_settings');
-	//
 	global $worona;
 
 	$progress = 0;
@@ -14,10 +10,10 @@
 	$rest_api_active = $worona->rest_api_active;
 	$settings = get_option('worona_settings');
 
-	if (isset($settings["worona_app_created"])) {
-		$worona_app_created = $settings["worona_app_created"];
+	if (isset($settings["worona_siteid_created"])) {
+		$worona_siteid_created = $settings["worona_siteid_created"];
 	} else {
-		$worona_app_created = false;
+		$worona_siteid_created = false;
 	}
 
 	$support = $settings["worona_support"];
@@ -30,7 +26,7 @@
 	if ($rest_api_active) {
 		$progress = 66;
 	}
-	if ($worona_app_created) {
+	if ($worona_siteid_created) {
 		$progress = 100;
 	}
 
@@ -39,9 +35,9 @@
 		$step = 1;
 	} else if ($rest_api_installed && !$rest_api_active) {
 		$step = 2;
-	} else if ( $rest_api_installed && $rest_api_active && !$worona_app_created) {
+	} else if ( $rest_api_installed && $rest_api_active && !$worona_siteid_created) {
 		$step = 3;
-	} else if ( $rest_api_installed && $rest_api_active && $worona_app_created) {
+	} else if ( $rest_api_installed && $rest_api_active && $worona_siteid_created) {
 		$step = 4;
 	}
 ?>
@@ -112,20 +108,20 @@
 			<div class="box">
 				<nav class="level">
 					<div class="level-left">
-						<p class="title is-5">3. Create App</p>
+						<p class="title is-5">3. Sync with Worona Dashboard</p>
 					</div>
-					<div id='label-created' class="level-right" <?php echo ( $worona_app_created ? '':'style="display:none;"');?>>
-						<span class="tag is-success">Created&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
+					<div id='label-created' class="level-right" <?php echo ( $worona_siteid_created ? '':'style="display:none;"');?>>
+						<span class="tag is-success">Synced&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
 					</div>
 				</nav>
 				<? if ($step<=3): ?>
 				<div class="content">
 					<p>
-						This will create a Worona App ID, it will link your WordPress with the Worona App.
+						This will generate a Worona Site ID, it will link your WordPress with the Worona Dashboard.
 					</p>
 					<p id="label-create-buttons">
-						<a href="#" id="create-worona-app" class="button button-lg">Create App</a>
-						or <a href="#" class="open-change-appid">insert an existing App ID</a>
+						<a href="#" id="sync-with-worona" class="button button-lg">Sync site</a>
+						or <a href="#" class="open-change-siteid">insert an existing Site ID</a>
 					</p>
 				</div>
 				<?endif;?>
@@ -134,7 +130,7 @@
 			<div class="box">
 				<nav class="level">
 					<div class="level-left">
-						<p class="title is-5">4. Go to the Dashboard</p>
+						<p class="title is-5">4. Go to Worona Dashboard</p>
 					</div>
 				</nav>
 				<div class="content">
@@ -157,7 +153,7 @@
 							 echo 'User display name: ' . $current_user->display_name . '<br />';
 							 echo 'User ID: ' . $current_user->ID . '<br />';
 							 */
-							if ($worona_app_created) {
+							if ($worona_siteid_created) {
 								$worona_dashboard_url = "https://dashboard.worona.org";
 								$worona_dashboard_target = "_blank";
 								$button_disabled = false;
@@ -167,7 +163,7 @@
 								$button_disabled = true;
 							}
 						?>
-						<a href="<?php echo $worona_dashboard_url; ?>" target="<?php echo $worona_dashboard_target;?>" class="button button-lg <?php echo ($button_disabled ? 'disabled' : ''); ?>">Dashboard</a>
+						<a id="dashboard-button" href="<?php echo $worona_dashboard_url; ?>" target="<?php echo $worona_dashboard_target;?>" style="color:white" class="button button-lg <?php echo ($button_disabled ? 'disabled' : 'button-primary button-large'); ?>">Dashboard</a>
 					</p>
 				</div>
 			</div>
@@ -198,40 +194,40 @@
 					<?php print(rest_url()); ?>
 				</p>
 			  <? endif;?>
-				<div id="worona-appid-lateral" <?php echo ($worona_app_created?'':'style="display:none;"');?>>
+				<div id="worona-siteid-lateral" <?php echo ($worona_siteid_created?'':'style="display:none;"');?>>
 				<p>
 					<hr>
-					<h2>Worona App ID:</h2>
-					<span id="worona-appid-span"><?php echo $settings['worona_appId'];?></span> <a class="open-change-appid" href="#">(change)</a>
+					<h2>Worona Site Id:</h2>
+					<span id="worona-siteid-span"><?php echo $settings['worona_siteid'];?></span> <a class="open-change-siteid" href="#">(change)</a>
 				</p>
 				</div>
 			</div>
 		 </article>
-		 <article id="lateral-change-appid" class="message is-warning" style="display:none;">
+		 <article id="lateral-change-siteid" class="message is-warning" style="display:none;">
 			 <div class="message-header">
 					<nav class="level">
 						<div class="level-left">
-							<strong> Change Worona APP ID</strong>
+							<strong> Change Worona Site Id</strong>
 						</div>
 						<div class="level-right">
-							<a href="#" class="close-change-appid" style="color:inherit"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+							<a href="#" class="close-change-siteid" style="color:inherit"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 						</div>
 					</nav>
 			  </div>
 			  <div class="message-body">
 					<p>
-						<strong>Warning!</strong> Changing your App ID can create conflicts with the Dashboard and the App.
+						<strong>Warning!</strong> Changing your Site Id can create conflicts with the Dashboard and the App.
 					</p>
 					<br>
 					<p>
-						<article id="lateral-error-appid" class="message is-danger" style="display:none;">
+						<article id="lateral-error-siteid" class="message is-danger" style="display:none;">
 							<div class="message-body">
 								<nav class="level">
-									<div id="appid-error-message" class="level-left">
-										The AppID is not valid
+									<div id="siteid-error-message" class="level-left">
+										The siteid is not valid
 									</div>
 									<div class="level-right">
-										<a href="#" class="close-error-appid" style="color:inherit"><strong>x</strong></a>
+										<a href="#" class="close-error-siteid" style="color:inherit"><strong>x</strong></a>
 									</div>
 								</nav>
 							</div>
@@ -239,20 +235,20 @@
 					</p>
 					<table class="form-table">
 						<tr>
-							<th scope="row">App ID</th>
+							<th scope="row">Site Id</th>
 							<td>
 									<fieldset>
 											<label>
-													<input type="text" id="worona-appid" value="<?php echo (isset($settings['worona_appId'])) ? $settings['worona_appId'] : ''; ?>"/>
+													<input type="text" id="worona-siteid" value="<?php echo (isset($settings['worona_siteid'])) ? $settings['worona_siteid'] : ''; ?>"/>
 													<br />
-													<span class="description">Enter a valid App ID</span>
+													<span class="description">Enter a valid Site Id</span>
 											</label>
 									</fieldset>
 							</td>
 						</tr>
 					</table>
 					<p>
-						<a href="#" id="change-app-id"class="button button-lg">Change</a>
+						<a href="#" id="change-siteid"class="button button-lg">Change</a>
 					</p>
 			  </div>
 		 </article>

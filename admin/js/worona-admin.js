@@ -9,36 +9,36 @@ jQuery(document).on('ready', function () {
       e.preventDefault();
     });
 
-    //Show "Insert AppID form"
-    jQuery('.open-change-appid').on('click', function (e) {
+    //Show "Insert siteid form"
+    jQuery('.open-change-siteid').on('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      jQuery('#lateral-change-appid').show();
+      jQuery('#lateral-change-siteid').show();
     });
 
-    jQuery('.close-change-appid').on('click', function(e) {
+    jQuery('.close-change-siteid').on('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      jQuery('#lateral-change-appid').hide();
-      jQuery('#lateral-error-appid').hide();
+      jQuery('#lateral-change-siteid').hide();
+      jQuery('#lateral-error-siteid').hide();
     });
 
-    jQuery('.close-error-appid').on('click', function(e) {
+    jQuery('.close-error-siteid').on('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      jQuery('#lateral-error-appid').hide();
+      jQuery('#lateral-error-siteid').hide();
     });
 
     //Create App via AJAX
-    jQuery('#create-worona-app').on('click', function (e) {
-      jQuery('#create-worona-app').addClass('is-loading');
+    jQuery('#sync-with-worona').on('click', function (e) {
+      jQuery('#sync-with-worona').addClass('is-loading');
       e.preventDefault();
       e.stopPropagation();
       jQuery.ajax({
           url: ajaxurl,
           method: "POST",
           data: {
-              action: 'worona_create_app',
+              action: 'sync_with_worona',
           },
           success: function (response) {
             if (response.hasOwnProperty('status') && response.status == 'ok' ) {
@@ -46,9 +46,12 @@ jQuery(document).on('ready', function () {
               jQuery('#label-created').toggle();
               jQuery('progress')[0].value = 100;
               jQuery('#step-message').text('You are on step 4/4');
-              jQuery('#worona-appid-lateral').show();
-              jQuery('span#worona-appid-span').text(response.appId);
-              jQuery('input#worona-appid').val(response.appId);
+              jQuery('#worona-siteid-lateral').show();
+              jQuery('span#worona-siteid-span').text(response.siteId);
+              jQuery('input#worona-siteid').val(response.siteId);
+
+              jQuery('#dashboard-button').removeClass('disabled');
+              jQuery('#dashboard-button').addClass('button-primary button-large')
             }
           },
           error: function () {
@@ -58,45 +61,45 @@ jQuery(document).on('ready', function () {
     });
 
     //Change App ID via ajax
-    jQuery('#change-app-id').on('click', function(e) {
-      jQuery('#change-app-id').addClass('is-loading');
+    jQuery('#change-siteid').on('click', function(e) {
+      jQuery('#change-siteid').addClass('is-loading');
       e.preventDefault();
       e.stopPropagation();
-      var id = jQuery('input#worona-appid').val();
+      var id = jQuery('input#worona-siteid').val();
 
       if ( id.length !=17 || id.includes(' ')){
-        jQuery('#lateral-error-appid').show();
-        jQuery('#appid-error-message').text("Invalid App ID");
-        jQuery('#change-app-id').removeClass('is-loading');
+        jQuery('#lateral-error-siteid').show();
+        jQuery('#siteid-error-message').text("Invalid App ID");
+        jQuery('#change-siteid').removeClass('is-loading');
       } else {
         jQuery.ajax({
           url: ajaxurl,
           method: "POST",
           data: {
-              action: 'worona_change_appid',
-              appId: jQuery('input#worona-appid').val()
+              action: 'worona_change_siteid',
+              siteid: jQuery('input#worona-siteid').val()
           },
           success: function (response) {
             if (response.hasOwnProperty('status') && response.status == 'ok' ) {
-              jQuery('#change-app-id').removeClass('is-loading');
-              jQuery('#lateral-error-appid').hide();
-              jQuery('#lateral-change-appid').hide();
+              jQuery('#change-siteid').removeClass('is-loading');
+              jQuery('#lateral-error-siteid').hide();
+              jQuery('#lateral-change-siteid').hide();
               jQuery('#label-create-buttons').hide(); //they can be hidden already
               jQuery('#label-created').show(); //it can be displayed already
               jQuery('progress')[0].value = 100;
               jQuery('#step-message').text('You are on step 4/4');
-              jQuery('#worona-appid-lateral').show();
-              jQuery('span#worona-appid-span').text(jQuery('input#worona-appid').val());
+              jQuery('#worona-siteid-lateral').show();
+              jQuery('span#worona-siteid-span').text(jQuery('input#worona-siteid').val());
             } else if( response.hasOwnProperty('status') && response.status == 'error') {
-              jQuery('#lateral-error-appid').show();
-              jQuery('#appid-error-message').text(response.reason);
-              jQuery('#change-app-id').removeClass('is-loading');
+              jQuery('#lateral-error-siteid').show();
+              jQuery('#siteid-error-message').text(response.reason);
+              jQuery('#change-siteid').removeClass('is-loading');
             }
           },
           error: function (response) {
-            jQuery('#lateral-error-appid').show();
-            jQuery('#appid-error-message').text("The App ID couldn't be modified. Please try again.");
-            jQuery('#change-app-id').removeClass('is-loading');
+            jQuery('#lateral-error-siteid').show();
+            jQuery('#siteid-error-message').text("The Site ID couldn't be modified. Please try again.");
+            jQuery('#change-siteid').removeClass('is-loading');
           }
         });
       }
