@@ -55,6 +55,13 @@ class worona
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_worona_styles' ) );
+
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'worona/v1', '/siteid/', array(
+				'methods' => 'GET',
+				'callback' => array( $this,'get_worona_site_id'))
+			);
+		});
 		// filters
 	}
 
@@ -212,18 +219,6 @@ class worona
 	  include('admin/worona_help_page.php');
 	}
 
-	function get_worona_site_id() {
-		$settings = get_option('worona_settings');
-
-		if (isset($settings['worona_appId'])) {
-			$worona_site_id = $settings["worona_appId"];
-		} else {
-			$worona_site_id = NULL;
-		}
-
-		return $worona_site_id;
-	}
-
 	/*
 	*  add_worona_content_to_api
 	*
@@ -266,6 +261,19 @@ class worona
 				$string .= $r;// Make sure the same two characters don't appear next to each other
 		}
 		return $string;
+	}
+
+	function get_worona_site_id() {
+
+		$settings = get_option('worona_settings');
+
+		if (isset($settings['worona_siteid'])) {
+			$worona_site_id = $settings["worona_siteid"];
+		} else {
+			$worona_site_id = NULL;
+		}
+
+		return array('siteId'=> $worona_site_id);
 	}
 
 	function sync_with_worona() {
