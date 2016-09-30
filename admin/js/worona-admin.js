@@ -103,7 +103,7 @@ jQuery(document).on('ready', function () {
               jQuery('#dashboard-button').addClass('button-primary button-hero');
 
               var siteid = jQuery('#worona-siteid-span').text();
-              jQuery('#dashboard-button').on('click', function(e){window.open(url)});  
+              jQuery('#dashboard-button').on('click', function(e){window.open(url)});
 
             } else if( response.hasOwnProperty('status') && response.status == 'error') {
               jQuery('#lateral-error-siteid').show();
@@ -140,12 +140,14 @@ jQuery(document).on('ready', function () {
     });
 
     //change email
-    jQuery('#change-support-email').on('click',function(){
+    jQuery('#change-support-email').on('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+
       var newEmail = jQuery('#support-email').val();
 
-      jQuery('#change-support-email').addClass('is-loading');
-
-      if( validateEmail(newEmail) ) {
+      if( validateEmail(newEmail) && !jQuery('#change-support-email').hasClass('disabled')) {
+        jQuery('#change-support-email').addClass('is-loading');
         jQuery.ajax({
           url: ajaxurl,
           method: "POST",
@@ -154,6 +156,7 @@ jQuery(document).on('ready', function () {
               email: newEmail,
           },
           success: function (response) {
+            jQuery('#current-support-email').val(newEmail);
             jQuery('#change-support-email').removeClass('is-loading');
 
             if (response.hasOwnProperty('status') && response.status == 'ok' ) {
@@ -166,8 +169,6 @@ jQuery(document).on('ready', function () {
             jQuery('#support-email').addClass('is-danger');
           }
         });
-      } else {
-        jQuery('#support-email').addClass('is-danger');
       }
 
     });
