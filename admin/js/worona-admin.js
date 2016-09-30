@@ -34,6 +34,10 @@ jQuery(document).on('ready', function () {
       jQuery('#sync-with-worona').addClass('is-loading');
       e.preventDefault();
       e.stopPropagation();
+
+      var win = window.open("https://dashboard.worona.org/", '_blank');
+      win.focus();
+
       jQuery.ajax({
           url: ajaxurl,
           method: "POST",
@@ -51,7 +55,11 @@ jQuery(document).on('ready', function () {
               jQuery('input#worona-siteid').val(response.siteId);
 
               jQuery('#dashboard-button').removeClass('disabled');
-              jQuery('#dashboard-button').addClass('button-primary button-large')
+              jQuery('#dashboard-button').addClass('button-primary button-hero');
+
+              var siteid = jQuery('#worona-siteid-span').text();
+              var url = "https://dashboard.worona.org/" + "site/" + siteid;
+              jQuery('#dashboard-button').on('click', function(e){window.open(url)});
             }
           },
           error: function () {
@@ -90,6 +98,13 @@ jQuery(document).on('ready', function () {
               jQuery('#step-message').text('You are on step 4/4');
               jQuery('#worona-siteid-lateral').show();
               jQuery('span#worona-siteid-span').text(jQuery('input#worona-siteid').val());
+
+              jQuery('#dashboard-button').removeClass('disabled');
+              jQuery('#dashboard-button').addClass('button-primary button-hero');
+
+              var siteid = jQuery('#worona-siteid-span').text();
+              jQuery('#dashboard-button').on('click', function(e){window.open(url)});  
+
             } else if( response.hasOwnProperty('status') && response.status == 'error') {
               jQuery('#lateral-error-siteid').show();
               jQuery('#siteid-error-message').text(response.reason);

@@ -14,7 +14,7 @@
 ?>
 <div class="wrap">
   <span class="title is-2">Worona</span><span class="subtitle is-4">Contact & Help</span>
-  <div class="section">
+  <div class="section" style="background:none;">
     <div class="columns">
       <div class="is-half column">
         <div class="box">
@@ -23,7 +23,7 @@
           </p>
           <hr>
           <div id="contact-form-sent" style="display:none;">
-          
+
           </div>
           <form id="contact-form">
             <div class="control is-horizontal">
@@ -79,7 +79,7 @@
           <p>
 
               <div class="has-text-centered">
-                <input id="plugin-review" class="button is-medium is-info" type="submit" value="Review"/>
+                <a href="https://wordpress.org/support/plugin/worona/reviews/?filter=5" target="_blank" id="plugin-review" class="button button-primary button-hero">Review</a>
               </div>
 
             <br>

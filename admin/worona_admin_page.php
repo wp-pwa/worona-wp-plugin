@@ -3,17 +3,19 @@
 
 	$progress = 0;
 	$step = 0;
-
+	// $settings = get_option('worona_settings');
+	// var_dump($settings);
+	// delete_option('worona_settings');
 	$current_user = wp_get_current_user();
 
 	$rest_api_installed = $worona->rest_api_installed;
 	$rest_api_active = $worona->rest_api_active;
 	$settings = get_option('worona_settings');
 
-	if (isset($settings["worona_siteid_created"])) {
-		$worona_siteid_created = $settings["worona_siteid_created"];
+	if (isset($settings["synced_with_worona"])) {
+		$synced_with_worona = $settings["synced_with_worona"];
 	} else {
-		$worona_siteid_created = false;
+		$synced_with_worona = false;
 	}
 
 	$support = $settings["worona_support"];
@@ -26,7 +28,7 @@
 	if ($rest_api_active) {
 		$progress = 66;
 	}
-	if ($worona_siteid_created) {
+	if ($synced_with_worona) {
 		$progress = 100;
 	}
 
@@ -35,9 +37,9 @@
 		$step = 1;
 	} else if ($rest_api_installed && !$rest_api_active) {
 		$step = 2;
-	} else if ( $rest_api_installed && $rest_api_active && !$worona_siteid_created) {
+	} else if ( $rest_api_installed && $rest_api_active && !$synced_with_worona) {
 		$step = 3;
-	} else if ( $rest_api_installed && $rest_api_active && $worona_siteid_created) {
+	} else if ( $rest_api_installed && $rest_api_active && $synced_with_worona) {
 		$step = 4;
 	}
 ?>
@@ -108,19 +110,19 @@
 			<div class="box">
 				<nav class="level">
 					<div class="level-left">
-						<p class="title is-5">3. Sync with Worona Dashboard</p>
+						<p class="title is-5">3. Register in Worona</p>
 					</div>
-					<div id='label-created' class="level-right" <?php echo ( $worona_siteid_created ? '':'style="display:none;"');?>>
-						<span class="tag is-success">Synced&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
+					<div id='label-created' class="level-right" <?php echo ( $synced_with_worona ? '':'style="display:none;"');?>>
+						<span class="tag is-success">Registered&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
 					</div>
 				</nav>
 				<? if ($step<=3): ?>
 				<div class="content">
 					<p>
-						This will generate a Worona Site ID, it will link your WordPress with the Worona Dashboard.
+						Create an account in the Worona dashboard, and add this site.
 					</p>
 					<p id="label-create-buttons">
-						<a href="#" id="sync-with-worona" class="button button-lg">Sync site</a>
+						<a href="#" id="sync-with-worona" class="button button-hero button-primary">Register</a>
 						or <a href="#" class="open-change-siteid">insert an existing Site ID</a>
 					</p>
 				</div>
@@ -130,7 +132,7 @@
 			<div class="box">
 				<nav class="level">
 					<div class="level-left">
-						<p class="title is-5">4. Go to Worona Dashboard</p>
+						<p class="title is-5">4. Configure your site</p>
 					</div>
 				</nav>
 				<div class="content">
@@ -153,17 +155,17 @@
 							 echo 'User display name: ' . $current_user->display_name . '<br />';
 							 echo 'User ID: ' . $current_user->ID . '<br />';
 							 */
-							if ($worona_siteid_created) {
-								$worona_dashboard_url = "https://dashboard.worona.org";
-								$worona_dashboard_target = "_blank";
+
+							$worona_dashboard_url = "https://dashboard.worona.org/site/" . $settings["worona_siteid"];
+
+							if ($synced_with_worona) {
 								$button_disabled = false;
 							} else {
 								$worona_dashboard_url = "#";
-								$worona_dashboard_target = "";
 								$button_disabled = true;
 							}
 						?>
-						<a id="dashboard-button" href="<?php echo $worona_dashboard_url; ?>" target="<?php echo $worona_dashboard_target;?>" style="color:white" class="button button-lg <?php echo ($button_disabled ? 'disabled' : 'button-primary button-large'); ?>">Dashboard</a>
+						<a id="dashboard-button" href="<?php echo $worona_dashboard_url ?>" target="_blank" style="color:white" class="button button-lg <?php echo ($button_disabled ? 'disabled' : 'button-primary button-hero'); ?>">Configure</a>
 					</p>
 				</div>
 			</div>
@@ -194,7 +196,7 @@
 					<?php print(rest_url()); ?>
 				</p>
 			  <? endif;?>
-				<div id="worona-siteid-lateral" <?php echo ($worona_siteid_created?'':'style="display:none;"');?>>
+				<div id="worona-siteid-lateral" <?php echo ($synced_with_worona?'':'style="display:none;"');?>>
 				<p>
 					<hr>
 					<h2>Worona Site Id:</h2>
@@ -207,7 +209,7 @@
 			 <div class="message-header">
 					<nav class="level">
 						<div class="level-left">
-							<strong> Change Worona Site Id</strong>
+							<strong> Change Site Id</strong>
 						</div>
 						<div class="level-right">
 							<a href="#" class="close-change-siteid" style="color:inherit"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -239,7 +241,7 @@
 							<td>
 									<fieldset>
 											<label>
-													<input type="text" id="worona-siteid" value="<?php echo (isset($settings['worona_siteid'])) ? $settings['worona_siteid'] : ''; ?>"/>
+													<input type="text" id="worona-siteid" value="<?php echo ($settings['synced_with_worona']) ? $settings['worona_siteid'] : ''; ?>"/>
 													<br />
 													<span class="description">Enter a valid Site Id</span>
 											</label>
@@ -265,16 +267,11 @@
 				 <p>
 					 We will send support emails to the following address:
 				 </p>
-
 						 <p class="control is-grouped">
 							 <input class="input" type="text" id="support-email" value="<?php echo $support_email; ?>" <?php echo ($support)?'':'disabled'; ?>/>
 							  <a id="change-support-email" class="button disabled">Change</a>
 						 </p>
 						 <input type="hidden" id="current-support-email" value="<?php echo $support_email; ?>" />
-
-
-
-
 				 <p class="control">
   			 	<label class="checkbox">
     				<input id="receive-support-emails" type="checkbox" <?php echo ($support)?'checked':'';?>>

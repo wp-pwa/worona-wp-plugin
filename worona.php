@@ -92,8 +92,8 @@ class worona
 				$args['worona_appId'] = $settings['worona_appId'];
 				add_settings_error('worona_settings', 'worona_invalid_appId', 'Please enter a valid APP ID!', $type = 'error');
 		}
-		if(isset($args['worona_siteid_created']) && $args['worona_siteid_created']=='true'){
-			$args['worona_siteid_created'] = true;
+		if(isset($args['synced_with_worona']) && $args['synced_with_worona']=='true'){
+			$args['synced_with_worona'] = true;
 		}
 
     //make sure you return the args
@@ -250,19 +250,6 @@ class worona
 	    return $_post;
 	}
 
-	//generates a random Site Id
-	function generate_siteId() {
-		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-		$chars_length = (strlen($chars) - 1);// Length of character list
-		$string = $chars{rand(0, $chars_length)};// Start our string
-
-		for ($i = 1; $i < 17; $i++) {// Generate random string
-				$r = $chars{rand(0, $chars_length)};// Grab a random character from our list
-				$string .= $r;// Make sure the same two characters don't appear next to each other
-		}
-		return $string;
-	}
-
 	function get_worona_site_id() {
 
 		$settings = get_option('worona_settings');
@@ -278,12 +265,13 @@ class worona
 
 	function sync_with_worona() {
 		flush_rewrite_rules();
-		$siteId = $this->generate_siteId();
 
 		$settings = get_option('worona_settings');
-		$settings['worona_siteid_created'] = true;
-		$settings['worona_siteid'] = $siteId;
+		$settings['synced_with_worona'] = true;
+
 		update_option('worona_settings', $settings);
+
+		$siteId = $settings['worona_siteid'];
 
 		wp_send_json( array(
 			'status' => 'ok',
@@ -304,6 +292,8 @@ class worona
 		} else {
 			$settings = get_option('worona_settings');
 			$settings['worona_siteid'] = $siteId;
+			$settings["synced_with_worona"] = true;
+			
 			update_option('worona_settings', $settings);
 
 			wp_send_json( array(
@@ -498,11 +488,45 @@ function worona()
 // initialize
 worona();
 
-function worona_activation(){
+function worona_activation() {
+
+	//generates a random Site Id
+	function generate_siteId() {
+		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+		$chars_length = (strlen($chars) - 1);// Length of character list
+		$string = $chars{rand(0, $chars_length)};// Start our string
+
+		for ($i = 1; $i < 17; $i++) {// Generate random string
+				$r = $chars{rand(0, $chars_length)};// Grab a random character from our list
+				$string .= $r;// Make sure the same two characters don't appear next to each other
+		}
+		return $string;
+	}
+
 	$current_user = wp_get_current_user();
 	$email = $current_user->user_email;
 
-	add_option('worona_settings', array("worona_siteid_created" => false, "worona_support" => true, "worona_support_email" => $email), '','yes');
+	$settings = get_option('worona_settings');
+
+	if (isset($settings["synced_with_worona"])) {
+		$synced_with_worona = $settings["synced_with_worona"];
+	} else {
+		$synced_with_worona = false;
+	}
+
+	if (isset($settings['worona_siteid'])) {
+		$siteId = $settings['worona_siteid'];
+	} else {
+		$siteId = generate_siteId();
+	}
+
+	if (isset($settings["worona_support"])){
+		$worona_support = $settings["worona_support"];
+	} else {
+		$worona_support = true;
+	}
+
+	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId, "worona_support" => $worona_support, "worona_support_email" => $email), '','yes');
 
 	flush_rewrite_rules();
 }
