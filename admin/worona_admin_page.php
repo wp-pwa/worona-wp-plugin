@@ -95,13 +95,11 @@
 						<?php
 							if($rest_api_active ) {
 									$activate_api_href ="#";
-									$activate_api_target="";
 							} else {
 								$activate_api_href = $worona->get_activate_wp_rest_api_plugin_url();
-								$activate_api_target="_blank";
 							}
 						?>
-						<a href="<?php echo $activate_api_href; ?>" target="<?php echo $activate_api_target;?>" class="button button-lg">Activate WP-API Plugin</a>
+						<a href="<?php echo $activate_api_href; ?>" class="button button-lg">Activate WP-API Plugin</a>
 					</p>
 				</div>
 				<? endif;?>
