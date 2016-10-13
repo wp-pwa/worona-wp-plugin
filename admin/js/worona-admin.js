@@ -35,7 +35,21 @@ jQuery(document).on('ready', function () {
       e.preventDefault();
       e.stopPropagation();
 
-      var win = window.open("https://dashboard.worona.org/", '_blank');
+      var name = jQuery('#param-name').val();
+      var email = jQuery('#param-email').val();
+      var siteURL = jQuery('#param-siteURL').val();
+      var siteName = jQuery('#param-siteName').val();
+      var siteId = jQuery('#param-siteId').val();
+
+      var registerURL = "https://dashboard.worona.org/register";
+
+      registerURL += "?name=" + name;
+      registerURL += "&email=" + email;
+      registerURL += "&siteURL=" + siteURL;
+      registerURL += "&siteName=" + siteName;
+      registerURL += "&siteId=" + siteId;
+
+      var win = window.open(registerURL, '_blank');
       win.focus();
 
       jQuery.ajax({

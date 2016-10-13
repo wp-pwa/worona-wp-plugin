@@ -5,7 +5,7 @@
 	$step = 0;
 	// $settings = get_option('worona_settings');
 	// var_dump($settings);
-	// delete_option('worona_settings');
+	//delete_option('worona_settings');
 	$current_user = wp_get_current_user();
 
 	$rest_api_installed = $worona->rest_api_installed;
@@ -119,6 +119,36 @@
 					<p>
 						Create an account in the Worona dashboard, and add this site.
 					</p>
+					<?php
+						/*
+							Params accepted by https://dashboard.worona.org/register
+								?name
+								?email
+								?siteURL
+								?siteName
+								?siteId
+						*/
+						$name = "";
+						$email = "";
+						$siteURL = get_site_url();
+						$siteName = get_bloginfo( 'name' );
+						$siteId = $settings["worona_siteid"];
+
+						$current_user = wp_get_current_user();
+						if ($current_user instanceof WP_User) {
+								$name = $current_user->user_firstname;
+								if($name == '') {
+									$name = $current_user->display_name;
+								}
+								$email = $current_user->user_email;
+						}
+					?>
+					<input id="param-name" type="hidden" value="<?php echo $name; ?>">
+					<input id="param-email" type="hidden" value="<?php echo $email; ?>">
+					<input id="param-siteURL" type="hidden" value="<?php echo $siteURL; ?>">
+					<input id="param-siteName" type="hidden" value="<?php echo $siteName; ?>">
+					<input id="param-siteId" type="hidden" value="<?php echo $siteId; ?>">
+
 					<p id="label-create-buttons">
 						<a href="#" id="sync-with-worona" class="button button-hero button-primary">Register</a>
 						or <a href="#" class="open-change-siteid">insert an existing Site ID</a>
@@ -139,20 +169,6 @@
 					</p>
 					<p>
 						<?php
-
-							 /**
-								* @example Safe usage: $current_user = wp_get_current_user();
-								* if ( !($current_user instanceof WP_User) )
-								*     return;
-								*/
-							/*
-							 echo 'Username: ' . $current_user->user_login . '<br />';
-							 echo 'User email: ' . $current_user->user_email . '<br />';
-							 echo 'User first name: ' . $current_user->user_firstname . '<br />';
-							 echo 'User last name: ' . $current_user->user_lastname . '<br />';
-							 echo 'User display name: ' . $current_user->display_name . '<br />';
-							 echo 'User ID: ' . $current_user->ID . '<br />';
-							 */
 
 							$worona_dashboard_url = "https://dashboard.worona.org/site/" . $settings["worona_siteid"];
 
