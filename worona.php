@@ -399,7 +399,7 @@ class worona
 			}
 			$headers = "From: $name <$email>\r\n";
 			$date = date('d/m/y H:i:s');
-			$return = wp_mail( "pablo@worona.org", "[".$subject."] from ".get_site_url()." (". $date .")", stripslashes( trim( $message ) ), $headers );
+			$return = wp_mail( "support@worona.org", "[".$subject."] from ".get_site_url()." (". $date .")", stripslashes( trim( $message ) ), $headers );
 
 			wp_send_json( array(
 				'status' => 'ok',
