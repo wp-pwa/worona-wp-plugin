@@ -88,8 +88,8 @@
         </div>
         <div class="columns has-text-centered">
           <div class="column is-third">
-              <a href="https://wordpress.org/support/plugin/worona" target="_blank">
-                Support forum <span class="icon is-small"><i class="fa fa-external-link" aria-hidden="true"></i></span>
+              <a href="https://docs.worona.org" target="_blank">
+                Documentation <span class="icon is-small"><i class="fa fa-book" aria-hidden="true"></i></span>
               </a>
           </div>
           <div class="column is-third">
