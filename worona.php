@@ -17,9 +17,11 @@ if( !class_exists('worona') ):
 class worona
 {
 	// vars
+	public $plugin_version = '1.0';
 	public $rest_api_installed 	= false;
 	public $rest_api_active 	= false;
 	public $rest_api_working	= false;
+
 
 
 	/*
@@ -60,6 +62,10 @@ class worona
 			register_rest_route( 'worona/v1', '/siteid/', array(
 				'methods' => 'GET',
 				'callback' => array( $this,'get_worona_site_id'))
+			);
+			register_rest_route( 'worona/v1', '/plugin-version/', array(
+				'methods' => 'GET',
+				'callback' => array( $this,'get_worona_plugin_version'))
 			);
 		});
 		// filters
@@ -263,6 +269,10 @@ class worona
 		return array('siteId'=> $worona_site_id);
 	}
 
+	function get_worona_plugin_version() {
+		return array('plugin_version' => $this->plugin_version);
+	}
+
 	function sync_with_worona() {
 		flush_rewrite_rules();
 
@@ -293,7 +303,7 @@ class worona
 			$settings = get_option('worona_settings');
 			$settings['worona_siteid'] = $siteId;
 			$settings["synced_with_worona"] = true;
-			
+
 			update_option('worona_settings', $settings);
 
 			wp_send_json( array(
