@@ -42,6 +42,7 @@
 	} else if ( $rest_api_installed && $rest_api_active && $synced_with_worona) {
 		$step = 4;
 	}
+
 ?>
 <div class="wrap">
 	<p class="title is-2">Worona</p>
@@ -110,51 +111,59 @@
 					<div class="level-left">
 						<p class="title is-5">3. Register in Worona</p>
 					</div>
-					<div id='label-created' class="level-right" <?php echo ( $synced_with_worona ? '':'style="display:none;"');?>>
+					<div id='label-created' class="level-right" <?php echo ( $step > 2 ? '':'style="display:none;"');?>>
 						<span class="tag is-success">Registered&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
 					</div>
 				</nav>
-				<? if ($step<=3): ?>
+
 				<div class="content">
 					<p>
 						Create an account in the Worona dashboard, and add this site.
 					</p>
-					<?php
-						/*
-							Params accepted by https://dashboard.worona.org/register
-								?name
-								?email
-								?siteURL
-								?siteName
-								?siteId
-						*/
-						$name = "";
-						$email = "";
-						$siteURL = get_site_url();
-						$siteName = get_bloginfo( 'name' );
-						$siteId = $settings["worona_siteid"];
+					<? if ($step==3): ?>
+						<?php
+							/*
+								Params accepted by https://dashboard.worona.org/register
+									?name
+									?email
+									?siteURL
+									?siteName
+									?siteId
+							*/
+							$name = "";
+							$email = "";
+							$siteURL = get_site_url();
+							$siteName = get_bloginfo( 'name' );
+							$siteId = $settings["worona_siteid"];
 
-						$current_user = wp_get_current_user();
-						if ($current_user instanceof WP_User) {
-								$name = $current_user->user_firstname;
-								if($name == '') {
-									$name = $current_user->display_name;
-								}
-								$email = $current_user->user_email;
-						}
-					?>
-					<input id="param-name" type="hidden" value="<?php echo $name; ?>">
-					<input id="param-email" type="hidden" value="<?php echo $email; ?>">
-					<input id="param-siteURL" type="hidden" value="<?php echo $siteURL; ?>">
-					<input id="param-siteName" type="hidden" value="<?php echo $siteName; ?>">
-					<input id="param-siteId" type="hidden" value="<?php echo $siteId; ?>">
+							$current_user = wp_get_current_user();
+							if ($current_user instanceof WP_User) {
+									$name = $current_user->user_firstname;
+									if($name == '') {
+										$name = $current_user->display_name;
+									}
+									$email = $current_user->user_email;
+							}
+						?>
+						<input id="param-name" type="hidden" value="<?php echo $name; ?>">
+						<input id="param-email" type="hidden" value="<?php echo $email; ?>">
+						<input id="param-siteURL" type="hidden" value="<?php echo $siteURL; ?>">
+						<input id="param-siteName" type="hidden" value="<?php echo $siteName; ?>">
+						<input id="param-siteId" type="hidden" value="<?php echo $siteId; ?>">
 
-					<p id="label-create-buttons">
-						<a href="#" id="sync-with-worona" class="button button-hero button-primary">Register</a>
-						or <a href="#" class="open-change-siteid">insert an existing Site ID</a>
+						<p id="label-create-buttons">
+							<a href="#" id="sync-with-worona" class="button button-hero button-primary">Register</a>
+							or <a href="#" class="open-change-siteid">insert an existing Site ID</a>
+						</p>
+
+					<? else:?>
+					<p>
+						<a href="#" class="button button-hero disabled">Register</a>
+						or <span style="text-decoration: underline;">insert an existing Site ID</span>
 					</p>
+					<?endif;?>
 				</div>
-				<?endif;?>
+
 			</div>
 
 			<div class="box">
