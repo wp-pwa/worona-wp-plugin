@@ -18,9 +18,6 @@
 		$synced_with_worona = false;
 	}
 
-	$support = $settings["worona_support"];
-	$support_email = $settings["worona_support_email"];
-
 	//Progress
 	if ($rest_api_installed) {
 		$progress = 33;
@@ -277,33 +274,6 @@
 					</p>
 			  </div>
 		 </article>
-		 <div class="box">
-			 <nav class="level">
-				 <div class="level-left">
-					 <p class="title is-5">Support emails</p>
-				 </div>
-				 <div class="level-right">
-					 <span id="support-saving" style="display:none" class="tag is-danger">saving</span>
-				 </div>
-			 </nav>
-			 <div class="content">
-				 <p>
-					 We will send support emails to the following address:
-				 </p>
-						 <p class="control is-grouped">
-							 <input class="input" type="text" id="support-email" value="<?php echo $support_email; ?>" <?php echo ($support)?'':'disabled'; ?>/>
-							  <a id="change-support-email" class="button disabled">Change</a>
-						 </p>
-						 <input type="hidden" id="current-support-email" value="<?php echo $support_email; ?>" />
-				 <p class="control">
-  			 	<label class="checkbox">
-    				<input id="receive-support-emails" type="checkbox" <?php echo ($support)?'checked':'';?>>
-						<input type="hidden" id="current-toggle-support" value="<?php echo ($support)?'true':'false'; ?>" >
-    					Receive support emails
-  				</label>
-				</p>
-			 </div>
-		 </div>
 	 </div><!-- column one-third-->
 	</div><!-- columns -->
 </div><!-- wrap -->

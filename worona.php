@@ -47,8 +47,6 @@ class worona
 
 		add_action('wp_ajax_sync_with_worona',array($this,'sync_with_worona'));
 		add_action('wp_ajax_worona_change_siteid',array($this,'change_siteid_ajax'));
-		add_action('wp_ajax_worona_change_support_email',array($this,'change_support_email_ajax'));
-		add_action('wp_ajax_worona_toggle_support',array($this,'toggle_support_ajax'));
 		add_action('wp_ajax_worona_send_contact_form',array($this,'send_contact_form_ajax'));
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
@@ -312,71 +310,6 @@ class worona
 		}
 	}
 
-	function change_support_email_ajax() {
-		$email = $_POST['email'];
-
-		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
-			///////////////////////
-			//CONNECT WITH MIXPANEL
-			///////////////////////
-
-			$settings = get_option('worona_settings');
-			$settings['worona_support_email'] = $email;
-			update_option('worona_settings', $settings);
-
-			wp_send_json( array(
-				'status' => 'ok',
-			));
-		} else {
-			wp_send_json(array(
-				'status' => 'error',
-				'reason' => 'Email is not valid'
-			));
-		}
-	}
-
-	function toggle_support_ajax() {
-		$settings = get_option('worona_settings');
-
-		if ($_POST['toggle'] == "true"){
-			$toggle = true;
-		} else if ($_POST['toggle'] == "false") {
-			$toggle = false;
-		}
-
-		if ( $toggle ) {
-
-			///////////////////////
-			//CONNECT WITH MIXPANEL
-			///////////////////////
-
-			$settings['worona_support'] = true;
-			update_option('worona_settings', $settings);
-
-			wp_send_json( array(
-				'status' => 'ok',
-				'worona_support' => true,
-				'message' => 'Email support is active'
-			));
-
-		} else {
-
-			///////////////////////
-			//CONNECT WITH MIXPANEL
-			///////////////////////
-
-			$settings['worona_support'] = false;
-			update_option('worona_settings', $settings);
-
-			wp_send_json( array(
-				'status' => 'ok',
-				'worona_support' => false,
-				'message' => 'Email support is not active'
-			));
-		}
-	}
-
 	public function send_contact_form_ajax() {
 		$from = $_POST['email'];
 		$name = $_POST['name'];
@@ -530,13 +463,7 @@ function worona_activation() {
 		$siteId = generate_siteId();
 	}
 
-	if (isset($settings["worona_support"])){
-		$worona_support = $settings["worona_support"];
-	} else {
-		$worona_support = true;
-	}
-
-	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId, "worona_support" => $worona_support, "worona_support_email" => $email), '','yes');
+	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId), '','yes');
 
 	flush_rewrite_rules();
 }
