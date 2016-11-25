@@ -1,10 +1,10 @@
 <?php
 	global $worona;
-
+	
 	$progress = 0;
 	$step = 0;
-	// $settings = get_option('worona_settings');
-	// var_dump($settings);
+	$settings = get_option('worona_settings');
+	//var_dump($settings);
 	//delete_option('worona_settings');
 	$current_user = wp_get_current_user();
 
@@ -81,7 +81,7 @@
 						<p class="title is-5">2. Activate WP-API</p>
 					</div>
 					<div class="level-right">
-						<?php echo ( $rest_api_active ? '<span class="tag is-success">Active&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
+						<?php echo ( $rest_api_active  ? '<span class="tag is-success">Active&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
 					</div>
 				</nav>
 				<? if ($step<=2): ?>
@@ -91,13 +91,15 @@
 					</p>
 					<p>
 						<?php
-							if($rest_api_active ) {
-									$activate_api_href ="#";
+							if($rest_api_installed || $rest_api_active ) {
+									$activate_api_href =$worona->get_activate_wp_rest_api_plugin_url();
+									$activate_class = "button button-lg ";
 							} else {
-								$activate_api_href = $worona->get_activate_wp_rest_api_plugin_url();
+								$activate_api_href = "#";
+								$activate_class = "button button-lg disabled";
 							}
 						?>
-						<a href="<?php echo $activate_api_href; ?>" class="button button-lg">Activate WP-API Plugin</a>
+						<a href="<?php echo $activate_api_href; ?>" class=<?php echo $activate_class; ?>>Activate WP-API Plugin</a>
 					</p>
 				</div>
 				<? endif;?>
@@ -108,7 +110,7 @@
 					<div class="level-left">
 						<p class="title is-5">3. Register in Worona</p>
 					</div>
-					<div id='label-created' class="level-right" <?php echo ( $step > 2 ? '':'style="display:none;"');?>>
+					<div id='label-created' class="level-right" <?php echo ( $step > 3 ? '':'style="display:none;"');?>>
 						<span class="tag is-success">Registered&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
 					</div>
 				</nav>
