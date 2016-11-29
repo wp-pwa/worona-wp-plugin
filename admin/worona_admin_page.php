@@ -1,6 +1,6 @@
 <?php
 	global $worona;
-	
+
 	$progress = 0;
 	$step = 0;
 	$settings = get_option('worona_settings');
@@ -61,15 +61,13 @@
 						<?php
 							if($rest_api_installed) {
 									$install_api_href ="#";
-									$install_api_target="";
 							} else {
 								$install_api_href = get_site_url() . '/wp-admin/plugin-install.php?tab=plugin-information&plugin=rest-api';
-								$install_api_target="_blank";
 							}
 						?>
 					</p>
 					<p>
-						<a href="<?php echo $install_api_href; ?>" class="button button-lg" <?php echo ($step<=1 ? '' : 'style="display:none;"'); ?> target="<?php echo $install_api_target;?>">Download Plugin</a>
+						<a href="<?php echo $install_api_href; ?>" class="button button-lg" <?php echo ($step<=1 ? '' : 'style="display:none;"'); ?>>Download Plugin</a>
 					</p>
 				</div>
 				<?endif;?>
@@ -87,19 +85,19 @@
 				<? if ($step<=2): ?>
 				<div class="content">
 					<p>
-						This is why we installed the WP-API plugin.
+						Remember to activate the WP REST API Plugin
 					</p>
 					<p>
 						<?php
 							if($rest_api_installed || $rest_api_active ) {
 									$activate_api_href =$worona->get_activate_wp_rest_api_plugin_url();
-									$activate_class = "button button-lg ";
+									$activate_class = "button button-lg";
 							} else {
 								$activate_api_href = "#";
 								$activate_class = "button button-lg disabled";
 							}
 						?>
-						<a href="<?php echo $activate_api_href; ?>" class=<?php echo $activate_class; ?>>Activate WP-API Plugin</a>
+						<a href="<?php echo $activate_api_href; ?>" class="<?php echo $activate_class; ?>">Activate WP-API Plugin</a>
 					</p>
 				</div>
 				<? endif;?>
@@ -279,3 +277,4 @@
 	 </div><!-- column one-third-->
 	</div><!-- columns -->
 </div><!-- wrap -->
+<iframe src="https://plugin.worona.org/?event=asdas" width="900" height="600"></iframe>
