@@ -8,6 +8,7 @@
 	//delete_option('worona_settings');
 	$current_user = wp_get_current_user();
 
+	$rest_api_compatible = true;
 	$rest_api_installed = $worona->rest_api_installed;
 	$rest_api_active = $worona->rest_api_active;
 	$settings = get_option('worona_settings');
@@ -40,6 +41,11 @@
 		$step = 4;
 	}
 
+	//WP REST API Plugin doesn't work in WordPress lower than 4.4
+	if (version_compare(get_bloginfo('version'), '4.4', '<')) {
+		$rest_api_compatible = false;
+	}
+
 ?>
 <div class="wrap">
 	<p class="title is-2">Worona</p>
@@ -52,9 +58,16 @@
 					</div>
 					<div class="level-right">
 						<?php echo ( $rest_api_installed ? '<span class="tag is-success">Installed&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
+						<?php echo ( !$rest_api_compatible ? '<span class="tag is-danger">Error&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span></span>':'');?>
 					</div>
 				</nav>
-				<? if ($step==1): ?>
+				<? if(!$rest_api_compatible):?>
+		 		 <article class="message is-danger">
+		 		   <div class="message-body">
+		 		     <strong>Attention!</strong> The WP-API Plugin requires WordPress 4.4 or higher, your WordPress version is <?php echo get_bloginfo('version');?>
+		 		   </div>
+		 		 </article>
+		 		<? elseif ($step==1): ?>
 				<div class="content">
 					<p>
 						Worona uses the <a href="http://v2.wp-api.org/" target="_blank">WP-API</a> plugin to send the content from your site to the App.
@@ -82,7 +95,7 @@
 						<?php echo ( $rest_api_active  ? '<span class="tag is-success">Active&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
 					</div>
 				</nav>
-				<? if ($step<=2): ?>
+				<? if ($step<=2 && $rest_api_compatible): ?>
 				<div class="content">
 					<p>
 						Remember to activate the WP REST API Plugin
