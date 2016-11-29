@@ -112,12 +112,11 @@
 						<span class="tag is-success">Registered&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
 					</div>
 				</nav>
-
-				<div class="content">
-					<p>
-						Create an account in the Worona dashboard, and add this site.
-					</p>
 					<? if ($step==3): ?>
+					<div class="content">
+						<p>
+							Create an account in the Worona dashboard, and add this site.
+						</p>
 						<?php
 							/*
 								Params accepted by https://dashboard.worona.org/register
@@ -152,14 +151,19 @@
 							<a href="#" id="sync-with-worona" class="button button-hero button-primary">Register</a>
 							or <a href="#" class="open-change-siteid">insert an existing Site ID</a>
 						</p>
+					</div>
 
-					<? else:?>
-					<p>
-						<a href="#" class="button button-hero disabled">Register</a>
-						or <span style="text-decoration: underline;">insert an existing Site ID</span>
-					</p>
+					<? elseif($step<3):?>
+					<div class="content">
+						<p>
+							Create an account in the Worona dashboard, and add this site.
+						</p>
+						<p>
+							<a href="#" class="button button-hero disabled">Register</a>
+							or <span style="text-decoration: underline;">insert an existing Site ID</span>
+						</p>
+					</div>
 					<?endif;?>
-				</div>
 
 			</div>
 
