@@ -210,13 +210,6 @@
 	 <div class="column">
 	 </div>
 	 <div class="column is-one-third">
-		 <? if($step < 3):?>
-		 <article class="message is-warning">
-		   <div class="message-body">
-		     <strong>Attention!</strong> Some steps require to refresh this page.
-		   </div>
-		 </article>
-		 <? endif;?>
 		 <article class="message is-info">
 			<div class="message-header">
 			  Follow the steps to create the App
