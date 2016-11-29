@@ -119,6 +119,9 @@ jQuery(document).on('ready', function () {
               var siteid = jQuery('#worona-siteid-span').text();
               jQuery('#dashboard-button').on('click', function(e){window.open(url)});
 
+              var dashboard_url = 'https://dashboard.worona.org/check-site/' + siteid;
+              jQuery('#dashboard-button').prop('href',dashboard_url);
+
             } else if( response.hasOwnProperty('status') && response.status == 'error') {
               jQuery('#lateral-error-siteid').show();
               jQuery('#siteid-error-message').text(response.reason);
@@ -132,5 +135,5 @@ jQuery(document).on('ready', function () {
           }
         });
       }
-    });    
+    });
 });
