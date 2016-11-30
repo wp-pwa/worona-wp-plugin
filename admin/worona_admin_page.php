@@ -212,7 +212,7 @@
 	 <div class="column is-one-third">
 		 <article class="message is-info">
 			<div class="message-header">
-			  Follow the steps to create the App
+			  Follow the 4 steps to configure the plugin
 			</div>
 			<div id="#lateral-info-box"class="message-body">
 				<progress class="progress is-info is-medium" value="<?php echo $progress;?>" max="100"></progress>
