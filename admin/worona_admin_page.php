@@ -61,13 +61,13 @@
 						<?php echo ( !$rest_api_compatible ? '<span class="tag is-danger">Error&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span></span>':'');?>
 					</div>
 				</nav>
-				<? if(!$rest_api_compatible):?>
+				<?php if(!$rest_api_compatible):?>
 		 		 <article class="message is-danger">
 		 		   <div class="message-body">
 		 		     <strong>Attention!</strong> The WP-API Plugin requires WordPress 4.4 or higher, your WordPress version is <?php echo get_bloginfo('version');?>
 		 		   </div>
 		 		 </article>
-		 		<? elseif ($step==1): ?>
+		 		<?php elseif ($step==1): ?>
 				<div class="content">
 					<p>
 						Worona uses the <a href="http://v2.wp-api.org/" target="_blank">WP-API</a> plugin to send the content from your site to the App.
@@ -83,7 +83,7 @@
 						<a href="<?php echo $install_api_href; ?>" class="button button-lg" <?php echo ($step<=1 ? '' : 'style="display:none;"'); ?>>Download Plugin</a>
 					</p>
 				</div>
-				<?endif;?>
+				<?php endif;?>
 			</div>
 
 			<div class="box">
@@ -95,7 +95,7 @@
 						<?php echo ( $rest_api_active  ? '<span class="tag is-success">Active&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
 					</div>
 				</nav>
-				<? if ($step<=2 && $rest_api_compatible): ?>
+				<?php if ($step<=2 && $rest_api_compatible): ?>
 				<div class="content">
 					<p>
 						Remember to activate the WP REST API Plugin
@@ -113,7 +113,7 @@
 						<a href="<?php echo $activate_api_href; ?>" class="<?php echo $activate_class; ?>">Activate WP-API Plugin</a>
 					</p>
 				</div>
-				<? endif;?>
+				<?php endif;?>
 			</div>
 
 			<div class="box">
@@ -125,7 +125,7 @@
 						<span class="tag is-success">Registered&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>
 					</div>
 				</nav>
-					<? if ($step==3): ?>
+					<?php if ($step==3): ?>
 					<div class="content">
 						<p>
 							Create an account in the Worona dashboard, and add this site.
@@ -166,7 +166,7 @@
 						</p>
 					</div>
 
-					<? elseif($step<3):?>
+					<?php elseif($step<3):?>
 					<div class="content">
 						<p>
 							Create an account in the Worona dashboard, and add this site.
@@ -176,7 +176,7 @@
 							or <span style="text-decoration: underline;">insert an existing Site ID</span>
 						</p>
 					</div>
-					<?endif;?>
+					<?php endif;?>
 
 			</div>
 
@@ -219,13 +219,13 @@
 				<p id="step-message">
 					You are on <strong>step <?php echo $step;?>/4.</strong>
 				</p>
-				<? if ($rest_api_active):?>
+				<?php if ($rest_api_active):?>
 				<hr>
 				<p>
 					<h2>WP-API URL:</h2>
 					<?php print(rest_url()); ?>
 				</p>
-			  <? endif;?>
+			  <?php endif;?>
 				<div id="worona-siteid-lateral" <?php echo ($synced_with_worona?'':'style="display:none;"');?>>
 				<p>
 					<hr>
@@ -287,4 +287,3 @@
 	 </div><!-- column one-third-->
 	</div><!-- columns -->
 </div><!-- wrap -->
-<iframe src="https://plugin.worona.org/?event=asdas" width="900" height="600"></iframe>
