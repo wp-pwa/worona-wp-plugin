@@ -55,9 +55,25 @@ Choose among a wide variety of themes to fully personalize your brand on mobile.
 
 
 == Installation ==
-1. Upload \"test-plugin.php\" to the \"/wp-content/plugins/\" directory.
-1. Activate the plugin through the \"Plugins\" menu in WordPress.
-1. Place \"do_action( \'plugin_name_hook\' );\" in your templates.
+**From your WordPress Control Panel**:
+
+1. Go to Plugins > Add new, and search for “Worona”.
+2. Click the “Install now” button.
+3. Once the plugin has been installed, click “Activate Plugin”.
+
+**From the WordPress Plugin Directory**:
+
+1. Click the “Download” button to get a .zip file.
+2. Once the download is completed, go to your WordPress Control Panel > Plugins > Add new. 
+3. Upload the previous .zip file.
+4. Activate the plugin after its installation.
+
+Once the Worona plugin is installed and activated, follow the on-screen instructions to configure it or visit our [installation guide](https://docs.worona.org/plugin/installation.html).
+
+**Need help or got any questions?**
+
+You can contact us at [support@worona.org](mailto:support@worona.org).
+
 
 == Frequently Asked Questions ==
 = A question that someone might have =
