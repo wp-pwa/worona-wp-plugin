@@ -1,144 +1,87 @@
-=== Worona - Native Mobile App for free (iOS & Android) ===
-Contributors: benuit, poliuk, luisherranz, fmorenoper
-Donate link: -
-Tags: free, generator, ipod, mobapper, native, play store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, webapp, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
-Requires at least: 3.9
-Tested up to: 4.4
-Stable tag: 0.7.4
-stable.
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.html
+=== Test Plugin ===
+Contributors: user, user, user
+Tags: tag, tag, tag
+Donate link: http://example.com/
+Requires at least: 4.0
+Tested up to: 4.5
+Stable tag: 1.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Build a native mobile app of your WordPress blog. Fast, easy and free.
+Make your WordPress site mobile-ready with a few clicks. Easy & free forever.
 
 == Description ==
+Worona is an all-in-one WordPress plugin that significantly improves your mobile site’s performance in a very easy way, and 100% free.
 
-= Transform your blog into a Native App =
-Worona is an open source WordPress plugin that enables users to convert their WordPress Blog into a native mobile App. Worona is divided into 2 different parts: the WordPress plugin itself, which prepares the content of your WordPress site to be sent to the app, and the native app coded using Corona SDK.
+Creating a website with a responsive design has become essential, but it’s not longer enough. Mobile sites must be fast and relevant - only compelling mobile experiences keep people engaged these days.
 
-The functioning of Worona is pretty easy. In this first release, Worona plugin takes all the posts from your site, and presents them into an app. All this process is fully covered in our <a href="https://www.worona.org/start/" target="_blank">installation guide</a>. We have tried to make it as visual and simple as possible, but we’d love to hear your ideas to improve it!
+This is where Worona enters the picture, and our platform is made to help you accomplish exactly this: deliver a standout mobile experience to your users across all devices.
 
+**360º mobile solution**
 
-= See an example =
+Worona offers one solution right now: mobile apps. But our plan is to integrate HTML5 web apps, Google AMP and Facebook Instant Articles soon.
 
-If you want to see how this looks like just check our demo App:
+With Worona you can create for free, in just a few clicks:
 
-> * **Android**: <a href="https://play.google.com/store/apps/details?id=org.worona.android.worona_blog" target="_blank">https://play.google.com/store/apps/details?id=org.worona.android.worona_blog</a>
-> * **iOS**: <a href="https://itunes.apple.com/us/app/worona-blog/id918477223" target="_blank">https://itunes.apple.com/us/app/worona-blog/id918477223</a>
+* **A mobile app**: easily turn your WordPress into a native iOS or Android App and publish it to the app stores (or let us do the work for you).
 
-> There you have our <a href="https://blog.worona.org/" target="_blank">blog</a> converted into a native App.
+* **[Coming soon] A HTML5 web app**: serve an app-like version of your site running on any mobile web browser - deliver the best mobile web experience.
 
+And enable new mobile formats on your WordPress site:
 
-= Push notifications and other extensions =
+* **[Coming soon] Google Accelerated Mobile Pages (AMP)**: a mobile format developed by Google that allows your content to load instantly at the top of Google Search results.
 
-We are developing a set of <a href="https://www.worona.org/extensions" target="_blank">Extensions</a> to give extra powers to your App.
+* **[Coming soon] Facebook Instant Articles (FB IA)**: a solution for publishers who distribute their stories on Facebook and want them to perform better on mobile. 
 
-* <a href="https://www.worona.org/extension-push-notifications/" target="_blank">Push Notifications</a>
-* <a href="https://www.worona.org/extension-rate-my-app/" target="_blank">Rate my App</a>
-* <a href="https://www.worona.org/extension-enhanced-list/" target="_blank">Enhanced List</a>
+Our online dashboard lets you create, manage and customize your mobile solutions from just one place, in a very easy way. You don’t need to install any extra tool in your computer. Neither coding nor technical skills are required.
 
+**Extensions**
 
-= Device Support (Smartphones & Tablets) =
+Worona offers a variety of premium extensions and functionalities to give your app and mobile website extra powers. Push notifications, ads and analytics among many more.
 
-Our App works in iOS and Android, it also looks great in phones and tablets. We have tested it in: iOS 8 (iPhone and iPad), iOS 9 (iPhone and iPad), Android 4.0, Android 4.1 and Android 4.4.
+**Themes**
 
-If you detect any problem with other devices o platforms, please drop us a line at <a href="mailto:hello@worona.org">hello@worona.org</a>
+Choose among a wide variety of themes to fully personalize your brand on mobile. Customize colors, fonts, logos, and much more.
 
-= Roadmap =
+**Our promise**
 
-For the moment we only support "posts", but we know that "custom content" and "pages" are really important for you. Our plan is to support them before we launch the 1.0 version.
+*Free forever*. There is no trick. Worona is free, and it will always be. We strongly support a free, open internet.
 
-Our plans:
+*Hassle-free*. Getting your site ready for mobile can be time-consuming, frustrating, and expensive, but we believe it doesn’t have to be that way. We’ve built Worona to remove all barriers and make mobile easy.
 
-* Categories in the menu.
-* Support pages.
-* Support custom content.
-* Easy customisation (adding more styles).
+*Future-proof*. We will always do our best to provide you with whatever the future brings in mobile development. There’s no reason to worry - we won’t never let you down.
 
-If you need any of these features before we finish them, write us. We will guide you through the process of adapting the App to your needs.
-
-We believe that Worona will be used as a standard to easily create native apps straight from WordPress. And you are very welcome to join us in this adventure :)
+**For more information visit [Worona.org](https://www.worona.org/)**.
 
 
 == Installation ==
-
-1. **Install** the plugin from the plugins directory, or **upload** the `worona-plugin` folder to the `/wp-content/plugins/` directory.
-1. **Activate** the plugin through the 'Plugins' menu in WordPress
-
-Once the plugin is installed, visit our <a href="http://docs.worona.org/worona-installation-guide/">installation guide</a> to help you build your app.
-
-**Any questions?**
-Contact us at <a href="mailto:hello@worona.org">hello@worona.org</a>.
+1. Upload \"test-plugin.php\" to the \"/wp-content/plugins/\" directory.
+1. Activate the plugin through the \"Plugins\" menu in WordPress.
+1. Place \"do_action( \'plugin_name_hook\' );\" in your templates.
 
 == Frequently Asked Questions ==
+= A question that someone might have =
+An answer to that question.
 
-= Is it free? Where is the trick? =
-
-There is no trick. Worona is free and open source. It will always be. We sell additional services like <a href="http://www.worona.org/publish">uploading your app</a> to the App Store and Google Play or <a href="http://www.worona.org/extensions">premium extensions</a>, but you can always upload it to the stores yourself and create your own plugins or use the free ones we or other people provide.
-
-= Do I have to compile the app myself? =
-
-If you want to upload your app to the app markets yourself, you have to compile it yourself, but it's an easy task which doesn't need any coding knowledge. You just have to follow some simple steps and we provide you with a comprehensive guide to do so.
-If you want us to <a href="http://www.worona.org/publish">upload your app</a> to the App Store and Google Play for you, we will take care of all the process, so you don't have to worry about compiling :)
-
-= Can I extend Worona App features? =
-
-Of course you can, we encourage users to modify Worona's code to change the appearance or even to add new features. We also sell different extensions in our marketplace (<a href="https://www.worona.org/extensions">Worona Extensions</a>), with them you can add extra features without coding.
-
-If you're looking for a new feature, please let us know, maybe it's in our roadmap or we can program it for you.
-
-= Do I have to pay a monthly fee? =
-
-No, there are no monthly fees. Worona is free, unlike other plugins Worona runs directly in your WordPress site, with no platforms in the middle. That's why you don't have to pay for using the plugin.
-
-= Do I have to create the iOS and the Android App? =
-
-You don't have to. You can choose the platforms you want to cover with your App. There is no difference using our technology.
-
-= Can I publish an App without paying the Developer Accounts to Apple and Google? =
-
-For the moment, the only way to publish an App to the Apple App Store or the Google Play is having a Developer Account. This is why even when Worona is free, you will have to spend some money in order to have you App published.
-
-= Why do I need a Mobile App instead of a Responsive theme? =
-
-We think you don't have to choose between both solutions. With a Mobile App your users can read the content even when they don't have internet connection, they can receive <a href="https://www.worona.org/extension-push-notifications/">push notifications</a> every time new posts are available and you can drive more engagement on your blog content.
-
-For example, sites like Amazon, Youtube, Soundcloud have both: a Mobile App and a Responsive web.
+= What about foo bar? =
+Answer to foo bar dilemma.
 
 == Screenshots ==
-
-1. Worona’s WP Plugin.
-2. Worona Mobile App with <a href=“https://www.worona.org/extension-enhanced-list/” target="_blank">Enhanced List</a>
-3. A sample post with the <a href=“https://www.worona.org/extension-share/” target="_blank">Share Extension</a>
-4. Worona Mobile App (basic post list)
-5. Worona Mobile App (lateral menu)
+1. The screenshot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
+2. The screenshot description corresponds to screenshot-2.(png|jpg|jpeg|gif).
+3. The screenshot description corresponds to screenshot-3.(png|jpg|jpeg|gif).
 
 == Changelog ==
+= 0.2 =
+* A change since the previous version.
+* Another change.
 
-= 0.7.4 =
-* The WP JSON REST API has been upgraded to its 1.2.4 version.
-* Fixed compatibility problems with WordPress 4.4
-
-= 0.7.3 =
-* The WP JSON REST API is now included with our Plugin, you don’t have to install two plugins :)
-
-= 0.7.2 =
-* Fix a problem of WP-API with old WP versions.
-
-= 0.7.1 =
-* Include WP-API inside the plugin so you don't have to install it
-
-= 0.7 =
-* The plugin now looks awesome in your admin panel.
-* Fixing some tags issues ;)
-
-= 0.6.1 =
-* Added <strong> to the valid html tags
-
-= 0.6 =
-* First release of the plugin
+= 0.1 =
+* Initial release.
 
 == Upgrade Notice ==
+= 0.2 =
+Upgrade notices describe the reason a user should upgrade
 
-= 0.6 =
-* First release of the plugin
+= 0.1 =
+This version fixes a security related bug. Upgrade immediately.
