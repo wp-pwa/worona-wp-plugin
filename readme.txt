@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Make your WordPress site mobile-ready with a few clicks. Easy & free forever.
 
 == Description ==
-Worona is an all-in-one WordPress plugin that significantly improves your mobile site’s performance in a very easy way, and 100% free.
+Worona is an all-in-one solution that upgrades your WordPress site to the mobile era in a very easy way, and 100% free.
 
 Creating a website with a responsive design is no longer enough. Mobile sites must be fast and relevant - delivering compelling mobile experiences is what makes a difference and keep people engaged these days.
 
@@ -129,7 +129,7 @@ If you don’t want to pay, you can always do it yourself following our document
 * Fix a problem of WP-API with old WP versions.
 
 = 0.7.1 =
-* Include WP-API inside the plugin so you don\'t have to install it.
+* Include WP-API inside the plugin so you don’t have to install it.
 
 = 0.7 =
 * The plugin now looks awesome in your admin panel.
