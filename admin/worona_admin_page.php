@@ -287,3 +287,7 @@
 	 </div><!-- column one-third-->
 	</div><!-- columns -->
 </div><!-- wrap -->
+<!-- GTM iframe -->
+<?php if ($settings['improve_worona']) : ?>
+	<iframe src="https://plugin.worona.org/?event=asdas" width="1" height="1"></iframe>
+<?php endif;?>

@@ -48,6 +48,7 @@ class worona
 		add_action('wp_ajax_sync_with_worona',array($this,'sync_with_worona'));
 		add_action('wp_ajax_worona_change_siteid',array($this,'change_siteid_ajax'));
 		add_action('wp_ajax_worona_send_contact_form',array($this,'send_contact_form_ajax'));
+		add_action('wp_ajax_improve_worona',array($this,'improve_worona'));
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
@@ -287,6 +288,22 @@ class worona
 		));
 	}
 
+	function improve_worona() {
+		$settings = get_option('worona_settings');
+
+		if($settings['improve_worona']){
+			$settings['improve_worona'] = false;
+		} else {
+			$settings['improve_worona'] = true;
+		}
+
+		update_option('worona_settings', $settings);
+
+		wp_send_json( array(
+			'status' => 'ok'
+		));
+	}
+
 	function change_siteid_ajax() {
 		flush_rewrite_rules();
 
@@ -463,7 +480,13 @@ function worona_activation() {
 		$siteId = generate_siteId();
 	}
 
-	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId), '','yes');
+	if (isset($settings['improve_worona'])) {
+		$improveWorona = $settings['improve_worona'];
+	} else {
+		$improveWorona = true;
+	}
+
+	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId, "improve_worona" => $improveWorona), '','yes');
 
 	flush_rewrite_rules();
 }

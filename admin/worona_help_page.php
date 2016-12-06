@@ -1,5 +1,5 @@
 <?php
-  $settings = get_option('worona_settings');
+  $settings = get_option('worona_settings');  
   $support_email = $settings["worona_support_email"];
 
   $current_user = wp_get_current_user();
@@ -86,6 +86,17 @@
             <div class="has-text-centered">It will take you only 2 minutes ☺</div>
           </p>
         </div>
+        <article class="message">
+   				<div class="message-body">
+   					<p class="control">
+   						<strong>Improve Worona</strong><br><br>
+   						<label class="checkbox">
+       					<input id="checkbox-improve" type="checkbox" <?php echo ($settings['improve_worona'] ? 'checked' :''); ?>>
+       					Can we analyze your usage of the plugin to improve Worona?
+     					</label>
+   					</p>
+   				</div>
+   		 </article>
         <div class="columns has-text-centered">
           <div class="column is-third">
               <a href="https://docs.worona.org" target="_blank">

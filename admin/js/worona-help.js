@@ -73,11 +73,27 @@ jQuery(document).on('ready', function () {
           }
       });
     }
-
   });
 
-  jQuery('#plugin-review').on('click',function(){
-    window.open('https://wordpress.org/support/view/plugin-reviews/worona?filter=5','_blank');
-  });
+  jQuery('#checkbox-improve').on('change',function() {
+    jQuery('#checkbox-improve').attr('disabled',true)
 
+
+    jQuery.ajax({
+        url: ajaxurl,
+        method: "POST",
+        data: {
+            action: 'improve_worona',
+        },
+        success: function (response) {
+          if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+            jQuery('#checkbox-improve').removeAttr('disabled');
+          }
+        },
+        error: function () {
+
+        }
+    });
+
+  });
 });
