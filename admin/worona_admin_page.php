@@ -54,7 +54,7 @@
 			<div class="box">
 				<nav class="level">
 					<div class="level-left">
-						<p class="title is-5">1. Install WP-API</p>
+						<p class="title is-5">1. Install REST API Plugin</p>
 					</div>
 					<div class="level-right">
 						<?php echo ( $rest_api_installed ? '<span class="tag is-success">Installed&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
@@ -64,13 +64,13 @@
 				<?php if(!$rest_api_compatible):?>
 		 		 <article class="message is-danger">
 		 		   <div class="message-body">
-		 		     <strong>Attention!</strong> The WP-API Plugin requires WordPress 4.4 or higher, your WordPress version is <?php echo get_bloginfo('version');?>
+		 		     <strong>Attention!</strong> The REST API Plugin requires WordPress 4.4 or higher, your WordPress version is <?php echo get_bloginfo('version');?>
 		 		   </div>
 		 		 </article>
 		 		<?php elseif ($step==1): ?>
 				<div class="content">
 					<p>
-						Worona uses the <a href="http://v2.wp-api.org/" target="_blank">WP-API</a> plugin to send the content from your site to the App.
+						Worona uses the <a href="http://v2.wp-api.org/" target="_blank">REST API</a> plugin to send the content from your site to the App.
 						<?php
 							if($rest_api_installed) {
 									$install_api_href ="#";
@@ -89,7 +89,7 @@
 			<div class="box">
 				<nav class="level">
 					<div class="level-left">
-						<p class="title is-5">2. Activate WP-API</p>
+						<p class="title is-5">2. Activate REST API Plugin</p>
 					</div>
 					<div class="level-right">
 						<?php echo ( $rest_api_active  ? '<span class="tag is-success">Active&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-check-circle" aria-hidden="true"></i></span></span>':'');?>
@@ -110,7 +110,7 @@
 								$activate_class = "button button-lg disabled";
 							}
 						?>
-						<a href="<?php echo $activate_api_href; ?>" class="<?php echo $activate_class; ?>">Activate WP-API Plugin</a>
+						<a href="<?php echo $activate_api_href; ?>" class="<?php echo $activate_class; ?>">Activate REST API Plugin</a>
 					</p>
 				</div>
 				<?php endif;?>
@@ -222,7 +222,7 @@
 				<?php if ($rest_api_active):?>
 				<hr>
 				<p>
-					<h2>WP-API URL:</h2>
+					<h2>REST API URL:</h2>
 					<?php print(rest_url()); ?>
 				</p>
 			  <?php endif;?>
