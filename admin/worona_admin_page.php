@@ -80,7 +80,7 @@
 						?>
 					</p>
 					<p>
-						<a href="<?php echo $install_api_href; ?>" class="button button-lg" <?php echo ($step<=1 ? '' : 'style="display:none;"'); ?>>Download Plugin</a>
+						<a href="<?php echo $install_api_href; ?>" class="button button-lg button-primary" <?php echo ($step<=1 ? 'style="color:white;"' : 'style="display:none;"'); ?>>Download Plugin</a>
 					</p>
 				</div>
 				<?php endif;?>
@@ -104,7 +104,7 @@
 						<?php
 							if($rest_api_installed || $rest_api_active ) {
 									$activate_api_href =$worona->get_activate_wp_rest_api_plugin_url();
-									$activate_class = "button button-lg";
+									$activate_class = "button button-lg button-primary";
 							} else {
 								$activate_api_href = "#";
 								$activate_class = "button button-lg disabled";
