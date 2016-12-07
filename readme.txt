@@ -31,7 +31,7 @@ And enable new mobile formats on your WordPress site:
 
 * **[Coming soon] Google Accelerated Mobile Pages (AMP)**: a mobile format developed by Google that allows your content to load instantly at the top of Google Search results.
 
-* **[Coming soon] Facebook Instant Articles (FB IA)**: a solution for publishers who distribute their stories on Facebook and want them to perform better on mobile. 
+* **[Coming soon] Facebook Instant Articles (FBIA)**: a solution for publishers who distribute their stories on Facebook and want them to perform better on mobile. 
 
 Our online dashboard lets you create, manage and customize your mobile solutions from just one place, in a very easy way. You don’t need to install any extra tool in your computer. Neither coding nor technical skills are required.
 
@@ -140,6 +140,14 @@ If you don’t want to pay, you can always do it yourself following our document
 
 = 0.6 =
 * First release of the plugin.
+
+== Useful Links ==
+
+* Register: [https://dashboard.worona.org/register](https://dashboard.worona.org/register)
+* Login: [https://dashboard.worona.org/login](https://dashboard.worona.org/login)
+* Contact: [https://www.worona.org/get-help](https://www.worona.org/get-help)
+* Official documentation: [https://docs.worona.org](https://docs.worona.org/)
+* FAQ: [https://faq.worona.org](https://faq.worona.org/)
 
 == Upgrade Notice ==
 = 0.2 =
