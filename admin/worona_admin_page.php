@@ -292,9 +292,10 @@
 		$wp_url = "&wp-url=" . get_bloginfo('wpurl');
 		$email = "&email=" . get_bloginfo('admin_email');
 		$wp_lan = "&wp-lan=" . get_bloginfo('language');
-		$worona_version = "&worona_version=" . $worona->plugin_version ;
+		$worona_version = "&worona-version=" . $worona->plugin_version ;
 
 		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $wp_url . $email . $wp_lan . $worona_version;
+		var_dump($gtm_url);
 	 ?>
 	<iframe src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>
 <?php endif;?>
