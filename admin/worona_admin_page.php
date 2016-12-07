@@ -19,26 +19,18 @@
 		$synced_with_worona = false;
 	}
 
-	//Progress
-	if ($rest_api_installed) {
-		$progress = 33;
-	}
-	if ($rest_api_active) {
-		$progress = 66;
-	}
-	if ($synced_with_worona) {
-		$progress = 100;
-	}
-
 	//step
 	if (!$rest_api_installed ) {
 		$step = 1;
 	} else if ($rest_api_installed && !$rest_api_active) {
 		$step = 2;
+		$progress = 33;
 	} else if ( $rest_api_installed && $rest_api_active && !$synced_with_worona) {
 		$step = 3;
+		$progress = 66;
 	} else if ( $rest_api_installed && $rest_api_active && $synced_with_worona) {
 		$step = 4;
+		$progress = 100;
 	}
 
 	//WP REST API Plugin doesn't work in WordPress lower than 4.4
