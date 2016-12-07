@@ -89,10 +89,10 @@
         <article class="message">
    				<div class="message-body">
    					<p class="control">
-   						<strong>Improve Worona</strong><br><br>
+   						<strong>Worona Support</strong><br><br>
    						<label class="checkbox">
        					<input id="checkbox-improve" type="checkbox" <?php echo ($settings['improve_worona'] ? 'checked' :''); ?>>
-       					Can we analyse your plugin usage to improve Worona?
+       					Do you want to receive support emails from our team?
      					</label>
    					</p>
    				</div>
