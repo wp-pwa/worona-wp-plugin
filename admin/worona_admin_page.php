@@ -40,6 +40,7 @@
 	//WP REST API Plugin doesn't work in WordPress lower than 4.4
 	if (version_compare(get_bloginfo('version'), '4.4', '<')) {
 		$rest_api_compatible = false;
+		$gtm_event = "rest-api-not-compatible";
 	} else {
 		$rest_api_compatible = true;
 	}
@@ -290,11 +291,13 @@
 	<?php
 		$wp_version = "&wp-version=" . get_bloginfo('version');
 		$wp_url = "&wp-url=" . get_bloginfo('wpurl');
-		$email = "&email=" . get_bloginfo('admin_email');
+		$site_name = "&site-name=" .get_bloginfo('name');
+		$user_name = "&user-name=" . $current_user->user_firstname;
+		$email = "&email=" . $current_user->user_email;
 		$wp_lan = "&wp-lan=" . get_bloginfo('language');
 		$worona_version = "&worona-version=" . $worona->plugin_version ;
 
-		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $wp_url . $email . $wp_lan . $worona_version;
+		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $site_name . $user_name .  $wp_url . $email . $wp_lan . $worona_version;
 	 ?>
 	<iframe src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>
 <?php endif;?>
