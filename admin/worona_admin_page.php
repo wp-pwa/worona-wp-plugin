@@ -16,21 +16,25 @@
 		$synced_with_worona = false;
 	}
 
-	//step & progress
+	//step, progress & GTM events
 	$progress = 0;
 	$step = 0;
 
 	if (!$rest_api_installed ) {
 		$step = 1;
+		$gtm_event = "plugin-active";
 	} else if ($rest_api_installed && !$rest_api_active) {
 		$step = 2;
 		$progress = 33;
+		$gtm_event = "rest-api-installed";
 	} else if ( $rest_api_installed && $rest_api_active && !$synced_with_worona) {
 		$step = 3;
 		$progress = 66;
+		$gtm_event = "rest-api-active";
 	} else if ( $rest_api_installed && $rest_api_active && $synced_with_worona) {
 		$step = 4;
 		$progress = 100;
+		$gtm_event = "plugin-configured";
 	}
 
 	//WP REST API Plugin doesn't work in WordPress lower than 4.4
@@ -283,5 +287,14 @@
 </div><!-- wrap -->
 <!-- GTM iframe -->
 <?php if ($settings['improve_worona']) : ?>
-	<iframe src="https://plugin.worona.org/?event=asdas" width="1" height="1"></iframe>
+	<?php
+		$wp_version = "&wp-version=" . get_bloginfo('version');
+		$wp_url = "&wp-url=" . get_bloginfo('wpurl');
+		$email = "&email=" . get_bloginfo('admin_email');
+		$wp_lan = "&wp-lan=" . get_bloginfo('language');
+		$worona_version = "&worona_version=" . $worona->plugin_version ;
+
+		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $wp_url . $email . $wp_lan . $worona_version;
+	 ?>
+	<iframe src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>
 <?php endif;?>
