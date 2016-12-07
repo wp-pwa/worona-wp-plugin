@@ -92,7 +92,7 @@
    						<strong>Improve Worona</strong><br><br>
    						<label class="checkbox">
        					<input id="checkbox-improve" type="checkbox" <?php echo ($settings['improve_worona'] ? 'checked' :''); ?>>
-       					Can we analyze your plugin usage to improve Worona?
+       					Can we analyse your plugin usage to improve Worona?
      					</label>
    					</p>
    				</div>
