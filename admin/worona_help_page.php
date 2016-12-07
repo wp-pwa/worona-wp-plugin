@@ -1,5 +1,5 @@
 <?php
-  $settings = get_option('worona_settings');  
+  $settings = get_option('worona_settings');
   $support_email = $settings["worona_support_email"];
 
   $current_user = wp_get_current_user();
@@ -92,7 +92,7 @@
    						<strong>Improve Worona</strong><br><br>
    						<label class="checkbox">
        					<input id="checkbox-improve" type="checkbox" <?php echo ($settings['improve_worona'] ? 'checked' :''); ?>>
-       					Can we analyze your usage of the plugin to improve Worona?
+       					Can we analyze your plugin usage to improve Worona?
      					</label>
    					</p>
    				</div>

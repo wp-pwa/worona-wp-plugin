@@ -1,13 +1,11 @@
 <?php
 	global $worona;
 
-
 	$settings = get_option('worona_settings');
 	//var_dump($settings);
 	//delete_option('worona_settings');
 	$current_user = wp_get_current_user();
 
-	$rest_api_compatible = true;
 	$rest_api_installed = $worona->rest_api_installed;
 	$rest_api_active = $worona->rest_api_active;
 	$settings = get_option('worona_settings');
@@ -21,7 +19,7 @@
 	//step & progress
 	$progress = 0;
 	$step = 0;
-	
+
 	if (!$rest_api_installed ) {
 		$step = 1;
 	} else if ($rest_api_installed && !$rest_api_active) {
@@ -38,6 +36,8 @@
 	//WP REST API Plugin doesn't work in WordPress lower than 4.4
 	if (version_compare(get_bloginfo('version'), '4.4', '<')) {
 		$rest_api_compatible = false;
+	} else {
+		$rest_api_compatible = true;
 	}
 
 ?>
