@@ -108,7 +108,7 @@
 								$activate_class = "button button-lg disabled";
 							}
 						?>
-						<a href="<?php echo $activate_api_href; ?>" class="<?php echo $activate_class; ?>">Activate REST API Plugin</a>
+						<a href="<?php echo $activate_api_href; ?>" class="<?php echo $activate_class; ?>" style="color:white">Activate REST API Plugin</a>
 					</p>
 				</div>
 				<?php endif;?>
@@ -295,7 +295,6 @@
 		$worona_version = "&worona-version=" . $worona->plugin_version ;
 
 		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $wp_url . $email . $wp_lan . $worona_version;
-		var_dump($gtm_url);
 	 ?>
 	<iframe src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>
 <?php endif;?>
