@@ -1,8 +1,7 @@
 <?php
 	global $worona;
 
-	$progress = 0;
-	$step = 0;
+
 	$settings = get_option('worona_settings');
 	//var_dump($settings);
 	//delete_option('worona_settings');
@@ -19,7 +18,10 @@
 		$synced_with_worona = false;
 	}
 
-	//step
+	//step & progress
+	$progress = 0;
+	$step = 0;
+	
 	if (!$rest_api_installed ) {
 		$step = 1;
 	} else if ($rest_api_installed && !$rest_api_active) {
