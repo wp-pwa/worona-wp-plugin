@@ -195,14 +195,14 @@
 
 							$worona_dashboard_url = "https://dashboard.worona.org/site/" . $settings["worona_siteid"];
 
-							if ($synced_with_worona) {
+							if ($step==4) {
 								$button_disabled = false;
 							} else {
 								$worona_dashboard_url = "#";
 								$button_disabled = true;
 							}
 						?>
-						<a id="dashboard-button" href="<?php echo $worona_dashboard_url ?>" target="_blank" style="color:white" class="button button-lg <?php echo ($button_disabled ? 'disabled' : 'button-primary button-hero'); ?>">Configure</a>
+						<a id="dashboard-button" href="<?php echo $worona_dashboard_url ?>" target="_blank" style="color:white" class="button button-lg <?php echo ($button_disabled ? 'disabled button-hero' : 'button-primary button-hero'); ?>">Configure</a>
 					</p>
 				</div>
 			</div>
