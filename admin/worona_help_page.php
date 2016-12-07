@@ -85,18 +85,7 @@
             <br>
             <div class="has-text-centered">It will take you only 2 minutes ☺</div>
           </p>
-        </div>
-        <article class="message">
-   				<div class="message-body">
-   					<p class="control">
-   						<strong>Worona Support</strong><br><br>
-   						<label class="checkbox">
-       					<input id="checkbox-improve" type="checkbox" <?php echo ($settings['improve_worona'] ? 'checked' :''); ?>>
-       					Do you want to receive support emails from our team?
-     					</label>
-   					</p>
-   				</div>
-   		 </article>
+        </div>        
         <div class="columns has-text-centered">
           <div class="column is-third">
               <a href="https://docs.worona.org" target="_blank">

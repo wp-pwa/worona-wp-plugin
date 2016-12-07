@@ -74,26 +74,4 @@ jQuery(document).on('ready', function () {
       });
     }
   });
-
-  jQuery('#checkbox-improve').on('change',function() {
-    jQuery('#checkbox-improve').attr('disabled',true)
-
-
-    jQuery.ajax({
-        url: ajaxurl,
-        method: "POST",
-        data: {
-            action: 'improve_worona',
-        },
-        success: function (response) {
-          if (response.hasOwnProperty('status') && response.status == 'ok' ) {
-            jQuery('#checkbox-improve').removeAttr('disabled');
-          }
-        },
-        error: function () {
-
-        }
-    });
-
-  });
 });

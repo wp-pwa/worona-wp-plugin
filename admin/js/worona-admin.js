@@ -136,4 +136,51 @@ jQuery(document).on('ready', function () {
         });
       }
     });
+
+    jQuery('#checkbox-plugin-support').on('change',function() {
+      jQuery('#checkbox-plugin-support').attr('disabled',true);
+
+      var url;
+      var props = "";
+      props += "&wp-version=" + jQuery('input[name=wp-version]').val();
+      props += "&wp-url=" + jQuery('input[name=wp-url]').val();
+      props += "&site-name=" + jQuery('input[name=site-name]').val();
+      props += "&user-name=" + jQuery('input[name=user-name]').val();
+      props += "&email=" + jQuery('input[name=email]').val();
+      props += "&wp-lan=" + jQuery('input[name=wp-lan]').val();
+      props += "&worona-version=" + jQuery('input[name=worona-version]').val();
+      props += "&worona-siteid=" + jQuery('input[name=worona-siteid]').val();
+
+      if ( jQuery('#checkbox-plugin-support').prop('checked')) {
+        //subscribe to plugin support
+         url = "https://plugin.worona.org/?event=plugin-support-subscribe" + props;
+         var iframe = '<iframe id="gtm-iframe" src="' + url + '" width="1" height="1"></iframe>';
+         jQuery('.wrap').append(iframe);
+
+      } else {
+        //unsubscribe from plugin support
+        url = "https://plugin.worona.org/?event=plugin-support-unsubscribe" + props;
+
+        jQuery('#gtm-iframe').attr('src',url);
+      }
+
+      jQuery.ajax({
+          url: ajaxurl,
+          method: "POST",
+          data: {
+              action: 'plugin_support',
+          },
+          success: function (response) {
+            if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+              jQuery('#checkbox-plugin-support').removeAttr('disabled');
+            }
+          },
+          error: function () {
+
+          }
+      });
+
+    });
+
+
 });
