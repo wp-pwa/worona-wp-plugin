@@ -6,21 +6,29 @@
 	//delete_option('worona_settings');
 	$current_user = wp_get_current_user();
 
-	$rest_api_installed = $worona->rest_api_installed;
-	$rest_api_active = $worona->rest_api_active;
-	$settings = get_option('worona_settings');
-
 	if (isset($settings["synced_with_worona"])) {
 		$synced_with_worona = $settings["synced_with_worona"];
 	} else {
 		$synced_with_worona = false;
 	}
 
-	//step, progress & GTM events
+	/* step, progress & GTM events */
 	$progress = 0;
 	$step = 0;
+	$wp_version = get_bloginfo('version');
+	$rest_api_installed = $worona->rest_api_installed;
+	$rest_api_active = $worona->rest_api_active;
+	$rest_api_compatible = true;
 
-	if (!$rest_api_installed ) {
+	if (version_compare($wp_version, '4.7', '>=')) { //From WP 4.7, the REST API is already installed.
+		$rest_api_installed = true;
+		$rest_api_active = true;
+	}
+
+	if (version_compare($wp_version, '4.4', '<')) { //REST API Plugin is only compatible from WP 4.4 ahead
+		$rest_api_compatible = false;
+		$gtm_event = "rest-api-not-compatible";
+	} else if (!$rest_api_installed) {
 		$step = 1;
 		$gtm_event = "plugin-active";
 	} else if ($rest_api_installed && !$rest_api_active) {
@@ -36,15 +44,6 @@
 		$progress = 100;
 		$gtm_event = "plugin-configured";
 	}
-
-	//WP REST API Plugin doesn't work in WordPress lower than 4.4
-	if (version_compare(get_bloginfo('version'), '4.4', '<')) {
-		$rest_api_compatible = false;
-		$gtm_event = "rest-api-not-compatible";
-	} else {
-		$rest_api_compatible = true;
-	}
-
 ?>
 <div class="wrap">
 	<p class="title is-2">Worona</p>
@@ -191,7 +190,6 @@
 					</p>
 					<p>
 						<?php
-
 							$worona_dashboard_url = "https://dashboard.worona.org/site/" . $settings["worona_siteid"];
 
 							if ($step==4) {
