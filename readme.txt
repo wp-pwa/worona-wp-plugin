@@ -37,7 +37,7 @@ Our online dashboard lets you create, manage and customize your mobile solutions
 
 **Extensions**
 
-Worona offers a variety of premium extensions and functionalities to give your app and mobile website extra powers. Push notifications, ads and analytics among many more.
+Worona offers a variety of extensions and functionalities to give your app and mobile website extra powers. Push notifications, ads and analytics among many more.
 
 **Themes**
 
@@ -102,6 +102,9 @@ Worona significantly improves your mobile site’s performance. It helps you cre
 App submission is not included in our free product, but we offer a premium service to publish your app to the stores if you don’t want to handle all the process yourself.
 
 If you don’t want to pay, you can always do it yourself following our documentation.
+
+= Where can I find Worona documentation or a user guide? =
+For help setting up and configuring Worona you can go to: [https://docs.worona.org](https://docs.worona.org/).
 
 == Screenshots ==
 1. The screenshot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
