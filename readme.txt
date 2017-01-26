@@ -8,10 +8,10 @@ Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Make your WordPress site mobile-ready with a few clicks. Easy & free forever.
+Make your WordPress site mobile-ready with a few clicks. Simpler, easier, free forever.
 
 == Description ==
-Worona is an all-in-one solution that upgrades your WordPress site to the mobile era in a very easy way, and 100% free.
+Worona is a free, all-in-one solution that upgrades your WordPress site to the mobile era in a very easy way.
 
 Creating a website with a responsive design is no longer enough. Mobile sites must be fast and relevant - delivering compelling mobile experiences is what makes a difference and keep people engaged these days.
 
@@ -29,9 +29,8 @@ With Worona you can create for free, in just a few clicks:
 
 And enable new mobile formats on your WordPress site:
 
-* **[Coming soon] Google Accelerated Mobile Pages (AMP)**: a mobile format developed by Google that allows your content to load instantly at the top of Google Search results.
-
-* **[Coming soon] Facebook Instant Articles (FBIA)**: a solution for publishers who distribute their stories on Facebook and want them to perform better on mobile. 
+* **[Coming soon] Google Accelerated Mobile Pages (AMP)**
+* **[Coming soon] Facebook Instant Articles (FBIA)**
 
 Our online dashboard lets you create, manage and customize your mobile solutions from just one place, in a very easy way. You don’t need to install any extra tool in your computer. Neither coding nor technical skills are required.
 
@@ -71,7 +70,7 @@ Once the Worona plugin is installed and activated, follow the on-screen instruct
 
 **Need help or got any questions?**
 
-Check out our [help documentation](https://docs.worona.org/) or visit [our FAQs](https://faq.worona.org/).
+Check out our [documentation](https://docs.worona.org/) or visit our [FAQs page](https://faq.worona.org/).
 
 == Frequently Asked Questions ==
 You’ll find an extended FAQs page on: [https://faq.worona.org](https://faq.worona.org/).
@@ -85,11 +84,11 @@ No, there are no monthly fees. Worona is free unlike other WordPress plugins pro
 = How does Worona work? =
 Worona consists of three fundamental parts:
 
-*Dashboard*: an online dashboard to create, manage and customize your mobile apps and the rest of mobile channels. We’ve put everything in one place so you don’t need to install any extra tool in your computer. Our dashboard is very intuitive and easy to use.
+*Dashboard*: an online, user-friendly dashboard to create, manage and customize your mobile apps. We’ve put everything in one place so you don’t need to install any extra tool in your computer.
 
-*Worona plugin*: an essential requirement to make Worona work. Its primary function is to synchronize our dashboard with your WordPress site.
+*Worona plugin*: an essential requirement to make Worona work. It synchronizes our dashboard with your WordPress site.
 
-*Mobile solutions or channels*: right now you can easily create native mobile apps for free. But our plan is to integrate HTML5 web apps, Google AMP and Facebook Instant Articles too.
+*Mobile solutions or channels*: right now you can build mobile apps for free, but our plan is to integrate HTML5 web apps, Google AMP and Facebook Instant Articles too.
 
 = Why do I need Worona instead of a responsive theme?  =
 You don’t have to choose between Worona or a responsive theme. Creating a website with a responsive design has become essential these days, but is no longer enough.
