@@ -283,7 +283,9 @@ class worona
 		$first_folder = $request['first_folder'];
 		$last_folder = $request['last_folder'];
 
+		// ----------------
 		// Post
+		// ----------------
 		$args = array(
   		'name'        => $last_folder,
   		'numberposts' => 1,
@@ -293,7 +295,9 @@ class worona
 			return $post[0];
 		}
 
+		// ----------------
 		// Page
+		// ----------------
 		$args = array(
   		'name'        => $last_folder,
   		'numberposts' => 1,
@@ -302,6 +306,20 @@ class worona
 		$page = get_posts($args);
 		if ( sizeof($page) > 0 ) {
 			return $page[0];
+		}
+
+		// ----------------
+		// Author
+		// ----------------
+		if($first_folder === 'author') {
+			$args = array(
+				'numberposts' => 1,
+				'author'		=> $last_folder,
+			);
+			$author = get_posts($args);
+			if ( sizeof($author) > 0 ) {
+				return $author[0];
+			}
 		}
 
 		// ----------------
