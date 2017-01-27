@@ -62,6 +62,10 @@ class worona
 				'methods' => 'GET',
 				'callback' => array( $this,'get_worona_site_id'))
 			);
+			register_rest_route( 'worona/v1', '/discover/', array(
+				'methods' => 'GET',
+				'callback' => array( $this,'discover_url'))
+			);
 			register_rest_route( 'worona/v1', '/plugin-version/', array(
 				'methods' => 'GET',
 				'callback' => array( $this,'get_worona_plugin_version'))
@@ -270,6 +274,110 @@ class worona
 
 	function get_worona_plugin_version() {
 		return array('plugin_version' => $this->plugin_version);
+	}
+
+	/*
+	*	@param \WP_REST_Request $request Full details about the request
+	*/
+	function discover_url( $request ) {
+		$first_folder = $request['first_folder'];
+		$last_folder = $request['last_folder'];
+
+		// Post
+		$args = array(
+  		'name'        => $last_folder,
+  		'numberposts' => 1,
+		);
+		$post = get_posts($args);
+		if ( sizeof($post) > 0 ) {
+			return $post[0];
+		}
+
+		// Page
+		$args = array(
+  		'name'        => $last_folder,
+  		'numberposts' => 1,
+			'post_type'		=> 'page',
+		);
+		$page = get_posts($args);
+		if ( sizeof($page) > 0 ) {
+			return $page[0];
+		}
+
+		// ----------------
+		// Category
+		// ----------------
+		$category = get_term_by('slug',$last_folder,'category');
+		if( $category ) {
+			return $category;
+		}
+
+		// ----------------
+		// Tag
+		// ----------------
+		$tag = get_term_by('slug',$last_folder,'tag');
+		if( $tag ) {
+			return $tag;
+		}
+
+		// ----------------
+		// Custom Post type
+		// ----------------
+		if( !is_null($first_folder) ) {
+			$post_types = get_post_types('','object');
+			$post_type = '';
+
+			foreach ($post_types as $p) {
+				if( $p->rewrite['slug'] == $first_folder ) {
+					$post_type = $p->name;
+				}
+			}
+
+			if ( $post_type !== '' ) {
+				$args = array(
+					'name'        => $last_folder,
+					'numberposts' => 1,
+					'post_type'		=> $post_type,
+				);
+				$custom_post = get_posts($args);
+
+				if ( sizeof($custom_post) > 0 ) {
+					return $custom_post[0];
+				}
+			}
+		} else {
+			return array('Error' => 'first_folder param not found');
+		}
+
+		// ----------------
+		// Custom Taxonomy
+		// ----------------
+		if( !is_null($first_folder) ) {
+			$taxonomies = get_taxonomies('','object');
+			$taxonomy = '';
+
+			foreach ($taxonomies as $t) {
+				if( $t->rewrite['slug'] === $first_folder ) {
+					$taxonomy = $t->name;
+				}
+			}
+
+			if ( $taxonomy === '' ) {
+				return array('Error' => $first_folder . ' not supported');
+			}
+
+			$custom_taxonomy = get_term_by('slug',$last_folder,$taxonomy);
+
+			if( $custom_taxonomy ) {
+				return $custom_taxonomy;
+			} else {
+					return array('Error' => $first_folder . 'not supported');
+			}
+		} else {
+			return array('Error' => 'first_folder param not found');
+		}
+
+		return array('Error' => $first_folder.' not found');
 	}
 
 	function sync_with_worona() {
