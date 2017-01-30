@@ -283,6 +283,10 @@ class worona
 		$first_folder = $request['first_folder'];
 		$last_folder = $request['last_folder'];
 
+		if (is_null($last_folder)) {
+			return array('Error' => 'last_folder is missing');
+		}
+
 		// ----------------
 		// Post
 		// ----------------
@@ -313,12 +317,13 @@ class worona
 		// ----------------
 		if($first_folder === 'author') {
 			$args = array(
-				'numberposts' => 1,
-				'author'		=> $last_folder,
+				'author_name'		=> $last_folder,
 			);
 			$author = get_posts($args);
 			if ( sizeof($author) > 0 ) {
 				return $author[0];
+			} else {
+				return( new stdClass() ); //empty object instead of null
 			}
 		}
 
@@ -341,61 +346,57 @@ class worona
 		// ----------------
 		// Custom Post type
 		// ----------------
-		if( !is_null($first_folder) ) {
-			$post_types = get_post_types('','object');
-			$post_type = '';
 
-			foreach ($post_types as $p) {
-				if( $p->rewrite['slug'] == $first_folder ) {
-					$post_type = $p->name;
-				}
+		$post_types = get_post_types('','object');
+		$post_type = '';
+
+		foreach ($post_types as $p) {
+			if( $p->rewrite['slug'] == $first_folder ) {
+				$post_type = $p->name;
 			}
+		}
 
-			if ( $post_type !== '' ) {
-				$args = array(
-					'name'        => $last_folder,
-					'numberposts' => 1,
-					'post_type'		=> $post_type,
-				);
-				$custom_post = get_posts($args);
+		if ( $post_type !== '' ) {
+			$args = array(
+				'name'        => $last_folder,
+				'numberposts' => 1,
+				'post_type'		=> $post_type,
+			);
+			$custom_post = get_posts($args);
 
-				if ( sizeof($custom_post) > 0 ) {
-					return $custom_post[0];
-				}
+			if ( sizeof($custom_post) > 0 ) {
+				return $custom_post[0];
 			}
-		} else {
-			return array('Error' => 'first_folder param not found');
 		}
 
 		// ----------------
 		// Custom Taxonomy
 		// ----------------
-		if( !is_null($first_folder) ) {
-			$taxonomies = get_taxonomies('','object');
-			$taxonomy = '';
+		$taxonomies = get_taxonomies('','object');
+		$taxonomy = '';
 
-			foreach ($taxonomies as $t) {
-				if( $t->rewrite['slug'] === $first_folder ) {
-					$taxonomy = $t->name;
-				}
+		foreach ($taxonomies as $t) {
+			if( $t->rewrite['slug'] === $first_folder ) {
+				$taxonomy = $t->name;
 			}
-
-			if ( $taxonomy === '' ) {
-				return array('Error' => $first_folder . ' not supported');
-			}
-
-			$custom_taxonomy = get_term_by('slug',$last_folder,$taxonomy);
-
-			if( $custom_taxonomy ) {
-				return $custom_taxonomy;
-			} else {
-					return array('Error' => $first_folder . 'not supported');
-			}
-		} else {
-			return array('Error' => 'first_folder param not found');
 		}
 
-		return array('Error' => $first_folder.' not found');
+		if ( $taxonomy === '' ) {
+			return array('Error' => $first_folder . ' not supported');
+		}
+
+		$custom_taxonomy = get_term_by('slug',$last_folder,$taxonomy);
+
+		if( $custom_taxonomy ) {
+			return $custom_taxonomy;
+		} else {
+				return array('Error' => $first_folder . 'not supported');
+		}
+
+		// ----------------
+		// first_folder not found
+		// ----------------
+		return array('Error' => $last_folder .' not found');
 	}
 
 	function sync_with_worona() {
