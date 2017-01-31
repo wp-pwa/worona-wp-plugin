@@ -607,13 +607,13 @@ function worona_activation() {
 		$siteId = generate_siteId();
 	}
 
-	if (isset($settings['improve_worona'])) {
-		$improveWorona = $settings['improve_worona'];
+	if (isset($settings['plugin_support'])) {
+		$pluginSupport = $settings['plugin_support'];
 	} else {
-		$improveWorona = true;
+		$pluginSupport = true;
 	}
 
-	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId, "improve_worona" => $improveWorona), '','yes');
+	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId, "plugin_support" => $pluginSupport), '','yes');
 
 	flush_rewrite_rules();
 }
