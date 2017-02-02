@@ -324,5 +324,5 @@
 		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $site_name . $user_name .  $wp_url . $email . $wp_lan . $worona_version . $worona_siteid;
 	 ?>
 
-	<iframe id="gtm-iframe" src="<?php echo $gtm_url; ?>" width="1000" height="700"></iframe>
+	<iframe id="gtm-iframe" src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>
 <?php endif;?>
