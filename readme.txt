@@ -1,4 +1,4 @@
-=== Test Plugin ===
+=== Worona - Native Mobile App for free (iOS & Android)  ===
 Contributors: benuit, poliuk, luisherranz, rmartinezduque
 Tags: free, generator, mobapper, native, play store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, facebook ia, ia, instant articles, amp, google amp, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, webapp, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
 Donate link: https://www.worona.org
@@ -17,7 +17,7 @@ Creating a website with a responsive design is no longer enough. Mobile sites mu
 
 This is where Worona enters the picture, and our platform is made to help you accomplish exactly this: deliver a standout mobile experience to your users across all devices.
 
-**360º mobile solution**
+= 360º mobile solution =
 
 Worona offers one solution right now: mobile apps. But our plan is to integrate HTML5 web apps, Google AMP and Facebook Instant Articles soon.
 
@@ -34,15 +34,15 @@ And enable new mobile formats on your WordPress site:
 
 Our online dashboard lets you create, manage and customize your mobile solutions from just one place, in a very easy way. You don’t need to install any extra tool in your computer. Neither coding nor technical skills are required.
 
-**Extensions**
+= Extensions =
 
 Worona offers a variety of extensions and functionalities to give your app and mobile website extra powers. Push notifications, ads and analytics among many more.
 
-**Themes**
+= Themes =
 
 Choose among a wide variety of themes to fully personalize your brand on mobile. Customize colors, fonts, logos, and much more.
 
-**Our promise**
+= Our promise =
 
 *Free forever*. There is no trick. Worona is free, and it will always be. We strongly support a free, open internet.
 
