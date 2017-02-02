@@ -297,10 +297,14 @@
 </div><!-- wrap -->
 <!-- GTM iframe -->
 
+<?php
+	$name = ($current_user->user_firstname > 0)? $current_user->user_firstname : $current_user->user_login;
+?>
+
 <input type="hidden" name="wp-version" value="<?php echo get_bloginfo('version'); ?>">
 <input type="hidden" name="wp-url" value="<?php echo get_bloginfo('wpurl'); ?>">
 <input type="hidden" name="site-name" value="<?php echo get_bloginfo('name'); ?>">
-<input type="hidden" name="user-name" value="<?php echo $current_user->user_firstname; ?>">
+<input type="hidden" name="user-name" value="<?php echo $name ?>">
 <input type="hidden" name="email" value="<?php echo $current_user->user_email; ?>">
 <input type="hidden" name="wp-lan" value="<?php echo get_bloginfo('language'); ?>">
 <input type="hidden" name="worona-version" value="<?php echo $worona->plugin_version; ?>">
@@ -311,7 +315,7 @@
 		$wp_version = "&wp-version=" . get_bloginfo('version');
 		$wp_url = "&wp-url=" . get_bloginfo('wpurl');
 		$site_name = "&site-name=" .get_bloginfo('name');
-		$user_name = "&user-name=" . $current_user->user_firstname;
+		$user_name = "&user-name=" . $name;
 		$email = "&email=" . $current_user->user_email;
 		$wp_lan = "&wp-lan=" . get_bloginfo('language');
 		$worona_version = "&worona-version=" . $worona->plugin_version ;
@@ -320,5 +324,5 @@
 		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $site_name . $user_name .  $wp_url . $email . $wp_lan . $worona_version . $worona_siteid;
 	 ?>
 
-	<iframe id="gtm-iframe" src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>
+	<iframe id="gtm-iframe" src="<?php echo $gtm_url; ?>" width="1000" height="700"></iframe>
 <?php endif;?>
