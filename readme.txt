@@ -152,8 +152,6 @@ For help setting up and configuring Worona you can go to: [https://docs.worona.o
 * FAQ: [https://faq.worona.org](https://faq.worona.org/)
 
 == Upgrade Notice ==
-= 0.2 =
-Upgrade notices describe the reason a user should upgrade
-
-= 0.1 =
-This version fixes a security related bug. Upgrade immediately.
+= 1.0 =
+* Major release. Be sure your WordPress is compatible with the WP JSON REST API (from WP 4.4 ahead)
+* Use our online dashboard to configure your app: [https://dashboard.worona.org/register](Worona Dashboard)
