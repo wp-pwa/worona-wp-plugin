@@ -1,6 +1,7 @@
 <?php
   $settings = get_option('worona_settings');
-  $support_email = $settings["worona_support_email"];
+  $current_user = wp_get_current_user();
+  $support_email = $current_user->user_email;
 
   $current_user = wp_get_current_user();
 
@@ -85,7 +86,7 @@
             <br>
             <div class="has-text-centered">It will take you only 2 minutes ☺</div>
           </p>
-        </div>        
+        </div>
         <div class="columns has-text-centered">
           <div class="column is-third">
               <a href="https://docs.worona.org" target="_blank">
