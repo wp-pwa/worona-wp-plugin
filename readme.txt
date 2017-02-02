@@ -1,12 +1,12 @@
 === Test Plugin ===
-Contributors: user, user, user
-Tags: tag, tag, tag
-Donate link: http://example.com/
-Requires at least: 4.0
-Tested up to: 4.5
+Contributors: benuit, poliuk, luisherranz, rmartinezduque
+Tags: free, generator, mobapper, native, play store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, facebook ia, ia, instant articles, amp, google amp, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, webapp, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
+Donate link: https://www.worona.org
+Requires at least: 4.4
+Tested up to: 4.7
 Stable tag: 1.1
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl.html
 
 Make your WordPress site mobile-ready with a few clicks. Simpler, easier, free forever.
 
@@ -62,7 +62,7 @@ Choose among a wide variety of themes to fully personalize your brand on mobile.
 **From the WordPress Plugin Directory**:
 
 1. Click the “Download” button to get a .zip file.
-2. Once the download is completed, go to your WordPress Control Panel > Plugins > Add new. 
+2. Once the download is completed, go to your WordPress Control Panel > Plugins > Add new.
 3. Upload the previous .zip file.
 4. Activate the plugin after its installation.
 
