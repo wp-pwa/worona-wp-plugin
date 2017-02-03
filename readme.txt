@@ -1,4 +1,4 @@
-=== Worona - Native Mobile App for free (iOS & Android)  ===
+=== Worona - Free mobile app ===
 Contributors: benuit, poliuk, luisherranz, rmartinezduque
 Tags: free, generator, mobapper, native, play store, theme, worona, admob, adsense, iPad, ipad app, mobile plugin, mobile site, mobile template, facebook ia, ia, instant articles, amp, google amp, mobile web, mobile website, notifications, push, responsive, tablet, windows mobile, app generator, HTML5 app, webapp, wp blog app, wp mobile app, wp to mobile, quickapp, application, ios app, native app, wordpress mobile, apppresser, adaptive theme, android app, buddypress mobile, html5, iphone, iphone app, mobile theme, mobile themes, responsive theme, smartphones, uppsite, web app, woocommerce mobile, wptouch, wiziapp, admin, android, comments, goapp, google, images, mobile, mobile app, page, plugin, widget, mobile app converter, App, App.io, demo, embed, getappio, iOS, Kickfolio, shortcode, appio
 Donate link: https://www.worona.org
