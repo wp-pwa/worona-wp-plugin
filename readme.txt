@@ -32,8 +32,6 @@ And enable new mobile formats on your WordPress site:
 * **[Coming soon] Google Accelerated Mobile Pages (AMP)**
 * **[Coming soon] Facebook Instant Articles (FBIA)**
 
-Our online dashboard lets you create, manage and customize your mobile solutions from just one place, in a very easy way. You don’t need to install any extra tool in your computer. Neither coding nor technical skills are required.
-
 = Extensions: expand your mobile app to the next level =
 
 Worona offers a variety of extensions and functionalities to give your mobile app and mobile website extra powers. Push notifications, ads, and analytics among many more.
@@ -50,11 +48,11 @@ We’re also working on building a collection of themes so you can choose among 
 
 = Our promise =
 
-* Free forever. Worona is free, and it will always be. We strongly support a free, open internet.
+* *Free forever*. Worona is free, and it will always be. We strongly support a free, open internet.
 
-* Hassle-free. Getting your site ready for mobile can be time-consuming, frustrating, and expensive, but we believe it doesn’t have to be that way. We’ve built Worona to remove all barriers and make mobile easy.
+* *Hassle-free*. Getting your site ready for mobile can be time-consuming, frustrating, and expensive, but we believe it doesn’t have to be that way. We’ve built Worona to remove all barriers and make mobile easy.
 
-* Future-proof. We will always do our best to provide you with whatever the future brings in mobile development. There’s no reason to worry - we won’t never let you down.
+* *Future-proof*. We will always do our best to provide you with whatever the future brings in mobile development. There’s no reason to worry - we won’t never let you down.
 
 **For more information visit [Worona.org](https://www.worona.org/)**.
 
