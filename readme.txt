@@ -110,9 +110,13 @@ If you don't want to use our premium services, you can always publish your app b
 For help setting up and configuring Worona you can go to: [https://docs.worona.org](https://docs.worona.org/).
 
 == Screenshots ==
-1. The screenshot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
-2. The screenshot description corresponds to screenshot-2.(png|jpg|jpeg|gif).
-3. The screenshot description corresponds to screenshot-3.(png|jpg|jpeg|gif).
+1. Worona WordPress Plugin. Just install, follow the 3 steps and you are ready.
+2. Worona Dashboard. 
+3. Worona Dashboard. Configure and preview your app in real-time.
+4. Worona Dashboard. Configure and preview your app in real-time.
+5. Worona App. Best in class mobile app to display your content in iOS & Android. 
+6. Worona App. Best in class mobile app to display your content in iOS & Android. 
+7. Worona App. Best in class mobile app to display your content in iOS & Android. 
 
 == Changelog ==
 = 1.0 =
