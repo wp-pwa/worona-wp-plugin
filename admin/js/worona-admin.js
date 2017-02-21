@@ -65,11 +65,14 @@ jQuery(document).on('ready', function () {
 
       var registerURL = "https://dashboard.worona.org/register";
 
-      registerURL += "?name=" + name;
-      registerURL += "&email=" + email;
+      registerURL += "?email=" + email;
       registerURL += "&siteURL=" + siteURL;
       registerURL += "&siteName=" + siteName;
       registerURL += "&siteId=" + siteId;
+
+      if ( name !== 'admin' ) {
+          registerURL += "&name=" + name;
+      }
 
       var win = window.open(registerURL, '_blank');
       win.focus();
