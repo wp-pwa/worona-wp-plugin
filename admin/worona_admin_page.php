@@ -237,7 +237,7 @@
 				 <p class="control">
 					 <strong>Worona Support</strong><br><br>
 					 <label class="checkbox">
-						 <input id="checkbox-plugin-support" type="checkbox" <?php echo ($settings['plugin_support'] ? 'checked' :''); ?>>
+						 <input id="checkbox-plugin-support" type="checkbox" 'checked'>
 						 Do you want to receive support emails from our team?
 					 </label>
 				 </p>
@@ -310,19 +310,17 @@
 <input type="hidden" name="worona-version" value="<?php echo $worona->plugin_version; ?>">
 <input type="hidden" name="worona-siteid" value="<?php echo $settings['worona_siteid']; ?>">
 
-<?php if ($settings['plugin_support']) : ?>
-	<?php
-		$wp_version = "&wp-version=" . get_bloginfo('version');
-		$wp_url = "&wp-url=" . get_bloginfo('wpurl');
-		$site_name = "&site-name=" .get_bloginfo('name');
-		$user_name = "&user-name=" . $name;
-		$email = "&email=" . $current_user->user_email;
-		$wp_lan = "&wp-lan=" . get_bloginfo('language');
-		$worona_version = "&worona-version=" . $worona->plugin_version ;
-		$worona_siteid = "&worona-siteid=" . $settings['worona_siteid'];
+<?php
+	$wp_version = "&wp-version=" . get_bloginfo('version');
+	$wp_url = "&wp-url=" . get_bloginfo('wpurl');
+	$site_name = "&site-name=" .get_bloginfo('name');
+	$user_name = "&user-name=" . $name;
+	$email = "&email=" . $current_user->user_email;
+	$wp_lan = "&wp-lan=" . get_bloginfo('language');
+	$worona_version = "&worona-version=" . $worona->plugin_version ;
+	$worona_siteid = "&worona-siteid=" . $settings['worona_siteid'];
 
-		$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $site_name . $user_name .  $wp_url . $email . $wp_lan . $worona_version . $worona_siteid;
-	 ?>
+	$gtm_url = "https://plugin.worona.org/?event=" . $gtm_event . $wp_version . $site_name . $user_name .  $wp_url . $email . $wp_lan . $worona_version . $worona_siteid;
+ ?>
 
-	<iframe id="gtm-iframe" src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>
-<?php endif;?>
+<iframe id="gtm-iframe" src="<?php echo $gtm_url; ?>" width="1" height="1"></iframe>

@@ -65,11 +65,14 @@ jQuery(document).on('ready', function () {
 
       var registerURL = "https://dashboard.worona.org/register";
 
-      registerURL += "?name=" + name;
-      registerURL += "&email=" + email;
+      registerURL += "?email=" + email;
       registerURL += "&siteURL=" + siteURL;
       registerURL += "&siteName=" + siteName;
       registerURL += "&siteId=" + siteId;
+
+      if ( name !== 'admin' ) {
+          registerURL += "&name=" + name;
+      }
 
       var win = window.open(registerURL, '_blank');
       win.focus();
@@ -103,7 +106,6 @@ jQuery(document).on('ready', function () {
           }
       });
     });
-
 
     //Change App ID via ajax
     jQuery('#change-siteid').on('click', function(e) {
@@ -163,41 +165,49 @@ jQuery(document).on('ready', function () {
       }
     });
 
+    //populate unsubscribe checkbox
+    jQuery.ajax({
+        url: "https://backend.worona.io/api/v1/subscriptions/is-unsubscribed",
+        method: "POST",
+        data: {
+            listSlug: 'plugin',
+            email: jQuery('input[name=email]').val()
+        },
+        success: function (response) {
+          if (response.hasOwnProperty('unsubscribed')) {
+            jQuery('#checkbox-plugin-support').prop('checked', !response.unsubscribed);
+          }
+        }
+    });
+
+    //subscribe/unsubscribe from support
     jQuery('#checkbox-plugin-support').on('change',function() {
       jQuery('#checkbox-plugin-support').attr('disabled',true);
 
+      var subsUrl;
 
       if ( jQuery('#checkbox-plugin-support').prop('checked')) {
         //subscribe to plugin support
-        if(jQuery('#gtm-iframe').length) {
-          jQuery('#gtm-iframe').attr('src',getIframeUrl('plugin-support-subscribe'));
-        } else {
-          var iframe = '<iframe id="gtm-iframe" src="' + getIframeUrl('plugin-support-subscribe') + '" width="1" height="1"></iframe>';
-          jQuery('.wrap').append(iframe);
-        }
-
+        jQuery('#gtm-iframe').attr('src',getIframeUrl('plugin-support-subscribe'));
+        subsUrl = "https://backend.worona.io/api/v1/subscriptions/subscribe";
       } else {
         //unsubscribe from plugin support
         jQuery('#gtm-iframe').attr('src',getIframeUrl('plugin-support-unsubscribe'));
+        subsUrl = "https://backend.worona.io/api/v1/subscriptions/unsubscribe";
       }
 
       jQuery.ajax({
-          url: ajaxurl,
+          url: subsUrl,
           method: "POST",
           data: {
-              action: 'plugin_support',
+              listSlug: 'plugin',
+              email: jQuery('input[name=email]').val()
           },
           success: function (response) {
-            if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+            if (response.hasOwnProperty('unsubscribed')) {
               jQuery('#checkbox-plugin-support').removeAttr('disabled');
             }
-          },
-          error: function () {
-
           }
       });
-
     });
-
-
 });

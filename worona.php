@@ -48,7 +48,6 @@ class worona
 		add_action('wp_ajax_sync_with_worona',array($this,'sync_with_worona'));
 		add_action('wp_ajax_worona_change_siteid',array($this,'change_siteid_ajax'));
 		add_action('wp_ajax_worona_send_contact_form',array($this,'send_contact_form_ajax'));
-		add_action('wp_ajax_plugin_support',array($this,'plugin_support'));
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
@@ -415,22 +414,6 @@ class worona
 		));
 	}
 
-	function plugin_support() {
-		$settings = get_option('worona_settings');
-
-		if($settings['plugin_support']){
-			$settings['plugin_support'] = false;
-		} else {
-			$settings['plugin_support'] = true;
-		}
-
-		update_option('worona_settings', $settings);
-
-		wp_send_json( array(
-			'status' => 'ok'
-		));
-	}
-
 	function change_siteid_ajax() {
 		flush_rewrite_rules();
 
@@ -607,13 +590,7 @@ function worona_activation() {
 		$siteId = generate_siteId();
 	}
 
-	if (isset($settings['plugin_support'])) {
-		$pluginSupport = $settings['plugin_support'];
-	} else {
-		$pluginSupport = true;
-	}
-
-	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId, "plugin_support" => $pluginSupport), '','yes');
+	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId), '','yes');
 
 	flush_rewrite_rules();
 }
