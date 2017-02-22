@@ -111,14 +111,17 @@ For help setting up and configuring Worona you can go to: [https://docs.worona.o
 
 == Screenshots ==
 1. Worona WordPress Plugin. Just install, follow the 3 steps and you are ready.
-2. Worona Dashboard. 
+2. Worona Dashboard.
 3. Worona Dashboard. Configure and preview your app in real-time.
 4. Worona Dashboard. Configure and preview your app in real-time.
-5. Worona App. Best in class mobile app to display your content in iOS & Android. 
-6. Worona App. Best in class mobile app to display your content in iOS & Android. 
-7. Worona App. Best in class mobile app to display your content in iOS & Android. 
+5. Worona App. Best in class mobile app to display your content in iOS & Android.
+6. Worona App. Best in class mobile app to display your content in iOS & Android.
+7. Worona App. Best in class mobile app to display your content in iOS & Android.
 
 == Changelog ==
+= 1.0.1 =
+* Improved the "unsubscribe" from Support option
+
 = 1.0 =
 * Whole new platform for building mobile apps with WordPress.
 * Online dashboard to create, customize, and publish your mobile apps.

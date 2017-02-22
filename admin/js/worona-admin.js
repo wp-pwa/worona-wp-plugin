@@ -187,12 +187,8 @@ jQuery(document).on('ready', function () {
       var subsUrl;
 
       if ( jQuery('#checkbox-plugin-support').prop('checked')) {
-        //subscribe to plugin support
-        jQuery('#gtm-iframe').attr('src',getIframeUrl('plugin-support-subscribe'));
         subsUrl = "https://backend.worona.io/api/v1/subscriptions/subscribe";
       } else {
-        //unsubscribe from plugin support
-        jQuery('#gtm-iframe').attr('src',getIframeUrl('plugin-support-unsubscribe'));
         subsUrl = "https://backend.worona.io/api/v1/subscriptions/unsubscribe";
       }
 
