@@ -17,7 +17,7 @@ if( !class_exists('worona') ):
 class worona
 {
 	// vars
-	public $plugin_version = '1.0';
+	public $plugin_version = '1.0.1';
 	public $rest_api_installed 	= false;
 	public $rest_api_active 	= false;
 	public $rest_api_working	= false;
