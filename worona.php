@@ -43,11 +43,12 @@ class worona
 		add_action('init', array($this, 'init'), 1);
 		add_action('admin_menu', array($this, 'worona_admin_actions')); //add the admin page
 		add_action('admin_init', array($this,'worona_register_settings')); //register the settings
-		add_action('admin_notices',array($this,'worona_admin_notices'));//Display the validation errors and update messages
+		add_action('admin_notices',array($this,'worona_admin_notices')); //Display the validation errors and update messages
 
 		add_action('wp_ajax_sync_with_worona',array($this,'sync_with_worona'));
 		add_action('wp_ajax_worona_change_siteid',array($this,'change_siteid_ajax'));
 		add_action('wp_ajax_worona_send_contact_form',array($this,'send_contact_form_ajax'));
+		add_action('wp_head', array($this, 'worona_add_js_injector'), 1); // adds the injector
 
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_installed'));
 		add_action('plugins_loaded', array($this,'wp_rest_api_plugin_is_active'));
@@ -226,6 +227,24 @@ class worona
 		wp_enqueue_style('bulma-css');
 	  include('admin/worona_help_page.php');
 	}
+
+	/*
+  *  worona_add_js_detector
+  *
+  *  This function is called during the wp_head() and will do things such as:
+  *  include a js script to detect if it's mobile
+  *
+  *  @type  method
+  *  @date  30/07/15
+  *  @since  1.0.0
+  *
+  *  @param  N/A
+  *  @return  N/A
+  */
+
+  function worona_add_js_injector() {
+		require('injector/worona-injector.php');
+  }
 
 	/*
 	*  add_worona_content_to_api
