@@ -11,11 +11,11 @@ License URI: http://www.gnu.org/licenses/gpl.html
 The simplest way to create mobile apps with WordPress. No coding skills required. Free forever.
 
 == Description ==
-Worona is a **free, all-in-one platform** that helps WordPress users make their sites mobile-ready in a very easy way.
+[Worona](https://worona.org) is a **free platform** that helps WordPress users make their sites mobile-ready in a very easy way.
 
 Creating a website with a responsive design is no longer enough. Delivering compelling mobile experiences is what makes a difference and keep people engaged these days. This is where Worona enters the picture, and our platform is made to help you accomplish exactly this: deliver a standout mobile experience to your users across all devices.
 
-Worona provides an **[online dashboard](https://dashboard.worona.org/)** to create, customize, and publish **your mobile app in just a few clicks**. We’ve put everything in one place so you don’t need to install any extra tool in your computer. Neither coding nor technical skills are required.
+Worona provides an **[online dashboard](https://dashboard.worona.org/)** to create, customize, and publish **your mobile app with just a few clicks**. We’ve put everything in one place so you don’t need to install any extra tool in your computer. Neither coding nor technical skills are required.
 
 Besides its intuitive mobile app builder, Worona aims to merge other mobile-related solutions such as Progressive Web Apps, Facebook Instant Articles or Google AMP into its single platform.
 
@@ -23,9 +23,9 @@ Besides its intuitive mobile app builder, Worona aims to merge other mobile-rela
 
 With Worona you can create for free, in just a few clicks:
 
-* **A mobile app**: easily turn your WordPress site into a native iOS and Android mobile app and publish it to the app stores. If you don't want to deal with this process, we offer a premium service to submit your mobile app to the stores. Learn more about it [here](https://www.worona.org/publish/).
+* **A mobile app**: easily turn your WordPress site into a native iOS and Android mobile app and publish it to the app stores. If you don't want to deal with this process, we offer a premium service to submit your Android app to the stores. Learn more about it [here](https://www.worona.org/publish/).
 
-* **[Coming soon] A progressive web app**: serve an app-like version of your site running on any mobile web browser. Deliver the best mobile web experience.
+* **[Coming soon] A progressive web app**: serve an app-like version of your site running on any mobile web browser.
 
 And enable new mobile formats on your WordPress site:
 
@@ -34,21 +34,21 @@ And enable new mobile formats on your WordPress site:
 
 = Extensions: expand your mobile app to the next level =
 
-Worona offers a variety of extensions and functionalities to give your mobile app and mobile website extra powers. Push notifications, ads, and analytics among many more.
+Worona offers a variety of **extensions** and functionalities to give your mobile app and website extra powers. **[Push notifications](https://www.worona.org/push-notifications)**, ads, and **[analytics](https://www.worona.org/google-analytics)** among many more.
 
 = Themes: control the look and feel of your mobile app =
 
-Worona comes with a Starter Theme that allows to customize in a very simple way the look and feel of your mobile app, and see all changes in real time view. These are some of the new customization functions:
+Worona comes with a Starter Theme that allows to customize in a very simple way the **look and feel** of your mobile app and see all changes in real time view.
 
-* Color: choose the color you want to display in your mobile app.
-* Featured image: select whether you want to display or not your posts' featured images.
-* Categories menu: by popular request, we have included this feature that makes possible to display a categories menu in your mobile app.
+To take your app to the next level we also offer the **[Starter PRO Theme](https://www.worona.org/starter-pro-theme)**, which supports WordPress pages and allows you to add a customizable menu.
 
-We’re also working on building a collection of themes so you can choose among a wide variety of them to fully personalize your brand on mobile.
+More themes will be added periodically. Sign up for [worona.org](https://dashboard.worona.org/register) to stay up-to-date.
+
+[vimeo https://vimeo.com/207494224]
 
 = Our promise =
 
-* *Free forever*. Worona is free, and it will always be. We strongly support a free, open internet.
+* *Free forever*. Worona is free and it will always be. We strongly support a free, open internet.
 
 * *Hassle-free*. Getting your site ready for mobile can be time-consuming, frustrating, and expensive, but we believe it doesn’t have to be that way. We’ve built Worona to remove all barriers and make mobile easy.
 
@@ -102,11 +102,16 @@ In Google’s report, “The Need for Mobile Speed”, they found that 53% of mo
 Worona significantly improves your mobile site’s performance. It helps you create a fast and a smooth mobile experience in a very easy way, which means bigger audiences and more chances for engagement.
 
 = Will you publish my mobile app to the stores? =
-App submission is not included in our free product, but we offer a premium service to publish your mobile app to the stores if you don’t want to handle all the process yourself. For more information about Worona Publish service, visit [https://www.worona.org/publish](https://www.worona.org/publish).
+App submission is not included in our free product, but we offer a **premium service** to publish your Android app to the stores if you don’t want to handle this process yourself. For more information about Worona Publish service, visit [https://www.worona.org/publish](https://www.worona.org/publish).
 
-If you don't want to use our premium services, you can always publish your app by yourself following our documentation and getting the source code of your mobile app for free.
+If you don't want to use our premium service, you can always publish your app by yourself following our documentation and getting the source code of your mobile app for free.
+
+= Can you submit my app to Apple App Store? =
+
+Unfortunately not. Apple has become stricter about its store guidelines and we are not able to offer this service for the moment.
 
 = Where can I find Worona documentation or a user guide? =
+
 For help setting up and configuring Worona you can go to: [https://docs.worona.org](https://docs.worona.org/).
 
 == Screenshots ==
@@ -158,6 +163,7 @@ For help setting up and configuring Worona you can go to: [https://docs.worona.o
 
 * Register: [https://dashboard.worona.org/register](https://dashboard.worona.org/register).
 * Login: [https://dashboard.worona.org/login](https://dashboard.worona.org/login).
+* Shop: [https://www.worona.org/extensions-and-themes](https://www.worona.org/extensions-and-themes)
 * Contact: [https://www.worona.org/get-help](https://www.worona.org/get-help).
 * Official documentation: [https://docs.worona.org](https://docs.worona.org/).
 * FAQ: [https://faq.worona.org](https://faq.worona.org/).
