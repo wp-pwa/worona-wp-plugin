@@ -243,7 +243,9 @@ class worona
   */
 
   function worona_add_js_injector() {
-		require('injector/worona-injector.php');
+		// require('injector/worona-injector.php');
+		// Commented because we are using require(WP_PLUGIN_DIR . '/worona/injector/worona-injector.php');
+		// on header.php, just after <head>.
   }
 
 	/*
