@@ -1,6 +1,6 @@
 <?php
 
-define('HOST', 'localhost:3000'); // Change it to localhost:3000 or ngrok for development.
+define('HOST', 'pwa.worona.io'); // Change it to localhost:3000 or ngrok for development.
 
 if (is_home()) {
   $wpType = 'home';
@@ -83,7 +83,7 @@ if (isset($settings['worona_siteid'])) {
   var wpPage = '<?php echo $wpPage ?>';
 
   if (wpType !== 'none' &&
-    !readCookie('woronaScriptFailed') &&
+    !readCookie('woronaInjectortFailed') &&
     new UAParser().getDevice().type === 'mobile'
   ) {
     window.stop();
@@ -101,7 +101,21 @@ if (isset($settings['worona_siteid'])) {
       }
     }
     xhr.onerror = function(error) {
-      setCookie('woronaScriptFailed', 'true', 1);
+      var rollbarXhr = new XMLHttpRequest();
+      rollbarXhr.open('POST', 'https://api.rollbar.com/api/1/item/', true);
+      rollbarXhr.send(JSON.stringify({
+        access_token: 'd64fbebfade643439dad144ccb8c3635',
+        data: {
+          environment: 'injector',
+          platform: 'browser',
+          body: { message: {
+            body: 'Error loading the injector on: ' + window.location.href,
+            error
+          } }
+        }
+      }));
+      console.error('Error loading the injector on: ' + window.location.href, error);
+      setCookie('woronaInjectortFailed', 'true', 1);
       window.location.reload(true);
     }
     xhr.open('GET', window.location.protocol + '//<?php echo HOST; ?>' + query, true);
