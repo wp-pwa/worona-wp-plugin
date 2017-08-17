@@ -3,16 +3,16 @@
 define('HOST', 'pwa.worona.io'); // Change it to localhost:3000 or ngrok for development.
 
 if (is_home()) {
-  $wpType = 'home';
+  $wpType = 'latest';
   $wpId = 0;
 } elseif (is_single()) {
-  $wpType = 'p';
+  $wpType = 'post';
   $wpId = get_queried_object()->ID;
 } elseif (is_page()) {
-  $wpType = 'page_id';
+  $wpType = 'page';
   $wpId = get_queried_object()->ID;
 } elseif (is_category()) {
-  $wpType = 'cat';
+  $wpType = 'category';
   $wpId = get_queried_object()->term_id;
 } elseif (is_tag()) {
   $wpType = 'tag';
@@ -21,19 +21,19 @@ if (is_home()) {
   $wpType = 'author';
   $wpId = get_queried_object()->ID;
 } elseif (is_search()) {
-  $wpType = 's';
+  $wpType = 'search';
   $wpId = get_query_var('s');
 } elseif (is_attachment()) {
-  $wpType = 'attachment_id';
+  $wpType = 'media';
   $wpId = get_queried_object()->ID;
-} elseif (is_date()) {
-  $wpType = 'date';
-  $wpId = get_query_var('m');
-  if ($wpId === '') {
-    $year = get_query_var('year');
-    $monthnum = str_pad(get_query_var('monthnum'), 2, '0', STR_PAD_LEFT);
-    $wpId = $year . $monthnum;
-  }
+// } elseif (is_date()) {
+//   $wpType = 'date';
+//   $wpId = get_query_var('m');
+//   if ($wpId === '') {
+//     $year = get_query_var('year');
+//     $monthnum = str_pad(get_query_var('monthnum'), 2, '0', STR_PAD_LEFT);
+//     $wpId = $year . $monthnum;
+//   }
 } else {
   $wpType = 'none';
 }
