@@ -1,9 +1,9 @@
 <?php
 
-define('HOST', 'pwa.worona.io'); // Change it to localhost:3000 or ngrok for development.
+define('HOST', 'localhost:3000'); // Change it to localhost:3000 or ngrok for development.
 
 if (is_home()) {
-  $wpType = 'home';
+  $wpType = 'latest';
   $wpId = 0;
 } elseif (is_single()) {
   $wpType = 'p';
