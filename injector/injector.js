@@ -1,4 +1,4 @@
-// Uglify using npx uglify-js injector.js --output injector.min.js --compress --mangle
+// Uglify using "npx uglify-js injector.js --output injector.min.js --compress --mangle"
 
 (function(document, window, navigator) {
   var isIpad = /ipad.*?OS (?![1-6]_|X)/i; // from iOS 7
@@ -92,7 +92,8 @@
       xhr.send();
     };
 
-    if (hostDev) tryHostDev();
-    else tryHostProd();
+    // if (hostDev) tryHostDev();
+    // else tryHostProd();
+    tryHostProd();
   }
 })(document, window, navigator);
