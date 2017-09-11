@@ -46,50 +46,58 @@
     var query = '?siteId=' + siteId + '&' + wpType + '=' + wpId;
     if (wpPage) query += '&paged=' + wpPage;
 
-    var onreadystatechange = function() {
-      if (xhr.readyState == 4) {
-        var newDoc = document.open('text/html', 'replace');
-        newDoc.write(xhr.responseText);
-        newDoc.close();
-      }
-    };
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = onreadystatechange;
+    var newDoc = document.open('text/html', 'replace');
 
     var tryHostDev = function() {
-      xhr.onerror = function() {
-        tryHostProd();
+      var devXhr = new XMLHttpRequest();
+      devXhr.onreadystatechange = function() {
+        if (devXhr.readyState === 4) {
+          if (devXhr.status === 200) {
+            var newDoc = document.open('text/html', 'replace');
+            newDoc.write(devXhr.responseText);
+            newDoc.close();
+          } else {
+            tryHostProd();
+          }
+        }
       };
-      xhr.open('GET', 'https://' + hostDev + query, true);
-      xhr.send();
+      devXhr.open('GET', 'https://' + hostDev + query, true);
+      devXhr.send();
     };
 
     var tryHostProd = function() {
-      xhr.onerror = function(error) {
-        var rollbarXhr = new XMLHttpRequest();
-        rollbarXhr.open('POST', 'https://api.rollbar.com/api/1/item/', true);
-        rollbarXhr.send(
-          JSON.stringify({
-            access_token: 'd64fbebfade643439dad144ccb8c3635',
-            data: {
-              environment: 'injector',
-              platform: 'browser',
-              body: {
-                message: {
-                  body: 'Error loading the injector on: ' + window.location.href,
-                  error: error,
+      var prodXhr = new XMLHttpRequest();
+      prodXhr.onreadystatechange = function() {
+        if (prodXhr.readyState === 4) {
+          if (prodXhr.status === 200) {
+            newDoc.write(prodXhr.responseText);
+            newDoc.close();
+          } else {
+            var rollbarXhr = new XMLHttpRequest();
+            rollbarXhr.open('POST', 'https://api.rollbar.com/api/1/item/', true);
+            rollbarXhr.send(
+              JSON.stringify({
+                access_token: 'd64fbebfade643439dad144ccb8c3635',
+                data: {
+                  environment: 'injector',
+                  platform: 'browser',
+                  body: {
+                    message: {
+                      body: 'Error loading the injector on: ' + window.location.href,
+                      error: prodXhr.statusText,
+                    },
+                  },
                 },
-              },
-            },
-          })
-        );
-        console.error('Error loading the injector on: ' + window.location.href, error);
-        setCookie('woronaInjectortFailed', 'true', 1);
-        window.location.reload(true);
+              })
+            );
+            console.error('Error loading the injector on: ' + window.location.href, prodXhr.statusText);
+            setCookie('woronaInjectortFailed', 'true', 1);
+            window.location.reload(true);
+          }
+        }
       };
-      xhr.open('GET', 'https://' + hostProd + query, true);
-      xhr.send();
+      prodXhr.open('GET', 'https://' + hostProd + query, true);
+      prodXhr.send();
     };
 
     if (hostDev) tryHostDev();
