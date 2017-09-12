@@ -55,7 +55,6 @@ if (isset($settings['worona_siteid'])) {
 ?>
 
 <script type='text/javascript'>
-var siteId = '<?php echo $siteId; ?>', wpType = '<?php echo $wpType; ?>', wpId = '<?php echo $wpId; ?>',
-wpPage = '<?php echo $wpPage; ?>', hostDev = '<?php echo HOST_DEV; ?>', hostProd = '<?php echo HOST_PROD; ?>';
+var siteId = '<?php echo $siteId; ?>', wpType = '<?php echo $wpType; ?>', wpId = '<?php echo $wpId; ?>', wpPage = '<?php echo $wpPage; ?>', <?php if (defined('HOST_DEV')) { echo "hostDev = '" . HOST_DEV . "', "; } ?>hostProd = '<?php echo HOST_PROD; ?>';
 <?php require(WP_PLUGIN_DIR . '/worona/injector/injector.min.js'); ?>
 </script>

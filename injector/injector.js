@@ -1,4 +1,4 @@
-// Uglify using npx uglify-js injector.js --output injector.min.js --compress --mangle
+// Uglify using "npx uglify-js injector.js --output injector.min.js --compress --mangle"
 
 (function(document, window, navigator) {
   var isIpad = /ipad.*?OS (?![1-6]_|X)/i; // from iOS 7
@@ -15,14 +15,17 @@
     return isIpad.test(ua) || isChromeTablet.test(ua) || isOldAndroidTablet.test(ua);
   };
 
-  function setCookie(name, value, minutes) {
-    var d = new Date();
-    d.setTime(d.getTime() + minutes * 60 * 1000);
-    var expires = 'expires=' + d.toUTCString();
-    document.cookie = name + '=' + value + ';' + expires + ';path=/';
-  }
+  var setCookie = function(name, value, minutes) {
+    var expires = '';
+    if (minutes) {
+      var d = new Date();
+      d.setTime(d.getTime() + minutes * 60 * 1000);
+      expires = 'expires=' + d.toUTCString() + ';';
+    }
+    document.cookie = name + '=' + value + ';' + expires + 'path=/';
+  };
 
-  function readCookie(name) {
+  var readCookie = function(name) {
     var nameEQ = name + '=';
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -32,11 +35,26 @@
       if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
-  }
+  };
 
-  if (
+  var loadScript = function(tag, id, path) {
+    var js,
+      ref = document.getElementsByTagName(tag)[0];
+    if (document.getElementById(id)) {
+      return;
+    }
+    js = document.createElement(tag);
+    js.id = id;
+    var host = typeof hostDev !== 'undefined' ? hostDev : hostProd;
+    js.src = 'https://' + host + path;
+    ref.parentNode.insertBefore(js, ref);
+  };
+
+  if (readCookie('woronaClassicVersion')) {
+    loadScript('script', 'woronaClassic', '/static/go-back-to-worona.min.js');
+  } else if (
     wpType !== 'none' &&
-    !readCookie('woronaInjectortFailed') &&
+    !readCookie('woronaInjectorFailed') &&
     navigator &&
     isMobile(navigator.userAgent)
   ) {
@@ -90,8 +108,11 @@
                 },
               })
             );
-            console.error('Error loading the injector on: ' + window.location.href, prodXhr.statusText);
-            setCookie('woronaInjectortFailed', 'true', 1);
+            console.error(
+              'Error loading the injector on: ' + window.location.href,
+              prodXhr.statusText
+            );
+            setCookie('woronaInjectorFailed', 'true', 1);
             window.location.reload(true);
           }
         }
