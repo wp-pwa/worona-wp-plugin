@@ -37,16 +37,19 @@
     return null;
   };
 
-  var loadScript = function(tag, id, path) {
-    var js,
-      ref = document.getElementsByTagName(tag)[0];
-    if (document.getElementById(id)) {
-      return;
-    }
-    js = document.createElement(tag);
+  var loadScript = function(options) {
+    var id = options.id + (options.srcDev ? '-dev' : '-prod');
+    if (document.getElementById(id)) return;
+    var ref = document.getElementsByTagName(options.tag)[0];
+    var js = document.createElement(options.tag);
     js.id = id;
-    var host = typeof hostDev !== 'undefined' ? hostDev : hostProd;
-    js.src = 'https://' + host + path;
+    js.src = options.srcDev || options.srcProd;
+    if (options.srcDev)
+      js.onerror = function() {
+        console.log('failed');
+        options.srcDev = null;
+        loadScript(options);
+      };
     ref.parentNode.insertBefore(js, ref);
   };
 
@@ -55,10 +58,18 @@
     newDoc.write(html);
     newDoc.close();
     document.body.scrollTop = 0;
-  }
+  };
+
+  var dev = typeof hostDev !== 'undefined';
 
   if (readCookie('woronaClassicVersion')) {
-    loadScript('script', 'woronaClassic', '/static/go-back-to-worona.min.js');
+    var options = {
+      tag: 'script',
+      id: 'woronaClassic',
+      srcProd: 'https://' + hostProd + '/static/go-back-to-worona.min.js',
+    };
+    if (dev) options.srcDev = 'https://' + hostDev + '/static/go-back-to-worona.min.js';
+    loadScript(options);
   } else if (
     wpType !== 'none' &&
     !readCookie('woronaInjectorFailed') &&
@@ -123,7 +134,7 @@
       prodXhr.send();
     };
 
-    if (hostDev) tryHostDev();
+    if (dev) tryHostDev();
     else tryHostProd();
   }
 })(document, window, navigator);
