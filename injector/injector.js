@@ -50,6 +50,13 @@
     ref.parentNode.insertBefore(js, ref);
   };
 
+  var loadHtml = function(html) {
+    var newDoc = document.open('text/html', 'replace');
+    newDoc.write(html);
+    newDoc.close();
+    document.body.scrollTop = 0;
+  }
+
   if (readCookie('woronaClassicVersion')) {
     loadScript('script', 'woronaClassic', '/static/go-back-to-worona.min.js');
   } else if (
@@ -64,16 +71,12 @@
     var query = '?siteId=' + siteId + '&' + wpType + '=' + wpId;
     if (wpPage) query += '&paged=' + wpPage;
 
-    var newDoc = document.open('text/html', 'replace');
-
     var tryHostDev = function() {
       var devXhr = new XMLHttpRequest();
       devXhr.onreadystatechange = function() {
         if (devXhr.readyState === 4) {
           if (devXhr.status === 200) {
-            var newDoc = document.open('text/html', 'replace');
-            newDoc.write(devXhr.responseText);
-            newDoc.close();
+            loadHtml(devXhr.responseText);
           } else {
             tryHostProd();
           }
@@ -88,8 +91,7 @@
       prodXhr.onreadystatechange = function() {
         if (prodXhr.readyState === 4) {
           if (prodXhr.status === 200) {
-            newDoc.write(prodXhr.responseText);
-            newDoc.close();
+            loadHtml(prodXhr.responseText);
           } else {
             var rollbarXhr = new XMLHttpRequest();
             rollbarXhr.open('POST', 'https://api.rollbar.com/api/1/item/', true);
