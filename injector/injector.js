@@ -38,18 +38,11 @@
   };
 
   var loadScript = function(options) {
-    var id = options.id + (options.srcDev ? '-dev' : '-prod');
     if (document.getElementById(id)) return;
     var ref = document.getElementsByTagName(options.tag)[0];
     var js = document.createElement(options.tag);
-    js.id = id;
-    js.src = options.srcDev || options.srcProd;
-    if (options.srcDev)
-      js.onerror = function() {
-        console.log('failed');
-        options.srcDev = null;
-        loadScript(options);
-      };
+    js.id = options.id;
+    js.src = options.src;
     ref.parentNode.insertBefore(js, ref);
   };
 
@@ -60,17 +53,15 @@
     document.body.scrollTop = 0;
   };
 
-  var dev = typeof hostDev !== 'undefined';
-
   if (readCookie('woronaClassicVersion')) {
     var options = {
       tag: 'script',
       id: 'woronaClassic',
-      srcProd: 'https://' + hostProd + '/static/go-back-to-worona.min.js',
+      src: cdn + '/static/go-back-to-worona.min.js',
     };
-    if (dev) options.srcDev = 'https://' + hostDev + '/static/go-back-to-worona.min.js';
     loadScript(options);
   } else if (
+    siteId !== 'none' &&
     wpType !== 'none' &&
     !readCookie('woronaInjectorFailed') &&
     navigator &&
@@ -79,30 +70,15 @@
     window.stop();
     document.write('<plaintext style="display:none">');
 
-    var query = '?siteId=' + siteId + '&' + wpType + '=' + wpId;
+    var query = '?siteId=' + siteId + '&' + wpType + '=' + wpId + '&cdn=' + cdn;
     if (wpPage) query += '&paged=' + wpPage;
 
-    var tryHostDev = function() {
-      var devXhr = new XMLHttpRequest();
-      devXhr.onreadystatechange = function() {
-        if (devXhr.readyState === 4) {
-          if (devXhr.status === 200) {
-            loadHtml(devXhr.responseText);
-          } else {
-            tryHostProd();
-          }
-        }
-      };
-      devXhr.open('GET', 'https://' + hostDev + query, true);
-      devXhr.send();
-    };
-
-    var tryHostProd = function() {
-      var prodXhr = new XMLHttpRequest();
-      prodXhr.onreadystatechange = function() {
-        if (prodXhr.readyState === 4) {
-          if (prodXhr.status === 200) {
-            loadHtml(prodXhr.responseText);
+    var loadWorona = function() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            loadHtml(xhr.responseText);
           } else {
             var rollbarXhr = new XMLHttpRequest();
             rollbarXhr.open('POST', 'https://api.rollbar.com/api/1/item/', true);
@@ -115,7 +91,7 @@
                   body: {
                     message: {
                       body: 'Error loading the injector on: ' + window.location.href,
-                      error: prodXhr.statusText,
+                      error: xhr.statusText,
                     },
                   },
                 },
@@ -123,18 +99,17 @@
             );
             console.error(
               'Error loading the injector on: ' + window.location.href,
-              prodXhr.statusText
+              xhr.statusText
             );
             setCookie('woronaInjectorFailed', 'true', 1);
             window.location.reload(true);
           }
         }
       };
-      prodXhr.open('GET', 'https://' + hostProd + query, true);
-      prodXhr.send();
+      xhr.open('GET', ssr + query, true);
+      xhr.send();
     };
 
-    if (dev) tryHostDev();
-    else tryHostProd();
+    loadWorona();
   }
 })(document, window, navigator);
