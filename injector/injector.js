@@ -68,7 +68,7 @@
     isMobile(navigator.userAgent)
   ) {
     window.stop();
-    document.write('<plaintext style="display:none">');
+    document.write('<head><style>@keyframes progress{from{width:0%;}to{width:80%;}}</style></head><body style="height:100%;background:#FDFDFD;display:flex;justify-content:center;align-items:center;"><div style="animation:6s ease-out 1s progress;height:2px;background:#000;"></div></body>');
 
     var query = '?siteId=' + siteId + '&' + wpType + '=' + wpId + '&cdn=' + cdn;
     if (wpPage) query += '&paged=' + wpPage;
