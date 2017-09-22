@@ -309,6 +309,10 @@ class worona
 			'homepage_metadesc' => $homepage_metadesc
 		);
 
+		if(has_filter('worona_get_site_info')) {
+			$site_info = apply_filters('worona_get_site_info', $site_info);
+		}
+
 		return $site_info;
 	}
 
