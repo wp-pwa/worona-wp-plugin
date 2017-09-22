@@ -70,6 +70,10 @@ class worona
 				'methods' => 'GET',
 				'callback' => array( $this,'get_worona_plugin_version'))
 			);
+			register_rest_route( 'worona/v1', '/site-info/', array(
+				'methods' => 'GET',
+				'callback' => array( $this,'get_site_info'))
+			);
 		});
 		// filters
 	}
@@ -294,6 +298,18 @@ class worona
 
 	function get_worona_plugin_version() {
 		return array('plugin_version' => $this->plugin_version);
+	}
+
+	function get_site_info() {
+		$homepage_title = get_bloginfo( 'name' );
+		$homepage_metadesc = get_bloginfo( 'description' );
+
+		$site_info = array(
+			'homepage_title' => $homepage_title,
+			'homepage_metadesc' => $homepage_metadesc
+		);
+
+		return $site_info;
 	}
 
 	/*
