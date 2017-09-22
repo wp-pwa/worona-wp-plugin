@@ -8,6 +8,9 @@
   var isOldAndroidMobile = /android 4\.[0-3].* mobile/i; // from Android 4.1 to Android 4.4
   var isOldAndroidTablet = /android 4\.[0-3].* (?!mobile)/i; // from Android 4.1 to Android 4.4
 
+  ssr = ssr.replace(/\/$/g, '') + '/';
+  cdn = cdn.replace(/\/$/g, '') + '/';
+
   var isMobile = function(ua) {
     return isIphone.test(ua) || isChromeMobile.test(ua) || isOldAndroidMobile.test(ua);
   };
@@ -79,6 +82,7 @@
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             loadHtml(xhr.responseText);
+            window.__worona_public_path__ = cdn;
           } else {
             var rollbarXhr = new XMLHttpRequest();
             rollbarXhr.open('POST', 'https://api.rollbar.com/api/1/item/', true);
