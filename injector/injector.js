@@ -81,8 +81,8 @@
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            loadHtml(xhr.responseText);
             window.__worona_public_path__ = cdn;
+            loadHtml(xhr.responseText);
           } else {
             var rollbarXhr = new XMLHttpRequest();
             rollbarXhr.open('POST', 'https://api.rollbar.com/api/1/item/', true);
