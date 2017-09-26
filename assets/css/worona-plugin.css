@@ -12,7 +12,7 @@
 
 .underlined a {
   text-decoration: underline;
-} 
+}
 
 .worona-message {
 	position: relative;
@@ -25,7 +25,7 @@
   margin-top: 15px;
   margin-right: 22px;
   margin-left: 22px;
-  padding: 7px 22px; 
+  padding: 7px 22px;
   border: 2px solid #4a90e2;
   border-radius: 2px;
   background-color: #4a90e2;
@@ -46,4 +46,4 @@
 
 .small {
   font-size: 13px;
-}   
+}

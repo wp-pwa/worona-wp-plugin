@@ -35,7 +35,8 @@ jQuery(document).on('ready', function () {
     jQuery('.open-change-siteid').on('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      jQuery('#lateral-change-siteid').show();
+      jQuery('#lateral-error-siteid').hide();
+      jQuery('#lateral-change-siteid').toggle();
     });
 
     jQuery('.close-change-siteid').on('click', function(e) {
@@ -45,10 +46,30 @@ jQuery(document).on('ready', function () {
       jQuery('#lateral-error-siteid').hide();
     });
 
+    jQuery('.open-advanced-settings').on('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      jQuery('#lateral-error-advanced-settings').hide();
+      jQuery('#lateral-advanced-settings').toggle();
+    });
+
+    jQuery('.close-advanced-settings').on('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      jQuery('#lateral-advanced-settings').hide();
+      jQuery('#lateral-error-advanced-settings').hide();
+    });
+
     jQuery('.close-error-siteid').on('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
       jQuery('#lateral-error-siteid').hide();
+    });
+
+    jQuery('.close-error-advanced-settings').on('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      jQuery('#lateral-error-advanced-settings').hide();
     });
 
     //Create App via AJAX
@@ -163,6 +184,43 @@ jQuery(document).on('ready', function () {
           }
         });
       }
+    });
+
+    jQuery('#change-advanced-settings').on('click', function(e) {
+      jQuery('#change-advanced-settings').addClass('is-loading');
+      e.preventDefault();
+      e.stopPropagation();
+
+      jQuery.ajax({
+        url: ajaxurl,
+        method: "POST",
+        data: {
+            action: 'worona_change_advanced_settings',
+            worona_ssr: jQuery('input#worona-ssr').val(),
+            worona_cdn: jQuery('input#worona-cdn').val()
+        },
+        success: function (response) {
+          if (response.hasOwnProperty('status') && response.status == 'ok' ) {
+
+            jQuery('#gtm-iframe').attr('src',getIframeUrl('change-site-id'));
+
+            jQuery('#change-advanced-settings').removeClass('is-loading');
+            jQuery('#lateral-error-advanced-settings').hide();
+
+            jQuery('#lateral-change-advanced-settings').hide();
+
+          } else if( response.hasOwnProperty('status') && response.status == 'error') {
+            jQuery('#lateral-error-advanced-settings').show();
+            jQuery('#advanced-settings-error-message').text(response.reason);
+            jQuery('#change-advanced-settings').removeClass('is-loading');
+          }
+        },
+        error: function (response) {
+          jQuery('#lateral-error-advanced-settings').show();
+          jQuery('#advanced-settings-error-message').text("The Advanced Settings couldn't be modified. Please try again.");
+          jQuery('#change-advanced-settings').removeClass('is-loading');
+        }
+      });
     });
 
     //populate unsubscribe checkbox

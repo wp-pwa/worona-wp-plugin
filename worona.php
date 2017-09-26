@@ -3,7 +3,7 @@
 Plugin Name: Worona
 Plugin URI: http://www.worona.org/
 Description: Turn your WordPress site into a native iOS, Android and Windows Phone App.
-Version: 1.1.1
+Version: 1.1.3
 Author: Worona Labs SL
 Author URI: http://www.worona.org/
 License: GPL v3
@@ -47,6 +47,7 @@ class worona
 
 		add_action('wp_ajax_sync_with_worona',array($this,'sync_with_worona'));
 		add_action('wp_ajax_worona_change_siteid',array($this,'change_siteid_ajax'));
+		add_action('wp_ajax_worona_change_advanced_settings',array($this,'change_advanced_settings_ajax'));
 		add_action('wp_ajax_worona_send_contact_form',array($this,'send_contact_form_ajax'));
 		add_action('wp_head', array($this, 'worona_add_js_injector'), 1); // adds the injector
 
@@ -478,6 +479,22 @@ class worona
 		}
 	}
 
+	function change_advanced_settings_ajax() {
+
+		$worona_ssr = $_POST['worona_ssr'];
+		$worona_cdn = $_POST['worona_cdn'];
+
+		$settings = get_option('worona_settings');
+		$settings['worona_ssr'] = $worona_ssr;
+		$settings['worona_cdn'] = $worona_cdn;
+
+		update_option('worona_settings', $settings);
+
+		wp_send_json( array(
+			'status' => 'ok',
+		));
+	}
+
 	public function send_contact_form_ajax() {
 		$from = $_POST['email'];
 		$name = $_POST['name'];
@@ -631,8 +648,28 @@ function worona_activation() {
 		$siteId = generate_siteId();
 	}
 
-	add_option('worona_settings', array("synced_with_worona" => $synced_with_worona, "worona_siteid" => $siteId), '','yes');
+	if (isset($settings['worona_ssr'])) {
+		$worona_ssr = $settings['worona_ssr'];
+	} else {
+		$worona_ssr = 'https://pwa.worona.io';
+	}
 
+	if (isset($settings['worona_cdn'])) {
+		$worona_cdn = $settings['worona_cdn'];
+	} else {
+		$worona_cdn = 'https://pwa-cdn.worona.io';
+	}
+
+	$defaults = array("synced_with_worona" => $synced_with_worona,
+										"worona_siteid" => $siteId,
+										"worona_ssr" => $worona_ssr,
+										"worona_cdn" => $worona_cdn);
+
+	if($settings === false){
+		add_option('worona_settings',$defaults , '','yes');
+	} else {
+		update_option('worona_settings',$defaults);
+	}
 	flush_rewrite_rules();
 }
 

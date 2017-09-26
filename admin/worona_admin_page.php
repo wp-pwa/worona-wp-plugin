@@ -230,6 +230,12 @@
 					<span id="worona-siteid-span"><?php echo $settings['worona_siteid'];?></span> <a class="open-change-siteid" href="#">(change)</a>
 				</p>
 				</div>
+				<div id="worona-advanced-settings-lateral" style="text-align: right; font-size: 10px;" <?php echo ($synced_with_worona?'':'style="display:none;"');?>>
+				<p>
+					<hr>
+					<a class="open-advanced-settings" href="#" style="text-decoration: underline;">Advanced settings</a>
+				</p>
+				</div>
 			</div>
 		 </article>
 		 <article class="message">
@@ -289,6 +295,67 @@
 					</table>
 					<p>
 						<a href="#" id="change-siteid"class="button button-lg">Change</a>
+					</p>
+			  </div>
+		 </article>
+		 <article id="lateral-advanced-settings" class="message is-danger" style="display:none;" >
+			 <div class="message-header">
+					<nav class="level">
+						<div class="level-left">
+							<strong> Advanced Settings</strong>
+						</div>
+						<div class="level-right">
+							<a href="#" class="close-advanced-settings" style="color:inherit"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+						</div>
+					</nav>
+			  </div>
+			  <div class="message-body">
+					<p>
+						<strong>Warning!</strong> Changing this settings can break your progressive web app.
+					</p>
+					<br>
+					<p>
+						<article id="lateral-error-advanced-settings" class="message is-danger" style="display:none;">
+							<div class="message-body">
+								<nav class="level">
+									<div id="advanced-settings-error-message" class="level-left">
+										Error modifying advanced settings.
+									</div>
+									<div class="level-right">
+										<a href="#" class="close-error-advanced-settings" style="color:inherit"><strong>x</strong></a>
+									</div>
+								</nav>
+							</div>
+						</article>
+					</p>
+					<table class="form-table">
+						<tr>
+							<th scope="row">Worona Server</th>
+							<td>
+									<fieldset>
+											<label>
+													<input type="text" id="worona-ssr" value="<?php echo $settings['worona_ssr']; ?>"/>
+													<br />
+													<span class="description">SSR URL</span>
+											</label>
+									</fieldset>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Worona CDN</th>
+							<td>
+									<fieldset>
+											<label>
+													<input type="text" id="worona-cdn" value="<?php echo $settings['worona_cdn']; ?>"/>
+													<br />
+													<span class="description">CDN URL</span>
+											</label>
+									</fieldset>
+							</td>
+						</tr>
+					</table>
+					<p>
+						<a href="#" id="change-advanced-settings"class="button button-lg">Change</a>
 					</p>
 			  </div>
 		 </article>
