@@ -41,7 +41,7 @@
   };
 
   var loadScript = function(options) {
-    if (document.getElementById(id)) return;
+    if (document.getElementById(options.id)) return;
     var ref = document.getElementsByTagName(options.tag)[0];
     var js = document.createElement(options.tag);
     js.id = options.id;
@@ -71,7 +71,9 @@
     isMobile(navigator.userAgent)
   ) {
     window.stop();
-    document.write('<head><style>@keyframes progress{from{width:0%;}to{width:80%;}}</style></head><body style="height:100%;background:#FDFDFD;display:flex;justify-content:center;align-items:center;"><div style="animation:6s ease-out 1s 1 forwards progress;height:2px;background:#000;"></div></body>');
+    document.write(
+      '<head><style>@keyframes progress{from{width:0%;}to{width:80%;}}</style></head><body style="height:100%;background:#FDFDFD;display:flex;justify-content:center;align-items:center;"><div style="animation:6s ease-out 1s 1 forwards progress;height:2px;background:#000;"></div></body>'
+    );
 
     var query = '?siteId=' + siteId + '&' + wpType + '=' + wpId;
     if (wpPage) query += '&paged=' + wpPage;
@@ -101,10 +103,7 @@
                 },
               })
             );
-            console.error(
-              'Error loading the injector on: ' + window.location.href,
-              xhr.statusText
-            );
+            console.error('Error loading the injector on: ' + window.location.href, xhr.statusText);
             setCookie('woronaInjectorFailed', 'true', 1);
             window.location.reload(true);
           }
