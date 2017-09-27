@@ -124,6 +124,9 @@ For help setting up and configuring Worona you can go to: [https://docs.worona.o
 7. Worona App. Best in class mobile app to display your content in iOS & Android.
 
 == Changelog ==
+= 1.0.4 =
+* Added PWA injector
+
 = 1.0.1 =
 * Improved the "unsubscribe" from Support option
 
