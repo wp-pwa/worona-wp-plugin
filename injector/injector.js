@@ -60,7 +60,7 @@
     var options = {
       tag: 'script',
       id: 'woronaClassic',
-      src: cdn + '/static/go-back-to-worona.min.js',
+      src: cdn + 'static/go-back-to-worona.min.js',
     };
     loadScript(options);
   } else if (
