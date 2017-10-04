@@ -124,9 +124,14 @@ For help setting up and configuring Worona you can go to: [https://docs.worona.o
 7. Worona App. Best in class mobile app to display your content in iOS & Android.
 
 == Changelog ==
+= 1.0.7 =
+* Switch to escaped html for the animation.
+
+= 1.0.6 = (NOT MERGED)
+* Fixed a problem with go back.
+
 = 1.0.5 =
 * Fixed a problem with go back.
-* Added new Firefox mobile browser.
 
 = 1.0.4 =
 * Added PWA injector.
