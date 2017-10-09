@@ -1,12 +1,10 @@
 // Uglify using "npx uglify-js injector.js --output injector.min.js --compress --mangle"
 
 (function(document, window, navigator) {
-  var isIpad = /ipad.*?OS (?![1-6]_|X)/i; // from iOS 7
-  var isIphone = /ip(hone|od).*?OS (?![1-6]_|X)/i; // from iOS 7
-  var isChromeMobile = /android (?![1-3]).*chrome\/[.0-9]* mobile/i; // from Android 4.4
-  var isChromeTablet = /android (?![1-3]).*chrome\/[.0-9]* (?!mobile)/i; // from Android 4.4
-  var isOldAndroidMobile = /android 4\.[0-3].* mobile/i; // from Android 4.1 to Android 4.4
-  var isOldAndroidTablet = /android 4\.[0-3].* (?!mobile)/i; // from Android 4.1 to Android 4.4
+  var isIpad = /ipad.*?OS (?![1-8]_|X)/i; // from iOS 9
+  var isIphone = /ip(hone|od).*?OS (?![1-8]_|X)/i; // from iOS 9
+  var isAndroidMobile = /android (?![1-3]\.)(?!4\.[0-3]).* mobile/i; // from Android 4.4
+  var isAndroidTablet = /android (?![1-3]\.)(?!4\.[0-3]).* (?!mobile)/i; // from Android 4.4
 
   ssr = ssr.replace(/\/$/g, '') + '/';
   statik = statik.replace(/\/$/g, '') + '/';
