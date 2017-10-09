@@ -654,10 +654,10 @@ function worona_activation() {
 		$worona_ssr = 'https://pwa.worona.io';
 	}
 
-	if (isset($settings['worona_cdn'])) {
-		$worona_cdn = $settings['worona_cdn'];
+	if (isset($settings['worona_static'])) {
+		$worona_static = $settings['worona_static'];
 	} else {
-		$worona_cdn = 'https://pwa-cdn.worona.io';
+		$worona_static = 'https://pwa-static.worona.io';
 	}
 
 	$defaults = array("synced_with_worona" => $synced_with_worona,

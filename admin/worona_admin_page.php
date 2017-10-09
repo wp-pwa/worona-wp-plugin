@@ -330,7 +330,7 @@
 					</p>
 					<table class="form-table">
 						<tr>
-							<th scope="row">Worona Server</th>
+							<th scope="row">SSR server</th>
 							<td>
 									<fieldset>
 											<label>
@@ -342,13 +342,13 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">Worona CDN</th>
+							<th scope="row">Static server</th>
 							<td>
 									<fieldset>
 											<label>
-													<input type="text" id="worona-cdn" value="<?php echo $settings['worona_cdn']; ?>"/>
+													<input type="text" id="worona-static" value="<?php echo $settings['worona_static']; ?>"/>
 													<br />
-													<span class="description">CDN URL</span>
+													<span class="description">Static URL</span>
 											</label>
 									</fieldset>
 							</td>

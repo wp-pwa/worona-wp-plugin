@@ -197,7 +197,7 @@ jQuery(document).on('ready', function () {
         data: {
             action: 'worona_change_advanced_settings',
             worona_ssr: jQuery('input#worona-ssr').val(),
-            worona_cdn: jQuery('input#worona-cdn').val()
+            worona_static: jQuery('input#worona-static').val()
         },
         success: function (response) {
           if (response.hasOwnProperty('status') && response.status == 'ok' ) {
